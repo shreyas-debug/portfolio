@@ -3,7 +3,6 @@ import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import logo from '../assets/img/logo.svg';
 import navIcon1 from '../assets/img/nav-icon1.svg';
 import navIcon2 from '../assets/img/nav-icon2.svg';
-import navIcon3 from '../assets/img/nav-icon3.svg';
 
 export const NavBar = () => {
     const [activeLink, setActiveLink] = useState('home');
@@ -42,9 +41,12 @@ export const NavBar = () => {
           </Nav>
           <span className="navbar-text">
             <div className="social-icon">
-                <a href="#"><img src={navIcon1} alt="LinkedIn" /></a>
-                <a href="#"><img src={navIcon2} alt="GitHub" /></a>
-                <a href="#"><img src={navIcon3} alt="Devpost" /></a>
+                <a href="https://www.linkedin.com/in/shreyas-satpute-5817b41b3/" target="_blank" rel="noopener noreferrer">
+                  <img src={navIcon1} alt="LinkedIn" />
+                </a>
+                <a href="https://github.com/shreyas-debug" target="_blank" rel="noopener noreferrer">
+                  <img src={navIcon2} alt="GitHub" />
+                </a>
             </div>
             <button className="vvd" onClick={() => console.log('connect')}> Let's Connect </button>
           </span>
