@@ -1,10 +1,12 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap"
-import { ArrowRightCircle } from "react-bootstrap-icons";
-import headerImg from '../assets/img/header-img.svg';
-
+import { useTheme } from '../contexts/ThemeContext';
+import headerImg from '../assets/img/header-img.png';
+import bannerBgDark from '../assets/img/banner-bg.png';
+import bannerBgLight from '../assets/img/banner-bg-light.png';
 
 export const Banner = () => {
+    const { isDarkMode } = useTheme();
     const [loopNum, setLoopNum] = useState(0);
     const [isDeleting, setIsDeleting] = useState(false);
     const toRotate = [ "software developer", "web developer", "web designer" ];
@@ -39,13 +41,30 @@ export const Banner = () => {
 
 
     return (
-        <section className="banner" id="home">  
+        <section 
+            className="banner" 
+            id="home"
+            style={{
+                backgroundImage: `url(${isDarkMode ? bannerBgDark : bannerBgLight})`,
+                backgroundPosition: "top center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat"
+            }}
+        >  
         <Container>
             <Row className="align-items-center">
                 <Col xs={12} md={6} xl={7}>
-                    <h1>{`Hi! I'm Shreyas Satpute a `}<span className="wrap">{text}</span></h1>
-                    <p>I am passionate about web development and love creating beautiful and functional websites.</p>
-                    <button onClick={() => console.log('connect')}>Let's Connect <ArrowRightCircle size={25}/></button>
+                    <h1>
+                        <span style={{ color: '#2C3E50' }}>
+                            {`Hi! I'm Shreyas Satpute a `}
+                        </span>
+                        <span className="wrap" style={{ color: '#fff' }}>
+                            {text}
+                        </span>
+                    </h1>
+                    <p style={{ color: '#fff' }}>
+                        I am passionate about web development and love creating beautiful and functional websites.
+                    </p>
                 </Col>
                 <Col xs={12} md={6} xl={5}>
                     <img src={headerImg} alt="Header Img"/>

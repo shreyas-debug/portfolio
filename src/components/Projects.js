@@ -1,5 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { ProjectCard } from "./ProjectCard";
+import { useTheme } from '../contexts/ThemeContext';
 import projImg1 from "../assets/img/project-img1.jpg";
 import projImg2 from "../assets/img/project-img2.jpg";
 import projImg3 from "../assets/img/project-img3.jpg";
@@ -11,6 +12,7 @@ import 'animate.css';
 import TrackVisibility from 'react-on-screen';
 
 export const Projects = () => {
+  const { isDarkMode } = useTheme();
 
   const projects = [
     {

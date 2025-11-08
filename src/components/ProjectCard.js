@@ -1,6 +1,8 @@
 import { Col } from "react-bootstrap";
+import { useTheme } from '../contexts/ThemeContext';
 
 export const ProjectCard = ({ title, description, imgUrl, githubUrl }) => {
+  const { isDarkMode } = useTheme();
   return (
     <Col size={12} sm={6} md={4}>
       <div className="proj-imgbx">
@@ -16,8 +18,9 @@ export const ProjectCard = ({ title, description, imgUrl, githubUrl }) => {
                 rel="noopener noreferrer"
                 className="btn btn-outline-light btn-sm"
                 style={{
-                  border: '1px solid #fff',
-                  color: '#fff',
+                  border: isDarkMode ? '1px solid #AA367C' : '1px solid #5BA6D6',
+                  color: isDarkMode ? '#AA367C' : '#5BA6D6',
+                  backgroundColor: 'transparent',
                   padding: '8px 16px',
                   textDecoration: 'none',
                   borderRadius: '4px',
@@ -25,12 +28,12 @@ export const ProjectCard = ({ title, description, imgUrl, githubUrl }) => {
                   transition: 'all 0.3s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.target.style.backgroundColor = '#fff';
-                  e.target.style.color = '#121212';
+                  e.target.style.backgroundColor = isDarkMode ? '#AA367C' : '#5BA6D6';
+                  e.target.style.color = '#fff';
                 }}
                 onMouseLeave={(e) => {
                   e.target.style.backgroundColor = 'transparent';
-                  e.target.style.color = '#fff';
+                  e.target.style.color = isDarkMode ? '#AA367C' : '#5BA6D6';
                 }}
               >
                 View on GitHub

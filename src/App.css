@@ -15,6 +15,34 @@
 	font-weight: 400;
 }
 
+/************ Theme Variables ************/
+:root {
+  /* Dark Theme (Default) */
+  --bg-primary: #121212;
+  --bg-secondary: #151515;
+  --text-primary: #fff;
+  --text-secondary: #B8B8B8;
+  --accent-primary: #AA367C;
+  --accent-secondary: #4A2FBD;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+.light-theme {
+  /* Light Theme - Matching banner-bg-light colors */
+  --bg-primary: #C6E2FF; /* Light Blue Sky */
+  --bg-secondary: #ffffff; /* White for text boxes */
+  --text-primary: #2C3E50; /* Dark blue-grey for readability */
+  --text-secondary: #5BA6D6; /* Central Blue Circle/Object */
+  --accent-primary: #5BA6D6; /* Central Blue Circle/Object */
+  --accent-secondary: #7F9CB1; /* Even Fainter Blue/Grey Dots */
+  --accent-tertiary: #D3C5E0; /* Subtle Haze/Clouds (light purple-ish) */
+  --border-color: rgba(91, 166, 214, 0.3); /* Semi-transparent blue */
+  --shadow-color: rgba(91, 166, 214, 0.15);
+  --timeline-line: #2C3E50; /* Dark line for experience timeline */
+  --timeline-text: #2C3E50; /* Dark text for experience timeline */
+}
+
 /************ Default Css ************/
 * {
   margin: 0;
@@ -31,9 +59,10 @@ body {
   font-weight: 400;
   overflow-x: hidden;
   position: relative;
-  background-color: #121212 !important;
-  color: #fff !important;
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
   font-family: 'Centra', sans-serif !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -92,18 +121,20 @@ nav.navbar {
 }
 nav.navbar.scrolled {
   padding: 0px 0;
-  background-color: #121212;
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
 }
 nav.navbar a.navbar-brand {
     width: 9%;
 }
 nav.navbar .navbar-nav .nav-link.navbar-link {
   font-weight: 400;
-  color: #fff !important;
+  color: var(--text-primary) !important;
   letter-spacing: 0.8px;
   padding: 0 25px;
   font-size: 18px;
   opacity: 0.75;
+  transition: color 0.3s ease;
 }
 nav.navbar .navbar-nav a.nav-link.navbar-link:hover,
 nav.navbar .navbar-nav a.nav-link.navbar-link.active {
@@ -304,20 +335,23 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .skill {
   padding: 0 0 50px 0;
   position: relative;
+  background-color: var(--bg-primary);
 }
 .skill-bx {
-  background: #151515;
+  background: var(--bg-secondary);
   border-radius: 64px;
   text-align: center;
   padding: 60px 50px;
   margin-top: -60px;
+  border: 1px solid var(--border-color);
 }
 .skill h2 {
 	font-size: 45px;
 	font-weight: 700;
+    color: var(--text-primary);
 }
 .skill p {
-    color: #B8B8B8;
+    color: var(--text-secondary);
     font-size: 18px;
     letter-spacing: 0.8px;
     line-height: 1.5em;
@@ -344,15 +378,16 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .project {
   padding: 80px 0;
   position: relative;
-  background-color: black;
+  background-color: var(--bg-primary);
 }
 .project h2 {
 	font-size: 45px;
 	font-weight: 700;
   text-align: center;
+  color: var(--text-primary);
 }
 .project p {
-  color: #B8B8B8;
+  color: var(--text-secondary);
   font-size: 18px;
   letter-spacing: 0.8px;
   line-height: 1.5em;
@@ -421,8 +456,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 }
 .proj-imgbx::before {
   content: "";
-  background: linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%);
-  opacity: 0.85;
+  background: var(--bg-secondary);
+  opacity: 0.9;
   position: absolute;
   width: 100%;
   height: 0;
@@ -450,12 +485,14 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   font-weight: 700;
   letter-spacing: 0.8px;
   line-height: 1.1em;
+  color: var(--text-primary);
 }
 .proj-txtx span {
   font-style: italic;
   font-weight: 400;
   font-size: 15px;
   letter-spacing: 0.8px;
+  color: var(--text-secondary);
 }
 .background-image-right {
   top: 20%;
@@ -541,10 +578,8 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 /************ Footer Css ************/
 .footer {
   padding: 0 0 50px 0;
-  background-image: url('./assets/img/footer-bg.png');
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
 }
 .newsletter-bx {
   background: #FFFFFF;
@@ -612,7 +647,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 .footer p {
   font-weight: 400;
   font-size: 14px;
-  color: #B8B8B8;
+  color: var(--text-secondary);
   letter-spacing: 0.5px;
   margin-top: 20px;
 }

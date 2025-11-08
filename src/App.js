@@ -1,4 +1,5 @@
 import './App.css';
+import { ThemeProvider } from './contexts/ThemeContext';
 import { NavBar } from './components/NavBar';
 import { Banner } from './components/Banner';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,16 +11,17 @@ import { Footer } from './components/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <NavBar />
-      <Banner />
-      <Skills />
-      <Experience />
-      <Projects />
-      <About />
-      <Footer />
-
-    </div>
+    <ThemeProvider>
+      <div className="App">
+        <NavBar />
+        <Banner />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
 

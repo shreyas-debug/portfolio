@@ -1,8 +1,10 @@
 import { Container, Row, Col } from "react-bootstrap";
 import 'animate.css';
 import TrackVisibility from 'react-on-screen';
+import { useTheme } from '../contexts/ThemeContext';
 
 export const Experience = () => {
+  const { isDarkMode } = useTheme();
   const experiences = [
     {
       title: "Software Engineer - I",
@@ -100,14 +102,14 @@ export const Experience = () => {
   ];
 
   return (
-    <section className="experience" id="experience" style={{ padding: "80px 0", position: "relative", backgroundColor: "#121212" }}>
+    <section className="experience" id="experience" style={{ padding: "80px 0", position: "relative", backgroundColor: isDarkMode ? "#121212" : "#C6E2FF" }}>
       <Container>
         <Row>
           <Col size={12}>
             <TrackVisibility>
               {({ isVisible }) =>
                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-                  <h2 style={{ fontSize: "45px", fontWeight: "700", textAlign: "center", marginBottom: "20px", color: "#fff" }}>Experience & Education</h2>
+                  <h2 style={{ fontSize: "45px", fontWeight: "700", textAlign: "center", marginBottom: "20px", color: isDarkMode ? "#fff" : "#2C3E50" }}>Experience & Education</h2>
                   
                   <div style={{ position: "relative", maxWidth: "1000px", margin: "0 auto" }}>
                     {/* Timeline Line - Left Side */}
@@ -117,7 +119,9 @@ export const Experience = () => {
                       top: "0",
                       bottom: "0",
                       width: "2px",
-                      background: "linear-gradient(180deg, #AA367C 0%, #4A2FBD 100%)",
+                      background: isDarkMode 
+                        ? "linear-gradient(180deg, #AA367C 0%, #4A2FBD 100%)"
+                        : "var(--timeline-line)",
                       zIndex: "1"
                     }}></div>
                     
@@ -139,18 +143,20 @@ export const Experience = () => {
                           background: item.type === "experience" 
                             ? "linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%)"
                             : "linear-gradient(90.21deg, #4A2FBD -5.91%, #AA367C 111.58%)",
-                          border: "4px solid #121212",
+                          border: `4px solid ${isDarkMode ? "#121212" : "#ffffff"}`,
                           zIndex: "2",
-                          boxShadow: "0 0 0 4px rgba(255, 255, 255, 0.1)"
+                          boxShadow: isDarkMode 
+                            ? "0 0 0 4px rgba(255, 255, 255, 0.1)"
+                            : "0 0 0 4px rgba(44, 62, 80, 0.1)"
                         }}></div>
                         
                         {/* Content Card - Rectangle */}
                         <div style={{
                           width: "100%",
-                          background: "#151515",
+                          background: isDarkMode ? "#151515" : "#ffffff",
                           borderRadius: "0px",
                           padding: "30px",
-                          border: "1px solid rgba(255, 255, 255, 0.1)",
+                          border: `1px solid ${isDarkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(91, 166, 214, 0.3)"}`,
                           transition: "all 0.3s ease-in-out",
                           position: "relative"
                         }}
@@ -171,7 +177,7 @@ export const Experience = () => {
                             <h4 style={{ 
                               fontSize: "20px", 
                               fontWeight: "600", 
-                              color: "#fff", 
+                              color: isDarkMode ? "#fff" : "#2C3E50", 
                               marginBottom: "8px" 
                             }}>
                               {item.title}
@@ -180,14 +186,16 @@ export const Experience = () => {
                             <h5 style={{ 
                               fontSize: "18px", 
                               fontWeight: "500", 
-                              color: item.type === "experience" ? "#AA367C" : "#4A2FBD", 
+                              color: item.type === "experience" 
+                                ? (isDarkMode ? "#AA367C" : "#5BA6D6")
+                                : (isDarkMode ? "#4A2FBD" : "#7F9CB1"), 
                               marginBottom: "5px" 
                             }}>
                               {item.company || item.institution}
                             </h5>
                             
                             <p style={{ 
-                              color: "#B8B8B8", 
+                              color: isDarkMode ? "#B8B8B8" : "#2C3E50", 
                               fontSize: "14px", 
                               margin: "0 0 10px 0" 
                             }}>
@@ -195,12 +203,12 @@ export const Experience = () => {
                             </p>
                             
                             <div style={{ 
-                              background: "rgba(255, 255, 255, 0.05)",
+                              background: isDarkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(91, 166, 214, 0.1)",
                               padding: "8px 12px",
                               borderRadius: "0px",
                               fontSize: "12px",
                               fontWeight: "500",
-                              color: "#B8B8B8",
+                              color: isDarkMode ? "#B8B8B8" : "#2C3E50",
                               marginBottom: "15px",
                               display: "inline-block"
                             }}>
@@ -212,7 +220,7 @@ export const Experience = () => {
                                 <ul style={{ marginBottom: "15px", paddingLeft: "15px" }}>
                                   {item.description.map((desc, descIndex) => (
                                     <li key={descIndex} style={{ 
-                                      color: "#B8B8B8", 
+                                      color: isDarkMode ? "#B8B8B8" : "#2C3E50", 
                                       fontSize: "14px", 
                                       lineHeight: "1.5", 
                                       marginBottom: "5px" 
@@ -225,13 +233,13 @@ export const Experience = () => {
                                 <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
                                   {item.technologies.map((tech, techIndex) => (
                                     <span key={techIndex} style={{
-                                      background: "rgba(170, 54, 124, 0.2)",
-                                      color: "#AA367C",
+                                      background: isDarkMode ? "rgba(170, 54, 124, 0.2)" : "rgba(91, 166, 214, 0.2)",
+                                      color: isDarkMode ? "#AA367C" : "#5BA6D6",
                                       padding: "3px 8px",
                                       borderRadius: "0px",
                                       fontSize: "11px",
                                       fontWeight: "500",
-                                      border: "1px solid rgba(170, 54, 124, 0.3)"
+                                      border: isDarkMode ? "1px solid rgba(170, 54, 124, 0.3)" : "1px solid rgba(91, 166, 214, 0.3)"
                                     }}>
                                       {tech}
                                     </span>
@@ -240,7 +248,7 @@ export const Experience = () => {
                               </>
                             ) : (
                               <p style={{ 
-                                color: "#B8B8B8", 
+                                color: isDarkMode ? "#B8B8B8" : "#2C3E50", 
                                 fontSize: "14px", 
                                 lineHeight: "1.5", 
                                 margin: "0" 

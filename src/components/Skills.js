@@ -1,9 +1,11 @@
 import meter1 from "../assets/img/meter1.svg";
 import meter2 from "../assets/img/meter2.svg";
 import meter3 from "../assets/img/meter3.svg";
-import colorSharp from "../assets/img/color-sharp.png"
+import colorSharp from "../assets/img/color-sharp.png";
+import { useTheme } from '../contexts/ThemeContext';
 
 export const Skills = () => {
+  const { isDarkMode } = useTheme();
   const skills = [
     "Python", "JavaScript", "C#", "React.js", ".NET Core", "Flask", 
     "Machine Learning", "Microsoft Azure", "SQL", "Express.js", "REST APIs", "Git"
@@ -27,7 +29,9 @@ export const Skills = () => {
                         }}>
                           {skills.map((skill, index) => (
                             <div key={index} className="skill-pill" style={{
-                              background: "linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%)",
+                              background: isDarkMode 
+                                ? "linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%)"
+                                : "linear-gradient(90.21deg, #5BA6D6 -5.91%, #7F9CB1 111.58%)",
                               borderRadius: "25px",
                               padding: "12px 24px",
                               color: "#fff",
@@ -36,15 +40,21 @@ export const Skills = () => {
                               border: "none",
                               cursor: "pointer",
                               transition: "all 0.3s ease-in-out",
-                              boxShadow: "0 4px 15px rgba(170, 54, 124, 0.3)"
+                              boxShadow: isDarkMode 
+                                ? "0 4px 15px rgba(170, 54, 124, 0.3)"
+                                : "0 4px 15px rgba(91, 166, 214, 0.3)"
                             }}
                             onMouseEnter={(e) => {
                               e.currentTarget.style.transform = "translateY(-3px) scale(1.05)";
-                              e.currentTarget.style.boxShadow = "0 8px 25px rgba(170, 54, 124, 0.5)";
+                              e.currentTarget.style.boxShadow = isDarkMode 
+                                ? "0 8px 25px rgba(170, 54, 124, 0.5)"
+                                : "0 8px 25px rgba(91, 166, 214, 0.5)";
                             }}
                             onMouseLeave={(e) => {
                               e.currentTarget.style.transform = "translateY(0) scale(1)";
-                              e.currentTarget.style.boxShadow = "0 4px 15px rgba(170, 54, 124, 0.3)";
+                              e.currentTarget.style.boxShadow = isDarkMode 
+                                ? "0 4px 15px rgba(170, 54, 124, 0.3)"
+                                : "0 4px 15px rgba(91, 166, 214, 0.3)";
                             }}>
                               {skill}
                             </div>

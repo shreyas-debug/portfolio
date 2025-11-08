@@ -1,15 +1,13 @@
 import { Container, Row, Col } from "react-bootstrap";
+import { useTheme } from '../contexts/ThemeContext';
 import logo from "../assets/img/logo.svg";
 import navIcon1 from "../assets/img/nav-icon1.svg";
 import navIcon2 from "../assets/img/nav-icon2.svg";
 
 export const Footer = () => {
+  const { isDarkMode } = useTheme();
   return (
-    <footer style={{
-      padding: "60px 0 50px 0",
-      backgroundColor: "#121212",
-      borderTop: "1px solid rgba(255, 255, 255, 0.1)"
-    }}>
+    <footer className="footer">
       <Container>
         <Row className="align-items-center">
           <Col size={12} sm={6}>
@@ -76,13 +74,7 @@ export const Footer = () => {
                 <img src={navIcon2} alt="GitHub" style={{ width: "40%", zIndex: "1" }} />
               </a>
             </div>
-            <p style={{
-              fontWeight: "400",
-              fontSize: "14px",
-              color: "#B8B8B8",
-              letterSpacing: "0.5px",
-              margin: "0"
-            }}>
+            <p>
               © 2025 Shreyas Satpute. All Rights Reserved
             </p>
           </Col>
