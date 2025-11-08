@@ -112,8 +112,8 @@ export const Experience = () => {
                   <h2 style={{ fontSize: "45px", fontWeight: "700", textAlign: "center", marginBottom: "20px", color: isDarkMode ? "#fff" : "#2C3E50" }}>Experience & Education</h2>
                   
                   <div style={{ position: "relative", maxWidth: "1000px", margin: "0 auto" }}>
-                    {/* Timeline Line - Left Side */}
-                    <div style={{
+                    {/* Timeline Line - Left Side (Hidden on mobile) */}
+                    <div className="timeline-line" style={{
                       position: "absolute",
                       left: "80px",
                       top: "0",
@@ -126,15 +126,15 @@ export const Experience = () => {
                     }}></div>
                     
                     {timelineItems.map((item, index) => (
-                      <div key={index} style={{
+                      <div key={index} className="timeline-item" style={{
                         position: "relative",
                         marginBottom: "60px",
                         display: "flex",
                         alignItems: "center",
                         paddingLeft: "120px"
                       }}>
-                        {/* Timeline Dot */}
-                        <div style={{
+                        {/* Timeline Dot (Hidden on mobile) */}
+                        <div className="timeline-dot" style={{
                           position: "absolute",
                           left: "71px",
                           width: "20px",
@@ -151,7 +151,7 @@ export const Experience = () => {
                         }}></div>
                         
                         {/* Content Card - Rectangle */}
-                        <div style={{
+                        <div className="timeline-content" style={{
                           width: "100%",
                           background: isDarkMode ? "#151515" : "#ffffff",
                           borderRadius: "0px",

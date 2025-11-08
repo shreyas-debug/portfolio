@@ -55,14 +55,14 @@ export const Banner = () => {
             <Row className="align-items-center">
                 <Col xs={12} md={6} xl={7}>
                     <h1>
-                        <span style={{ color: '#2C3E50' }}>
+                        <span style={{ color: isDarkMode ? '#fff' : '#2C3E50' }}>
                             {`Hi! I'm Shreyas Satpute a `}
                         </span>
-                        <span className="wrap" style={{ color: '#fff' }}>
+                        <span className="wrap" style={{ color: isDarkMode ? '#fff' : '#2C3E50' }}>
                             {text}
                         </span>
                     </h1>
-                    <p style={{ color: '#fff' }}>
+                    <p style={{ color: isDarkMode ? '#B8B8B8' : '#2C3E50' }}>
                         I am passionate about web development and love creating beautiful and functional websites.
                     </p>
                 </Col>

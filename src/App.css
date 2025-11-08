@@ -63,6 +63,8 @@ body {
   color: var(--text-primary) !important;
   font-family: 'Centra', sans-serif !important;
   transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
+  max-width: 100vw;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -85,6 +87,7 @@ a:hover {
 img {
   width: 100%;
   height: auto;
+  max-width: 100%;
 }
 
 button {
@@ -118,6 +121,7 @@ nav.navbar {
   top: 0;
   z-index: 9999;
   transition:  0.32s ease-in-out;
+  background-color: transparent;
 }
 nav.navbar.scrolled {
   padding: 0px 0;
@@ -136,6 +140,78 @@ nav.navbar .navbar-nav .nav-link.navbar-link {
   opacity: 0.75;
   transition: color 0.3s ease;
 }
+
+/* Mobile Navigation - Hidden on desktop */
+nav.navbar .mobile-nav {
+  display: none !important;
+}
+
+/* Desktop Navigation - Show on desktop */
+nav.navbar .desktop-nav {
+  display: flex !important;
+}
+
+/* Hide mobile menu toggle on desktop */
+.mobile-menu-toggle {
+  display: none;
+}
+
+/* Ensure mobile nav is hidden outside media queries (desktop) */
+@media (min-width: 769px) {
+  .mobile-nav {
+    display: none !important;
+  }
+  
+  .desktop-nav {
+    display: flex !important;
+  }
+  
+  /* Ensure navbar collapse is visible on desktop */
+  nav.navbar .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto !important;
+    flex-grow: 1 !important;
+    align-items: center !important;
+  }
+  
+  /* Ensure navbar-text and toggle switch are visible on desktop */
+  span.navbar-text {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    width: auto !important;
+    margin-top: 0 !important;
+  }
+  
+  .theme-toggle-switch {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    width: 80px !important;
+    height: 40px !important;
+  }
+  
+  /* Desktop toggle circle positions */
+  .theme-toggle-switch .toggle-circle {
+    width: 32px !important;
+    height: 32px !important;
+    left: 4px !important;
+    top: 4px !important;
+  }
+  
+  .theme-toggle-switch .toggle-circle.toggle-dark {
+    transform: translateX(0px) !important;
+  }
+  
+  .theme-toggle-switch .toggle-circle.toggle-light {
+    transform: translateX(40px) !important;
+  }
+  
+  .social-icon {
+    display: inline-block !important;
+    margin-left: 14px !important;
+  }
+}
 nav.navbar .navbar-nav a.nav-link.navbar-link:hover,
 nav.navbar .navbar-nav a.nav-link.navbar-link.active {
     opacity: 1;
@@ -143,6 +219,69 @@ nav.navbar .navbar-nav a.nav-link.navbar-link.active {
 span.navbar-text {
     display: flex;
     align-items: center;
+}
+
+.theme-toggle-switch {
+    position: relative;
+    width: 80px;
+    height: 40px;
+    flex-shrink: 0;
+    max-width: 80px;
+    min-width: 80px;
+    box-sizing: border-box;
+}
+
+.theme-toggle-switch span {
+    display: inline-block !important;
+    line-height: 1;
+}
+
+/* Icon opacity based on theme - using data attribute and class */
+.theme-toggle-switch .moon-icon {
+    transition: opacity 0.4s ease;
+}
+
+.theme-toggle-switch .sun-icon {
+    transition: opacity 0.4s ease;
+}
+
+/* Light mode - sun visible, moon dimmed */
+.theme-toggle-switch.light-mode .moon-icon,
+.theme-toggle-switch[data-theme="light"] .moon-icon {
+    opacity: 0.4;
+}
+
+.theme-toggle-switch.light-mode .sun-icon,
+.theme-toggle-switch[data-theme="light"] .sun-icon {
+    opacity: 1;
+}
+
+/* Dark mode - moon visible, sun dimmed */
+.theme-toggle-switch.dark-mode .moon-icon,
+.theme-toggle-switch[data-theme="dark"] .moon-icon {
+    opacity: 1;
+}
+
+.theme-toggle-switch.dark-mode .sun-icon,
+.theme-toggle-switch[data-theme="dark"] .sun-icon {
+    opacity: 0.4;
+}
+
+/* Fallback using body class */
+body.light-theme .theme-toggle-switch .moon-icon {
+    opacity: 0.4;
+}
+
+body.light-theme .theme-toggle-switch .sun-icon {
+    opacity: 1;
+}
+
+body.dark-theme .theme-toggle-switch .moon-icon {
+    opacity: 1;
+}
+
+body.dark-theme .theme-toggle-switch .sun-icon {
+    opacity: 0.4;
 }
 .social-icon {
     display: inline-block;
@@ -225,19 +364,19 @@ nav.navbar .navbar-toggler-icon {
   height: 17px;
   background-image: none;
   position: relative;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid var(--text-primary);
   transition: all 300ms linear;
   top: -2px;
 }
 nav.navbar .navbar-toggler-icon:focus {
-	border-bottom: 2px solid #fff;
+	border-bottom: 2px solid var(--text-primary);
 }
 nav.navbar .navbar-toggler-icon:after,
 nav.navbar .navbar-toggler-icon:before {
 	width: 24px;
 	position: absolute;
 	height: 2px;
-	background-color: #fff;
+	background-color: var(--text-primary);
 	top: 0;
 	left: 0;
 	content: '';
@@ -249,12 +388,12 @@ nav.navbar .navbar-toggler-icon:after {
 }
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
 	transform: rotate(45deg);
-	background-color: #fff;
+	background-color: var(--text-primary);
 	height: 2px;
 }
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
 	transform: translateY(8px) rotate(-45deg);
-	background-color: #fff;
+	background-color: var(--text-primary);
 	height: 2px;
 }
 nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
@@ -264,7 +403,7 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
 /************ Banner Css ************/
 .banner {
   margin-top: 0;
-  padding: 260px 0 100px 0;
+  padding: 150px 0 100px 0;
   background-image: url('./assets/img/banner-bg.png');
   background-position: top center;
   background-size: cover;
@@ -650,4 +789,374 @@ nav.navbar .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
   color: var(--text-secondary);
   letter-spacing: 0.5px;
   margin-top: 20px;
+}
+
+/************ Mobile Responsive Styles ************/
+@media (max-width: 768px) {
+  /* Prevent horizontal scroll */
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  .container, .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* Navbar Mobile */
+  nav.navbar {
+    padding: 12px 0;
+    background-color: var(--bg-primary) !important;
+  }
+  nav.navbar.scrolled {
+    background-color: var(--bg-primary) !important;
+  }
+  nav.navbar a.navbar-brand {
+    width: 15%;
+  }
+  
+  /* Hide desktop nav on mobile */
+  .desktop-nav {
+    display: none !important;
+  }
+  
+  /* Show mobile nav on mobile */
+  .mobile-nav {
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    background-color: var(--bg-primary);
+    border-top: 1px solid var(--border-color);
+    margin-top: 10px;
+  }
+  
+  nav.navbar .navbar-nav {
+    text-align: center;
+    padding: 0;
+  }
+  nav.navbar .navbar-nav .nav-link.navbar-link {
+    padding: 12px 15px;
+    font-size: 16px;
+    width: 100%;
+    display: block;
+  }
+  
+  /* Mobile menu toggle button */
+  .mobile-menu-toggle {
+    display: block !important;
+  }
+  
+  /* Ensure navbar collapse works properly */
+  .navbar-collapse {
+    background-color: var(--bg-primary);
+    margin-top: 10px;
+    border-radius: 8px;
+  }
+  .navbar-text {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    margin-top: 15px;
+  }
+  .navbar-text button {
+    padding: 12px 20px;
+    font-size: 14px;
+    margin-left: 0;
+  }
+  .social-icon {
+    margin-left: 0;
+    display: flex;
+    justify-content: center;
+  }
+  .social-icon a {
+    width: 36px;
+    height: 36px;
+    margin-right: 4px;
+  }
+  .theme-toggle-switch {
+    width: 60px !important;
+    height: 32px !important;
+    margin-right: 0 !important;
+    flex-shrink: 0;
+    max-width: 60px !important;
+    min-width: 60px !important;
+    padding: 3px !important;
+  }
+  
+  /* Icon containers - moon and sun */
+  .theme-toggle-switch > div:not(.toggle-circle) {
+    flex-shrink: 0;
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+  }
+  
+  .theme-toggle-switch span {
+    display: inline-block !important;
+    font-size: 12px !important;
+    line-height: 1 !important;
+  }
+  
+  /* Adjust toggle circle position and size for mobile */
+  .theme-toggle-switch .toggle-circle {
+    width: 26px !important;
+    height: 26px !important;
+    left: 3px !important;
+    top: 3px !important;
+  }
+  
+  /* Toggle positions for mobile */
+  .theme-toggle-switch .toggle-circle.toggle-dark {
+    transform: translateX(0px) !important;
+  }
+  
+  .theme-toggle-switch .toggle-circle.toggle-light {
+    transform: translateX(28px) !important;
+  }
+
+  /* Banner Mobile */
+  .banner {
+    padding: 70px 0 60px 0;
+    background-size: cover;
+    background-position: center;
+    margin-top: 60px;
+    transition: margin-top 0.3s ease-in-out;
+  }
+  
+  /* When navbar is expanded, move banner down smoothly */
+  body.navbar-expanded .banner {
+    margin-top: 320px;
+  }
+  .banner h1 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 15px;
+  }
+  .banner .tagline {
+    font-size: 14px;
+    padding: 6px 8px;
+    margin-bottom: 12px;
+  }
+  .banner p {
+    font-size: 14px;
+    width: 100%;
+    line-height: 1.6;
+  }
+  .banner button {
+    font-size: 16px;
+    margin-top: 30px;
+  }
+  .banner button svg {
+    font-size: 18px;
+    margin-left: 8px;
+  }
+  .banner img {
+    margin-top: 30px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* About Mobile */
+  .about {
+    padding: 50px 0 !important;
+  }
+  .about h2 {
+    font-size: 32px !important;
+    margin-bottom: 15px !important;
+  }
+  .about h3 {
+    font-size: 24px !important;
+    margin-bottom: 15px !important;
+  }
+  .about p {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 15px !important;
+  }
+  .about a {
+    padding: 12px 24px !important;
+    font-size: 14px !important;
+  }
+
+  /* Skills Mobile */
+  .skill {
+    padding: 0 0 30px 0;
+  }
+  .skill-bx {
+    border-radius: 30px;
+    padding: 40px 20px;
+    margin-top: -30px;
+  }
+  .skill h2 {
+    font-size: 32px;
+  }
+  .skill p {
+    font-size: 14px;
+    margin: 10px 0 40px 0;
+  }
+  .skills-grid {
+    padding: 0 10px !important;
+    gap: 10px !important;
+  }
+  .skill-pill {
+    padding: 10px 18px !important;
+    font-size: 14px !important;
+  }
+  .background-image-left {
+    width: 60%;
+    opacity: 0.3;
+  }
+
+  /* Experience Mobile */
+  .experience {
+    padding: 50px 0 !important;
+  }
+  .experience h2 {
+    font-size: 32px !important;
+    margin-bottom: 15px !important;
+  }
+  .experience .timeline-line {
+    display: none;
+  }
+  .experience .timeline-dot {
+    display: none;
+  }
+  .experience .timeline-item {
+    padding-left: 0 !important;
+    margin-bottom: 30px !important;
+  }
+  .experience .timeline-content {
+    width: 100% !important;
+    padding: 20px !important;
+  }
+  .experience h4 {
+    font-size: 18px !important;
+  }
+  .experience h5 {
+    font-size: 16px !important;
+  }
+  .experience p,
+  .experience li {
+    font-size: 13px !important;
+  }
+
+  /* Projects Mobile */
+  .project {
+    padding: 50px 0;
+  }
+  .project h2 {
+    font-size: 32px;
+  }
+  .project p {
+    font-size: 14px;
+    width: 100%;
+    margin: 10px auto 20px auto;
+  }
+  .project .nav.nav-pills {
+    width: 100%;
+    flex-direction: column;
+  }
+  .project .nav.nav-pills .nav-item {
+    width: 100%;
+  }
+  .project .nav.nav-pills .nav-link {
+    font-size: 14px;
+    padding: 12px 0;
+    border-radius: 0 !important;
+  }
+  .nav-link#projects-tabs-tab-first {
+    border-radius: 0;
+  }
+  .nav-link#projects-tabs-tab-third {
+    border-radius: 0;
+  }
+  .proj-txtx h4 {
+    font-size: 20px;
+  }
+  .proj-txtx span {
+    font-size: 12px;
+  }
+  .background-image-right {
+    width: 60%;
+    opacity: 0.3;
+  }
+
+  /* Footer Mobile */
+  .footer {
+    padding: 30px 0;
+  }
+  .footer p {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra Small Mobile */
+  .banner {
+    padding: 50px 0 40px 0;
+    margin-top: 50px;
+  }
+  .banner h1 {
+    font-size: 24px;
+  }
+  .banner p {
+    font-size: 13px;
+  }
+  .banner .tagline {
+    font-size: 12px;
+  }
+
+  nav.navbar .navbar-nav .nav-link.navbar-link {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .skill-bx {
+    padding: 30px 15px;
+  }
+  .skill h2 {
+    font-size: 28px;
+  }
+
+  .about h2,
+  .experience h2,
+  .project h2 {
+    font-size: 28px !important;
+  }
+
+  .navbar-text button {
+    padding: 10px 16px;
+    font-size: 12px;
+    margin-left: 5px;
+  }
+  .theme-toggle-switch {
+    width: 50px !important;
+    height: 28px !important;
+  }
+}
+
+/* Tablet Styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .banner {
+    padding: 120px 0 80px 0;
+  }
+  .banner h1 {
+    font-size: 48px;
+  }
+  .banner p {
+    font-size: 16px;
+  }
+
+  .skill-bx {
+    padding: 50px 40px;
+  }
+
+  .project .nav.nav-pills {
+    width: 85%;
+  }
 }

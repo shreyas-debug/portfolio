@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import { useTheme } from '../contexts/ThemeContext';
 import navIcon1 from '../assets/img/nav-icon1.svg';
@@ -7,7 +7,9 @@ import navIcon2 from '../assets/img/nav-icon2.svg';
 export const NavBar = () => {
     const [activeLink, setActiveLink] = useState('home');
     const [scrolled, setScrolled] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false);
     const { isDarkMode, toggleTheme } = useTheme();
+    const collapseRef = useRef(null);
 
     useEffect(() => {
         const onScroll = () => {
@@ -21,17 +23,69 @@ export const NavBar = () => {
         return () => window.removeEventListener("scroll", onScroll);
     }, []);
 
+    useEffect(() => {
+        // Monitor navbar collapse state
+        const collapseElement = collapseRef.current;
+        if (!collapseElement) return;
+
+        const observer = new MutationObserver(() => {
+            const isOpen = collapseElement.classList.contains('show');
+            setIsExpanded(isOpen);
+            if (isOpen) {
+                document.body.classList.add('navbar-expanded');
+            } else {
+                document.body.classList.remove('navbar-expanded');
+            }
+        });
+
+        observer.observe(collapseElement, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
+    const closeMobileMenu = () => {
+        if (collapseRef.current) {
+            const collapseElement = collapseRef.current;
+            if (collapseElement.classList.contains('show')) {
+                // Remove the show class to close the menu
+                collapseElement.classList.remove('show');
+                // Update aria-expanded on toggle button
+                const toggleButton = document.querySelector('.mobile-menu-toggle');
+                if (toggleButton) {
+                    toggleButton.setAttribute('aria-expanded', 'false');
+                }
+                // Trigger the mutation observer update
+                document.body.classList.remove('navbar-expanded');
+            }
+        }
+    };
+
     const onUpdateActiveLink = (value) => {
         setActiveLink(value);
+        // Close mobile menu when a link is clicked (only on mobile)
+        if (window.innerWidth <= 768) {
+            closeMobileMenu();
+        }
     }
     return (
     <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
       <Container>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" >
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="mobile-menu-toggle">
             <span className="navbar-toggler-icon"></span>
         </Navbar.Toggle>
-        <Navbar.Collapse id="basic-navbar-nav">
-           <Nav className="me-auto">
+        <Navbar.Collapse id="basic-navbar-nav" ref={collapseRef}>
+           <Nav className="me-auto desktop-nav">
+             <Nav.Link href="#home" className={activeLink == 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
+             <Nav.Link href="#about" className={activeLink == 'about' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('about')}>About</Nav.Link>
+             <Nav.Link href="#skills" className={activeLink == 'skills' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('skills')}>Skills</Nav.Link>
+             <Nav.Link href="#experience" className={activeLink == 'experience' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('experience')}>Experience</Nav.Link>
+             <Nav.Link href="#projects" className={activeLink == 'projects' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('projects')}>Projects</Nav.Link>
+           </Nav>
+           {/* Mobile Dropdown Menu - All Navigation Items */}
+           <Nav className="mobile-nav">
              <Nav.Link href="#home" className={activeLink == 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>Home</Nav.Link>
              <Nav.Link href="#about" className={activeLink == 'about' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('about')}>About</Nav.Link>
              <Nav.Link href="#skills" className={activeLink == 'skills' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('skills')}>Skills</Nav.Link>
@@ -41,7 +95,8 @@ export const NavBar = () => {
           <span className="navbar-text">
             {/* Theme Toggle Switch */}
             <div 
-              className="theme-toggle-switch"
+              className={`theme-toggle-switch ${isDarkMode ? 'dark-mode' : 'light-mode'}`}
+              data-theme={isDarkMode ? 'dark' : 'light'}
               onClick={toggleTheme}
               style={{
                 position: 'relative',
@@ -76,7 +131,7 @@ export const NavBar = () => {
               title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
               {/* Moon Icon - Left Side */}
-              <div style={{
+              <div className="moon-icon" style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -85,37 +140,36 @@ export const NavBar = () => {
                 borderRadius: '50%',
                 background: 'transparent',
                 transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                opacity: isDarkMode ? 1 : 0.4,
                 position: 'relative',
                 zIndex: 2
               }}>
                 <span style={{
                   fontSize: '16px',
-                  filter: isDarkMode ? 'none' : 'grayscale(0.8)',
                   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
                 }}>🌙</span>
               </div>
               
               {/* Toggle Circle */}
-              <div style={{
-                position: 'absolute',
-                width: '32px',
-                height: '32px',
-                background: isDarkMode ? '#ffffff' : '#ffffff',
-                borderRadius: '50%',
-                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                transform: isDarkMode ? 'translateX(0px)' : 'translateX(40px)',
-                boxShadow: isDarkMode 
-                  ? '0 2px 8px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1), inset 0 1px 2px rgba(255,255,255,0.1)'
-                  : '0 2px 8px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.1)',
-                border: isDarkMode ? '1px solid rgba(0,0,0,0.1)' : 'none',
-                left: '4px',
-                top: '4px',
-                zIndex: 1
-              }}></div>
+              <div 
+                className={`toggle-circle ${isDarkMode ? 'toggle-dark' : 'toggle-light'}`}
+                style={{
+                  position: 'absolute',
+                  width: '32px',
+                  height: '32px',
+                  background: '#ffffff',
+                  borderRadius: '50%',
+                  transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  boxShadow: isDarkMode 
+                    ? '0 2px 8px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1), inset 0 1px 2px rgba(255,255,255,0.1)'
+                    : '0 2px 8px rgba(0,0,0,0.2), inset 0 1px 2px rgba(255,255,255,0.1)',
+                  border: isDarkMode ? '1px solid rgba(0,0,0,0.1)' : 'none',
+                  left: '4px',
+                  top: '4px',
+                  zIndex: 3
+                }}></div>
               
               {/* Sun Icon - Right Side */}
-              <div style={{
+              <div className="sun-icon" style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -124,13 +178,11 @@ export const NavBar = () => {
                 borderRadius: '50%',
                 background: 'transparent',
                 transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-                opacity: isDarkMode ? 0.4 : 1,
                 position: 'relative',
                 zIndex: 2
               }}>
                 <span style={{
                   fontSize: '16px',
-                  filter: isDarkMode ? 'brightness(0.6) saturate(1.2)' : 'none',
                   transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
                 }}>☀️</span>
               </div>
