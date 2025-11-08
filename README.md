@@ -1,70 +1,161 @@
-# Getting Started with Create React App
+# Portfolio - Shreyas Satpute
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, responsive portfolio website showcasing my projects, skills, and experience as a Software Engineer and Web Developer.
 
-## Available Scripts
+## 🌐 Live Demo
 
-In the project directory, you can run:
+Visit the live site: [https://shreyas-debug.github.io/portfolio](https://shreyas-debug.github.io/portfolio)
+
+## ✨ Features
+
+- **Responsive Design**: Fully optimized for mobile, tablet, and desktop devices
+- **Dark/Light Mode**: Toggle between dark and light themes with smooth transitions
+- **Animated Sections**: Smooth scroll animations and interactive elements
+- **Project Showcase**: Display of various projects with GitHub links
+- **Skills Section**: Interactive skills display
+- **Experience Timeline**: Visual timeline of work experience and education
+- **Mobile-Friendly Navigation**: Collapsible menu with smooth animations on mobile devices
+- **Modern UI**: Clean and professional design with gradient accents
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or higher)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/shreyas-debug/portfolio.git
+cd portfolio
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm start
+```
+
+The app will open at [http://localhost:3000](http://localhost:3000)
+
+## 📜 Available Scripts
 
 ### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Runs the app in development mode at [http://localhost:3000](http://localhost:3000). The page will reload automatically when you make changes.
 
 ### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in interactive watch mode.
 
 ### `npm run build`
+Builds the app for production to the `build` folder. The build is optimized for best performance.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### `npm run deploy`
+Builds the app and deploys it to GitHub Pages.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🛠️ Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **React** - UI library
+- **React Bootstrap** - Component library
+- **Bootstrap** - CSS framework
+- **Framer Motion** - Animation library
+- **GSAP** - Animation library
+- **Animate.css** - CSS animations
+- **React Multi Carousel** - Carousel component
+- **React On Screen** - Scroll animations
 
-### `npm run eject`
+## 📁 Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+portfolio/
+├── public/
+│   ├── index.html
+│   └── manifest.json
+├── src/
+│   ├── components/
+│   │   ├── About.js
+│   │   ├── Banner.js
+│   │   ├── Experience.js
+│   │   ├── Footer.js
+│   │   ├── NavBar.js
+│   │   ├── ProjectCard.js
+│   │   ├── Projects.js
+│   │   └── Skills.js
+│   ├── contexts/
+│   │   └── ThemeContext.js
+│   ├── assets/
+│   │   ├── img/
+│   │   └── font/
+│   ├── App.js
+│   ├── App.css
+│   └── index.js
+└── package.json
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🎨 Features Breakdown
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Theme Toggle
+- Smooth transition between dark and light modes
+- Theme preference saved in localStorage
+- Light mode set as default
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Responsive Navigation
+- Desktop: Horizontal navigation bar
+- Mobile: Collapsible dropdown menu with smooth animations
+- Auto-closes when navigation link is selected on mobile
 
-## Learn More
+### Sections
+- **Banner**: Hero section with animated typing effect
+- **About**: Personal introduction and resume download
+- **Skills**: Interactive skills display
+- **Experience**: Timeline view of work experience and education
+- **Projects**: Showcase of projects with descriptions and GitHub links
+- **Footer**: Simple copyright footer
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📱 Mobile Optimization
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The portfolio is fully responsive with:
+- Optimized font sizes for different screen sizes
+- Touch-friendly navigation
+- Smooth animations and transitions
+- Proper spacing and padding for mobile devices
+- Timeline layout adapted for mobile screens
 
-### Code Splitting
+## 🚢 Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The site is deployed on GitHub Pages. To deploy:
 
-### Analyzing the Bundle Size
+1. Make sure all changes are committed:
+```bash
+git add .
+git commit -m "Your commit message"
+git push origin main
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+2. Deploy to GitHub Pages:
+```bash
+npm run deploy
+```
 
-### Making a Progressive Web App
+This will build the project and deploy it to the `gh-pages` branch.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📝 License
 
-### Advanced Configuration
+This project is private and personal.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 👤 Author
 
-### Deployment
+**Shreyas Satpute**
+- GitHub: [@shreyas-debug](https://github.com/shreyas-debug)
+- LinkedIn: [Shreyas Satpute](https://www.linkedin.com/in/shreyas-satpute-5817b41b3/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🙏 Acknowledgments
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Built with [Create React App](https://github.com/facebook/create-react-app)
+- Icons and animations from various open-source libraries
+- Design inspiration from modern portfolio websites
