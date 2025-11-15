@@ -7,8 +7,9 @@ import { useTheme } from '../contexts/ThemeContext';
 export const Skills = () => {
   const { isDarkMode } = useTheme();
   const skills = [
-    "Python", "JavaScript", "C#", "React.js", ".NET Core", "Flask", 
-    "Machine Learning", "Microsoft Azure", "SQL", "Express.js", "REST APIs", "Git"
+    "Python", "JavaScript", "C#", "React.js", ".NET", "Flask",
+    "Machine Learning", "Microsoft Azure", "SQL", "Express.js", "REST APIs", "Git",
+    "HTML", "CSS", "Bootstrap","C++","Node.js"
   ];
 
   return (

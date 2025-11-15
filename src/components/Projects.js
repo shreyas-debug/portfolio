@@ -22,10 +22,10 @@ export const Projects = () => {
       githubUrl: "https://github.com/shreyas-debug/StudySync",
     },
     {
-      title: "Cyberattack-Detector",
-      description: "Advanced ML-based cyberattack detection system with real-time SMS alerts. Combines Python ML algorithms with Arduino/GSM hardware integration programmed in C++.",
-      imgUrl: projImg2,
-      githubUrl: "https://github.com/shreyas-debug/Cyberattack-Detector",
+      title: "LiveBid",
+      description: "A real-time auction platform enabling users to bid on items live. Built with C# and React.js for seamless real-time interactions.",
+      imgUrl: projImg5,
+      githubUrl: "https://github.com/shreyas-debug/LiveBid-Auction-Platform",
     },
     {
       title: "PromptGuide",
@@ -40,10 +40,10 @@ export const Projects = () => {
       githubUrl: "https://github.com/shreyas-debug/PizzaHub",
     },
     {
-      title: "To-Do-List Chrome Extension",
-      description: "JavaScript-based Chrome extension for task management. Provides seamless productivity tools with offline capabilities and cross-device synchronization.",
-      imgUrl: projImg5,
-      githubUrl: "https://github.com/shreyas-debug/To-Do-List",
+      title: "Cyberattack-Detector",
+      description: "Advanced ML-based cyberattack detection system with real-time SMS alerts. Combines Python ML algorithms with Arduino/GSM hardware integration programmed in C++.",
+      imgUrl: projImg2,
+      githubUrl: "https://github.com/shreyas-debug/Cyberattack-Detector",
     },
     {
       title: "Event-Management System",
