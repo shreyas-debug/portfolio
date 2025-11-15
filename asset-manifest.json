@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/portfolio/static/css/main.7cb7527f.css",
-    "main.js": "/portfolio/static/js/main.96be5419.js",
+    "main.js": "/portfolio/static/js/main.5fa7b2b0.js",
     "static/js/453.ad7768ec.chunk.js": "/portfolio/static/js/453.ad7768ec.chunk.js",
     "static/media/header-img.png": "/portfolio/static/media/header-img.02b71c75b4866efcb3f1.png",
     "static/media/project-img3.jpg": "/portfolio/static/media/project-img3.6dc5a4ba24135dcff65c.jpg",
@@ -14,7 +14,7 @@
     "static/media/project-img5.jpg": "/portfolio/static/media/project-img5.ace4829d98c240f2b5d5.jpg",
     "static/media/project-img2.jpg": "/portfolio/static/media/project-img2.186bf8d34a18fa613b36.jpg",
     "static/media/banner-bg.png": "/portfolio/static/media/banner-bg.cc1273af450504afe755.png",
-    "static/media/Resume(Shreyas_Satpute).pdf": "/portfolio/static/media/Resume(Shreyas_Satpute).f6ec2673a42cc07a74e4.pdf",
+    "static/media/Resume(Shreyas_Satpute).pdf": "/portfolio/static/media/Resume(Shreyas_Satpute).4637ef774be4d489fffb.pdf",
     "static/media/CentraNo2-Bold.ttf": "/portfolio/static/media/CentraNo2-Bold.2faff7f7d3fc92a2fcd9.ttf",
     "static/media/CentraNo2-Medium.ttf": "/portfolio/static/media/CentraNo2-Medium.f94be5b326d78bb32b95.ttf",
     "static/media/CentraNo2-Book.ttf": "/portfolio/static/media/CentraNo2-Book.2b143fa4b734a3584043.ttf",
@@ -25,11 +25,11 @@
     "index.html": "/portfolio/index.html",
     "static/media/nav-icon1.svg": "/portfolio/static/media/nav-icon1.721d5414c26365f117e71d46b6641cb2.svg",
     "main.7cb7527f.css.map": "/portfolio/static/css/main.7cb7527f.css.map",
-    "main.96be5419.js.map": "/portfolio/static/js/main.96be5419.js.map",
+    "main.5fa7b2b0.js.map": "/portfolio/static/js/main.5fa7b2b0.js.map",
     "453.ad7768ec.chunk.js.map": "/portfolio/static/js/453.ad7768ec.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7cb7527f.css",
-    "static/js/main.96be5419.js"
+    "static/js/main.5fa7b2b0.js"
   ]
 }
