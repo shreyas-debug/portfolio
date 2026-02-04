@@ -1,71 +1,160 @@
-import meter1 from "../assets/img/meter1.svg";
-import meter2 from "../assets/img/meter2.svg";
-import meter3 from "../assets/img/meter3.svg";
-import colorSharp from "../assets/img/color-sharp.png";
-import { useTheme } from '../contexts/ThemeContext';
-
 export const Skills = () => {
-  const { isDarkMode } = useTheme();
-  const skills = [
-    "Python", "JavaScript", "C#", "React.js", ".NET", "Flask",
-    "Machine Learning", "Microsoft Azure", "SQL", "Express.js", "REST APIs", "Git",
-    "HTML", "CSS", "Bootstrap","C++","Node.js"
+
+  const skillCategories = [
+    {
+      title: 'Languages',
+      skills: ['Python', 'JavaScript', 'TypeScript', 'C#', 'SQL']
+    },
+    {
+      title: 'Frameworks',
+      skills: ['React.js', '.NET Core', 'Flask', 'Express.js', 'Node.js']
+    },
+    {
+      title: 'Cloud & DevOps',
+      skills: ['Microsoft Azure', 'Git', 'GitHub', 'REST APIs', 'CI/CD']
+    },
+    {
+      title: 'Databases',
+      skills: ['SQL Server', 'PostgreSQL', 'MongoDB', 'SQLite']
+    },
+    {
+      title: 'ML & Data',
+      skills: ['Machine Learning', 'Scikit-learn', 'Pandas', 'NumPy']
+    },
+    {
+      title: 'Tools',
+      skills: ['VS Code', 'Visual Studio', 'Postman', 'Figma', 'Jira']
+    }
   ];
 
   return (
-    <section className="skill" id="skills">
-        <div className="container">
-            <div className="row">
-                <div className="col-12">
-                    <div className="skill-bx wow zoomIn">
-                        <h2>Skills</h2>
-                        <p>Technical expertise in full-stack development, machine learning, and cloud technologies.<br></br> Experienced in agile methodologies and object-oriented programming principles.</p>
-                        <div className="skills-grid" style={{
-                          display: "flex",
-                          flexWrap: "wrap",
-                          gap: "15px",
-                          marginTop: "50px",
-                          padding: "0 20px",
-                          justifyContent: "center"
-                        }}>
-                          {skills.map((skill, index) => (
-                            <div key={index} className="skill-pill" style={{
-                              background: isDarkMode 
-                                ? "linear-gradient(90.21deg, #AA367C -5.91%, #4A2FBD 111.58%)"
-                                : "linear-gradient(90.21deg, #5BA6D6 -5.91%, #7F9CB1 111.58%)",
-                              borderRadius: "25px",
-                              padding: "12px 24px",
-                              color: "#fff",
-                              fontSize: "16px",
-                              fontWeight: "500",
-                              border: "none",
-                              cursor: "pointer",
-                              transition: "all 0.3s ease-in-out",
-                              boxShadow: isDarkMode 
-                                ? "0 4px 15px rgba(170, 54, 124, 0.3)"
-                                : "0 4px 15px rgba(91, 166, 214, 0.3)"
-                            }}
-                            onMouseEnter={(e) => {
-                              e.currentTarget.style.transform = "translateY(-3px) scale(1.05)";
-                              e.currentTarget.style.boxShadow = isDarkMode 
-                                ? "0 8px 25px rgba(170, 54, 124, 0.5)"
-                                : "0 8px 25px rgba(91, 166, 214, 0.5)";
-                            }}
-                            onMouseLeave={(e) => {
-                              e.currentTarget.style.transform = "translateY(0) scale(1)";
-                              e.currentTarget.style.boxShadow = isDarkMode 
-                                ? "0 4px 15px rgba(170, 54, 124, 0.3)"
-                                : "0 4px 15px rgba(91, 166, 214, 0.3)";
-                            }}>
-                              {skill}
-                            </div>
-                          ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section 
+      className="skill" 
+      id="skills"
+      style={{
+        padding: '100px 0',
+        backgroundColor: 'var(--bg-primary)'
+      }}
+    >
+      <div className="container" style={{ 
+        maxWidth: '1200px', 
+        margin: '0 auto', 
+        padding: '0 24px' 
+      }}>
+        {/* Section Header */}
+        <div style={{ marginBottom: '48px' }}>
+          <p style={{
+            fontFamily: "'JetBrains Mono', monospace",
+            fontSize: '14px',
+            color: 'var(--accent)',
+            marginBottom: '12px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px'
+          }}>
+            <span style={{ opacity: 0.5 }}>#</span> skills
+          </p>
+          <h2 style={{
+            fontSize: 'clamp(32px, 5vw, 48px)',
+            fontFamily: "'JetBrains Mono', monospace",
+            fontWeight: '700',
+            color: 'var(--text-primary)',
+            marginBottom: '16px'
+          }}>
+            Tech Stack
+          </h2>
+          <p style={{
+            fontSize: '18px',
+            color: 'var(--text-secondary)',
+            maxWidth: '600px',
+            lineHeight: '1.7'
+          }}>
+            Technologies and tools I work with to bring ideas to life.
+          </p>
         </div>
-        <img className="background-image-left" src={colorSharp} alt="Image" />
+
+        {/* Skills Grid */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gap: '24px'
+        }}>
+          {skillCategories.map((category, index) => (
+            <div 
+              key={index}
+              style={{
+                backgroundColor: 'var(--card-bg)',
+                border: '1px solid var(--border-color)',
+                borderRadius: '12px',
+                padding: '28px',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = 'var(--accent)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = 'var(--shadow)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'var(--border-color)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              {/* Category Title */}
+              <h3 style={{
+                fontFamily: "'JetBrains Mono', monospace",
+                fontSize: '13px',
+                fontWeight: '600',
+                color: 'var(--accent)',
+                textTransform: 'uppercase',
+                letterSpacing: '0.1em',
+                marginBottom: '20px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}>
+                <span style={{ opacity: 0.5 }}>{'// '}</span>{category.title}
+              </h3>
+
+              {/* Skills List */}
+              <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '10px'
+              }}>
+                {category.skills.map((skill, skillIndex) => (
+                  <span 
+                    key={skillIndex}
+                    style={{
+                      fontFamily: "'JetBrains Mono', monospace",
+                      fontSize: '13px',
+                      color: 'var(--text-secondary)',
+                      backgroundColor: 'var(--bg-tertiary)',
+                      padding: '8px 14px',
+                      borderRadius: '6px',
+                      border: '1px solid var(--border-color)',
+                      transition: 'all 0.2s ease',
+                      cursor: 'default'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.color = 'var(--accent)';
+                      e.currentTarget.style.borderColor = 'var(--accent)';
+                      e.currentTarget.style.backgroundColor = 'var(--accent-muted)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.color = 'var(--text-secondary)';
+                      e.currentTarget.style.borderColor = 'var(--border-color)';
+                      e.currentTarget.style.backgroundColor = 'var(--bg-tertiary)';
+                    }}
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
-  )
-}
+  );
+};
