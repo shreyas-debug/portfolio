@@ -38,7 +38,7 @@ export const NavBar = () => {
   };
 
   const navLinks = [
-    { id: 'home', label: 'home', type: 'hash' },
+    // { id: 'home', label: 'home', type: 'hash' },
     { id: 'about', label: 'about', type: 'page', path: '/about' },
     { id: 'skills', label: 'skills', type: 'hash' },
     { id: 'experience', label: 'experience', type: 'hash' },
@@ -138,7 +138,19 @@ export const NavBar = () => {
           }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          shreyas.dev
+          <svg 
+            width="24" 
+            height="24" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
         </Link>
 
         {/* Desktop Navigation */}

@@ -3,7 +3,7 @@ export const Skills = () => {
   const skillCategories = [
     {
       title: 'Languages',
-      skills: ['Python', 'JavaScript', 'TypeScript', 'C#', 'SQL']
+      skills: ['Python', 'JavaScript', 'TypeScript', 'C#', 'SQL', 'C++']
     },
     {
       title: 'Frameworks',
@@ -11,11 +11,11 @@ export const Skills = () => {
     },
     {
       title: 'Cloud & DevOps',
-      skills: ['Microsoft Azure', 'Git', 'GitHub', 'REST APIs', 'CI/CD']
+      skills: ['Microsoft Azure', 'GitHub', 'REST APIs', 'CI/CD','Docker']
     },
     {
       title: 'Databases',
-      skills: ['SQL Server', 'PostgreSQL', 'MongoDB', 'SQLite']
+      skills: ['SQL Server', 'PostgreSQL', 'MongoDB', 'SQLite','MySQL']
     },
     {
       title: 'ML & Data',
@@ -23,7 +23,7 @@ export const Skills = () => {
     },
     {
       title: 'Tools',
-      skills: ['VS Code', 'Visual Studio', 'Postman', 'Figma', 'Jira']
+      skills: ['VS Code', 'Visual Studio', 'Postman', 'Cursor', 'Git','Adobe Photoshop', 'Adobe Lightroom']
     }
   ];
 

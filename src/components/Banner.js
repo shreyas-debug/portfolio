@@ -194,20 +194,23 @@ export const Banner = () => {
           </a>
         </div>
 
-        {/* Scroll indicator */}
-        <div style={{
-          position: 'absolute',
-          bottom: '40px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '8px',
-          color: 'var(--text-muted)',
-          fontSize: '12px',
-          fontFamily: "'JetBrains Mono', monospace"
-        }}>
+        {/* Scroll indicator - hidden on mobile */}
+        <div 
+          className="scroll-indicator"
+          style={{
+            position: 'absolute',
+            bottom: '20px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '8px',
+            color: 'var(--text-muted)',
+            fontSize: '12px',
+            fontFamily: "'JetBrains Mono', monospace"
+          }}
+        >
           <span>scroll</span>
           <div style={{
             width: '1px',
@@ -237,6 +240,11 @@ export const Banner = () => {
         @keyframes scrollDown {
           0% { transform: translateY(0); }
           100% { transform: translateY(80px); }
+        }
+        @media (max-width: 768px) {
+          .scroll-indicator {
+            display: none !important;
+          }
         }
       `}</style>
     </section>

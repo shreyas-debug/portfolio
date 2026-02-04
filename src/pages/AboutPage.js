@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import profileImg from '../assets/me.jpg';
 
 // Dynamically import all images from the pictures folder
 function importAll(r) {
@@ -49,29 +50,60 @@ export const AboutPage = () => {
           <span>←</span> back to home
         </Link>
 
-        {/* Page Header */}
-        <div style={{ marginBottom: '48px' }}>
-          <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '14px',
-            color: 'var(--accent)',
-            marginBottom: '12px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px'
+        {/* Page Header with Profile Picture */}
+        <div style={{ 
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '48px',
+          gap: '24px',
+          flexWrap: 'wrap'
+        }}>
+          <div>
+            <p style={{
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '14px',
+              color: 'var(--accent)',
+              marginBottom: '12px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px'
+            }}>
+              <span style={{ opacity: 0.5 }}>#</span> about-me
+            </p>
+            <h1 style={{
+              fontSize: 'clamp(40px, 6vw, 56px)',
+              fontFamily: "'JetBrains Mono', monospace",
+              fontWeight: '700',
+              color: 'var(--text-primary)',
+              marginBottom: '0',
+              lineHeight: '1.2'
+            }}>
+              Who I Am
+            </h1>
+          </div>
+
+          {/* Profile Picture */}
+          <div style={{
+            flexShrink: 0,
+            width: '150px',
+            height: '150px',
+            borderRadius: '12px',
+            overflow: 'hidden',
+            border: '2px solid var(--border-color)',
+            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15)'
           }}>
-            <span style={{ opacity: 0.5 }}>#</span> about-me
-          </p>
-          <h1 style={{
-            fontSize: 'clamp(40px, 6vw, 56px)',
-            fontFamily: "'JetBrains Mono', monospace",
-            fontWeight: '700',
-            color: 'var(--text-primary)',
-            marginBottom: '16px',
-            lineHeight: '1.2'
-          }}>
-            Who I Am
-          </h1>
+            <img 
+              src={profileImg}
+              alt="Shreyas Satpute"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center'
+              }}
+            />
+          </div>
         </div>
 
         {/* Main Content */}
@@ -97,15 +129,14 @@ export const AboutPage = () => {
           }}>
             My expertise spans across multiple technologies including Python, JavaScript, C#, React.js, .NET Core.
             I'm particularly passionate about creating innovative solutions that solve real-world problems, 
-            as demonstrated in my award-winning <span style={{ color: 'var(--accent)', fontWeight: '500' }}>StudySync</span> project 
-            and my work on cyberattack detection systems.
+            as demonstrated in my award-winning <span style={{ color: 'var(--accent)', fontWeight: '500' }}>StudySync</span> project.
           </p>
 
           <p style={{
             fontSize: '18px',
             color: 'var(--text-secondary)',
             lineHeight: '1.8',
-            marginBottom: '28px'
+            marginBottom: '0'
           }}>
             When I'm not coding, you'll find me exploring new technologies, participating in hackathons, 
             or capturing moments through photography. I believe in continuous learning and staying updated 
@@ -367,89 +398,6 @@ export const AboutPage = () => {
           ))}
         </div>
 
-        {/* CTA */}
-        <div style={{
-          padding: '40px',
-          backgroundColor: 'var(--bg-secondary)',
-          borderRadius: '16px',
-          border: '1px solid var(--border-color)',
-          textAlign: 'center'
-        }}>
-          <h3 style={{
-            fontSize: '24px',
-            fontFamily: "'JetBrains Mono', monospace",
-            fontWeight: '600',
-            color: 'var(--text-primary)',
-            marginBottom: '16px'
-          }}>
-            Let's Connect
-          </h3>
-          <p style={{
-            fontSize: '16px',
-            color: 'var(--text-secondary)',
-            marginBottom: '24px',
-            maxWidth: '500px',
-            margin: '0 auto 24px'
-          }}>
-            I'm always open to discussing new opportunities, collaborations, or just having a chat about technology.
-          </p>
-          <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a 
-              href="https://www.linkedin.com/in/shreyas-satpute-5817b41b3/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: '14px',
-                fontWeight: '500',
-                padding: '12px 24px',
-                backgroundColor: 'var(--accent)',
-                color: 'var(--bg-primary)',
-                border: 'none',
-                borderRadius: '8px',
-                textDecoration: 'none',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.backgroundColor = 'var(--accent-hover)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.backgroundColor = 'var(--accent)';
-              }}
-            >
-              LinkedIn →
-            </a>
-            <a 
-              href="https://github.com/shreyas-debug"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: '14px',
-                fontWeight: '500',
-                padding: '12px 24px',
-                backgroundColor: 'transparent',
-                color: 'var(--text-primary)',
-                border: '1px solid var(--border-color)',
-                borderRadius: '8px',
-                textDecoration: 'none',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--accent)';
-                e.currentTarget.style.color = 'var(--accent)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--border-color)';
-                e.currentTarget.style.color = 'var(--text-primary)';
-              }}
-            >
-              GitHub →
-            </a>
-          </div>
-        </div>
       </div>
 
       {/* CSS Animation */}
