@@ -1,3 +1,10 @@
+import projectImg1 from "../assets/img/project-img1.jpg";
+import projectImg2 from "../assets/img/project-img2.jpg";
+import projectImg3 from "../assets/img/project-img3.jpg";
+import projectImg4 from "../assets/img/project-img4.jpg";
+import projectImg5 from "../assets/img/project-img5.jpg";
+import projectImg6 from "../assets/img/project-img6.jpg";
+
 export const Projects = () => {
 
   const projects = [
@@ -7,15 +14,8 @@ export const Projects = () => {
       technologies: ['React', 'Node.js', 'MongoDB', 'ML'],
       githubUrl: 'https://github.com/shreyas-debug/StudySync',
       liveUrl: null,
-      featured: false
-    },
-    {
-      title: 'Cyberattack Detector',
-      description: 'Advanced ML-based cyberattack detection system with real-time SMS alerts. Combines Python ML algorithms with Arduino/GSM hardware integration.',
-      technologies: ['Python', 'ML', 'Arduino', 'C++'],
-      githubUrl: 'https://github.com/shreyas-debug/Cyberattack-Detector',
-      liveUrl: null,
-      featured: false
+      featured: false,
+      imgUrl: projectImg1
     },
     {
       title: 'PromptGuide',
@@ -23,15 +23,17 @@ export const Projects = () => {
       technologies: ['Python', 'AI', 'Flask'],
       githubUrl: 'https://github.com/shreyas-debug/PromptGuide',
       liveUrl: null,
-      featured: false
+      featured: false,
+      imgUrl: projectImg3
     },
     {
-      title: 'PizzaHub',
-      description: 'C# desktop application for pizza ordering and management system. Features user-friendly interface, order tracking, and inventory management.',
-      technologies: ['C#', '.NET', 'SQL'],
-      githubUrl: 'https://github.com/shreyas-debug/PizzaHub',
+      title: 'LiveBid Auction Platform',
+      description: 'Full-stack real-time auction platform with WebSocket bidding. Features secure JWT authentication, SignalR for instant bid updates, automatic auction management, and PostgreSQL database with EF Core.',
+      technologies: ['.NET 8', 'React', 'SignalR', 'PostgreSQL', 'JWT'],
+      githubUrl: 'https://github.com/shreyas-debug/LiveBid-Auction-Platform',
       liveUrl: null,
-      featured: false
+      featured: false,
+      imgUrl: projectImg5
     },
     {
       title: 'Fraud Detection System',
@@ -39,15 +41,26 @@ export const Projects = () => {
       technologies: ['.NET 9', 'React', 'Python', 'Kafka', 'Docker'],
       githubUrl: 'https://github.com/shreyas-debug/FraudDetectionSystem',
       liveUrl: null,
-      featured: false
+      featured: false,
+      imgUrl: projectImg6
     },
     {
-      title: 'Event Management',
-      description: 'HTML-based event management platform for organizing and tracking events. Features responsive design and comprehensive planning tools.',
-      technologies: ['HTML', 'CSS', 'JavaScript'],
-      githubUrl: 'https://github.com/shreyas-debug/Event-Management',
+      title: 'PizzaHub',
+      description: 'C# desktop application for pizza ordering and management system. Features user-friendly interface, order tracking, and inventory management.',
+      technologies: ['C#', '.NET', 'SQL'],
+      githubUrl: 'https://github.com/shreyas-debug/PizzaHub',
       liveUrl: null,
-      featured: false
+      featured: false,
+      imgUrl: projectImg4
+    },
+    {
+      title: 'Cyberattack Detector',
+      description: 'Advanced ML-based cyberattack detection system with real-time SMS alerts. Combines Python ML algorithms with Arduino/GSM hardware integration.',
+      technologies: ['Python', 'ML', 'Arduino', 'C++'],
+      githubUrl: 'https://github.com/shreyas-debug/Cyberattack-Detector',
+      liveUrl: null,
+      featured: false,
+      imgUrl: projectImg2
     }
   ];
 
@@ -142,22 +155,48 @@ export const Projects = () => {
                   padding: '4px 8px',
                   borderRadius: '4px',
                   textTransform: 'uppercase',
-                  letterSpacing: '0.05em'
+                  letterSpacing: '0.05em',
+                  zIndex: 2
                 }}>
                   Featured
                 </span>
               )}
 
+              {/* Project Image */}
+              <div style={{
+                width: '100%',
+                height: '200px',
+                overflow: 'hidden',
+                borderRadius: '8px',
+                marginBottom: '20px',
+                position: 'relative'
+              }}>
+                <img 
+                  src={project.imgUrl} 
+                  alt={project.title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    transition: 'transform 0.3s ease',
+                    display: 'block'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'scale(1.05)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'scale(1)';
+                  }}
+                />
+              </div>
+
               {/* Header */}
               <div style={{
                 display: 'flex',
-                justifyContent: 'space-between',
+                justifyContent: 'flex-end',
                 alignItems: 'flex-start',
                 marginBottom: '16px'
               }}>
-                {/* Folder Icon */}
-                <span style={{ fontSize: '28px' }}>📁</span>
-
                 {/* Links */}
                 <div style={{ display: 'flex', gap: '12px' }}>
                   {project.githubUrl && (

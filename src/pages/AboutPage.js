@@ -96,12 +96,6 @@ export const AboutPage = () => {
             <img 
               src={profileImg}
               alt="Shreyas Satpute"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center'
-              }}
             />
           </div>
         </div>
@@ -165,7 +159,7 @@ export const AboutPage = () => {
           overflow: 'hidden',
           marginBottom: '60px',
           position: 'relative',
-          height: '300px'
+          height: '350px'
         }}
       >
         {/* Gradient overlays for smooth edges */}
@@ -206,8 +200,7 @@ export const AboutPage = () => {
               key={`first-${index}`}
               style={{
                 flexShrink: 0,
-                width: '280px',
-                height: '280px',
+                height: '330px',
                 borderRadius: '16px',
                 overflow: 'hidden',
                 border: '2px solid var(--border-color)',
@@ -217,12 +210,13 @@ export const AboutPage = () => {
               <img 
                 src={photo} 
                 alt={`Photography ${index + 1}`}
+                loading="lazy"
                 draggable="false"
+                decoding="async"
                 style={{
-                  width: '100%',
                   height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center'
+                  width: 'auto',
+                  display: 'block'
                 }}
               />
             </div>
@@ -233,8 +227,7 @@ export const AboutPage = () => {
               key={`second-${index}`}
               style={{
                 flexShrink: 0,
-                width: '280px',
-                height: '280px',
+                height: '330px',
                 borderRadius: '16px',
                 overflow: 'hidden',
                 border: '2px solid var(--border-color)',
@@ -244,12 +237,13 @@ export const AboutPage = () => {
               <img 
                 src={photo} 
                 alt={`Photography ${index + 1}`}
+                loading="lazy"
                 draggable="false"
+                decoding="async"
                 style={{
-                  width: '100%',
                   height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'center'
+                  width: 'auto',
+                  display: 'block'
                 }}
               />
             </div>
@@ -371,31 +365,44 @@ export const AboutPage = () => {
           gap: '12px',
           marginBottom: '60px'
         }}>
-          {['Full-Stack Development', 'Machine Learning', 'Photography', 'Hackathons', 'Reading'].map((interest, index) => (
-            <span 
-              key={index}
-              style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: '14px',
-                color: 'var(--text-secondary)',
-                backgroundColor: 'var(--bg-secondary)',
-                padding: '10px 18px',
-                borderRadius: '8px',
-                border: '1px solid var(--border-color)',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.color = 'var(--accent)';
-                e.currentTarget.style.borderColor = 'var(--accent)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.color = 'var(--text-secondary)';
-                e.currentTarget.style.borderColor = 'var(--border-color)';
-              }}
-            >
-              {interest}
-            </span>
-          ))}
+          {['Full-Stack Development', 'Machine Learning', 'Photography', 'Hackathons', 'Reading'].map((interest, index) => {
+            const isPhotography = interest === 'Photography';
+            const Component = isPhotography ? 'a' : 'span';
+            const linkProps = isPhotography ? {
+              href: 'https://www.instagram.com/shreyas_jpg',
+              target: '_blank',
+              rel: 'noopener noreferrer'
+            } : {};
+            
+            return (
+              <Component
+                key={index}
+                {...linkProps}
+                style={{
+                  fontFamily: "'JetBrains Mono', monospace",
+                  fontSize: '14px',
+                  color: 'var(--text-secondary)',
+                  backgroundColor: 'var(--bg-secondary)',
+                  padding: '10px 18px',
+                  borderRadius: '8px',
+                  border: '1px solid var(--border-color)',
+                  transition: 'all 0.2s ease',
+                  textDecoration: 'none',
+                  cursor: isPhotography ? 'pointer' : 'default'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.color = 'var(--accent)';
+                  e.currentTarget.style.borderColor = 'var(--accent)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.color = 'var(--text-secondary)';
+                  e.currentTarget.style.borderColor = 'var(--border-color)';
+                }}
+              >
+                {interest}
+              </Component>
+            );
+          })}
         </div>
 
       </div>
