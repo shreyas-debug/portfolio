@@ -1,10 +1,3 @@
-import projectImg1 from "../assets/img/project-img1.jpg";
-import projectImg2 from "../assets/img/project-img2.jpg";
-import projectImg3 from "../assets/img/project-img3.jpg";
-import projectImg4 from "../assets/img/project-img4.jpg";
-import projectImg5 from "../assets/img/project-img5.jpg";
-import projectImg6 from "../assets/img/project-img6.jpg";
-
 export const Projects = () => {
 
   const projects = [
@@ -14,8 +7,7 @@ export const Projects = () => {
       technologies: ['React', 'Node.js', 'MongoDB', 'ML'],
       githubUrl: 'https://github.com/shreyas-debug/StudySync',
       liveUrl: null,
-      featured: false,
-      imgUrl: projectImg1
+      featured: false
     },
     {
       title: 'PromptGuide',
@@ -23,8 +15,7 @@ export const Projects = () => {
       technologies: ['Python', 'AI', 'Flask'],
       githubUrl: 'https://github.com/shreyas-debug/PromptGuide',
       liveUrl: null,
-      featured: false,
-      imgUrl: projectImg3
+      featured: false
     },
     {
       title: 'LiveBid Auction Platform',
@@ -32,8 +23,7 @@ export const Projects = () => {
       technologies: ['.NET 8', 'React', 'SignalR', 'PostgreSQL', 'JWT'],
       githubUrl: 'https://github.com/shreyas-debug/LiveBid-Auction-Platform',
       liveUrl: null,
-      featured: false,
-      imgUrl: projectImg5
+      featured: false
     },
     {
       title: 'Fraud Detection System',
@@ -41,8 +31,7 @@ export const Projects = () => {
       technologies: ['.NET 9', 'React', 'Python', 'Kafka', 'Docker'],
       githubUrl: 'https://github.com/shreyas-debug/FraudDetectionSystem',
       liveUrl: null,
-      featured: false,
-      imgUrl: projectImg6
+      featured: false
     },
     {
       title: 'PizzaHub',
@@ -50,8 +39,7 @@ export const Projects = () => {
       technologies: ['C#', '.NET', 'SQL'],
       githubUrl: 'https://github.com/shreyas-debug/PizzaHub',
       liveUrl: null,
-      featured: false,
-      imgUrl: projectImg4
+      featured: false
     },
     {
       title: 'Cyberattack Detector',
@@ -59,8 +47,7 @@ export const Projects = () => {
       technologies: ['Python', 'ML', 'Arduino', 'C++'],
       githubUrl: 'https://github.com/shreyas-debug/Cyberattack-Detector',
       liveUrl: null,
-      featured: false,
-      imgUrl: projectImg2
+      featured: false
     }
   ];
 
@@ -162,41 +149,15 @@ export const Projects = () => {
                 </span>
               )}
 
-              {/* Project Image */}
-              <div style={{
-                width: '100%',
-                height: '200px',
-                overflow: 'hidden',
-                borderRadius: '8px',
-                marginBottom: '20px',
-                position: 'relative'
-              }}>
-                <img 
-                  src={project.imgUrl} 
-                  alt={project.title}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    transition: 'transform 0.3s ease',
-                    display: 'block'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'scale(1.05)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'scale(1)';
-                  }}
-                />
-              </div>
-
               {/* Header */}
               <div style={{
                 display: 'flex',
-                justifyContent: 'flex-end',
+                justifyContent: 'space-between',
                 alignItems: 'flex-start',
                 marginBottom: '16px'
               }}>
+                {/* Folder Icon */}
+                <span style={{ fontSize: '28px' }}>📁</span>
                 {/* Links */}
                 <div style={{ display: 'flex', gap: '12px' }}>
                   {project.githubUrl && (
