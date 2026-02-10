@@ -7,11 +7,11 @@ export const Skills = () => {
     },
     {
       title: 'Frameworks',
-      skills: ['React.js', '.NET Core', 'Flask', 'Express.js', 'Node.js']
+      skills: ['React.js', 'Next.js', '.NET Core', 'Flask', 'FastAPI', 'Express.js', 'Node.js']
     },
     {
       title: 'Cloud & DevOps',
-      skills: ['Microsoft Azure', 'GitHub', 'REST APIs', 'CI/CD','Docker']
+      skills: ['Microsoft Azure', 'GitHub', 'GitHub Actions', 'Vercel', 'REST APIs', 'CI/CD', 'Docker']
     },
     {
       title: 'Databases',
@@ -19,11 +19,11 @@ export const Skills = () => {
     },
     {
       title: 'ML & Data',
-      skills: ['Machine Learning', 'Scikit-learn', 'Pandas', 'NumPy']
+      skills: ['Machine Learning', 'LLMs & Prompt Engineering', 'Scikit-learn', 'Pandas', 'NumPy']
     },
     {
       title: 'Tools',
-      skills: ['VS Code', 'Visual Studio', 'Postman', 'Cursor', 'Git','Adobe Photoshop', 'Adobe Lightroom']
+      skills: ['VS Code', 'Visual Studio', 'Postman', 'Cursor', 'Git', 'Chrome Extensions', 'Adobe Photoshop', 'Adobe Lightroom']
     }
   ];
 
