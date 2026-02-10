@@ -2,16 +2,24 @@ export const Projects = () => {
 
   const projects = [
     {
+      title: 'Sentinel-G3',
+      description: 'Autonomous self-healing security auditor built for the Google Gemini 3 Hackathon that uses Gemini 3’s deep reasoning and cryptographically signed chain-of-thought to find, fix, and verify vulnerabilities, with a real-time dashboard and GitHub integration that can open pull requests with the generated patches.',
+      technologies: ['Python', 'FastAPI', 'Next.js', 'Gemini 3', 'TypeScript'],
+      githubUrl: 'https://github.com/shreyas-debug/SentinelG3',
+      liveUrl: 'https://devpost.com/software/sentinelg3-autonomous-self-healing-security?ref_content=user-portfolio&ref_feature=in_progress',
+      featured: true
+    },
+    {
       title: 'StudySync',
-      description: 'Full-stack web application connecting students with compatible study partners. Won Public Choice Award at Birminghack 1.0. Features matching algorithm using cosine similarity.',
+      description: 'Full-stack web application built at Birminghack 1.0 that connects students with compatible study partners using a cosine-similarity based matching engine, rich profiles, and a clean dashboard experience. Won the Public Choice Award for making it easier to find the right people to learn with.',
       technologies: ['React', 'Node.js', 'MongoDB', 'ML'],
       githubUrl: 'https://github.com/shreyas-debug/StudySync',
-      liveUrl: null,
-      featured: false
+      liveUrl: 'https://devpost.com/software/studysync-enosua',
+      featured: true
     },
     {
       title: 'PromptGuide',
-      description: 'Python-based application for AI prompt management and optimization. Features intelligent prompt suggestions and performance analytics.',
+      description: 'Analytical Chrome-extension toolkit for prompt evaluation and refinement, built as part of my MSc dissertation. Combines a rule-based scoring engine (clarity, specificity, actionability) with an AI refiner to generate stronger prompts with metric-based feedback.',
       technologies: ['Python', 'AI', 'Flask'],
       githubUrl: 'https://github.com/shreyas-debug/PromptGuide',
       liveUrl: null,
@@ -134,7 +142,7 @@ export const Projects = () => {
                 <span style={{
                   position: 'absolute',
                   top: '16px',
-                  right: '16px',
+                  left: '16px',
                   fontFamily: "'JetBrains Mono', monospace",
                   fontSize: '10px',
                   color: 'var(--accent)',

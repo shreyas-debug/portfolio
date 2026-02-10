@@ -369,7 +369,7 @@ export const AboutPage = () => {
             const isPhotography = interest === 'Photography';
             const Component = isPhotography ? 'a' : 'span';
             const linkProps = isPhotography ? {
-              href: 'https://www.instagram.com/shreyas_jpg',
+              href: 'https://www.instagram.com/shreyas_jpg?igsh=bmJ5dGo1Nmp5cXVt',
               target: '_blank',
               rel: 'noopener noreferrer'
             } : {};
