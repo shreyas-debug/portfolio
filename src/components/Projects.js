@@ -6,7 +6,7 @@ export const Projects = () => {
       description: 'Autonomous self-healing security auditor built for the Google Gemini 3 Hackathon that uses Gemini 3’s deep reasoning and cryptographically signed chain-of-thought to find, fix, and verify vulnerabilities, with a real-time dashboard and GitHub integration that can open pull requests with the generated patches.',
       technologies: ['Python', 'FastAPI', 'Next.js', 'Gemini 3', 'TypeScript'],
       githubUrl: 'https://github.com/shreyas-debug/SentinelG3',
-      liveUrl: 'https://devpost.com/software/sentinelg3-autonomous-self-healing-security?ref_content=user-portfolio&ref_feature=in_progress',
+      liveUrl: null,
       featured: true
     },
     {
@@ -14,7 +14,7 @@ export const Projects = () => {
       description: 'Full-stack web application built at Birminghack 1.0 that connects students with compatible study partners using a cosine-similarity based matching engine, rich profiles, and a clean dashboard experience. Won the Public Choice Award for making it easier to find the right people to learn with.',
       technologies: ['React', 'Node.js', 'MongoDB', 'ML'],
       githubUrl: 'https://github.com/shreyas-debug/StudySync',
-      liveUrl: 'https://devpost.com/software/studysync-enosua',
+      liveUrl: null,
       featured: true
     },
     {
@@ -60,18 +60,18 @@ export const Projects = () => {
   ];
 
   return (
-    <section 
-      className="project" 
+    <section
+      className="project"
       id="projects"
       style={{
         padding: '100px 0',
         backgroundColor: 'var(--bg-primary)'
       }}
     >
-      <div className="container" style={{ 
-        maxWidth: '1200px', 
-        margin: '0 auto', 
-        padding: '0 24px' 
+      <div className="container" style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '0 24px'
       }}>
         {/* Section Header */}
         <div style={{ marginBottom: '48px' }}>
@@ -101,7 +101,7 @@ export const Projects = () => {
             maxWidth: '600px',
             lineHeight: '1.7'
           }}>
-            A collection of projects showcasing my skills in full-stack development, 
+            A collection of projects showcasing my skills in full-stack development,
             machine learning, and software engineering.
           </p>
         </div>
@@ -113,7 +113,7 @@ export const Projects = () => {
           gap: '24px'
         }}>
           {projects.map((project, index) => (
-            <div 
+            <div
               key={index}
               style={{
                 backgroundColor: 'var(--card-bg)',
@@ -169,7 +169,7 @@ export const Projects = () => {
                 {/* Links */}
                 <div style={{ display: 'flex', gap: '12px' }}>
                   {project.githubUrl && (
-                    <a 
+                    <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -182,24 +182,45 @@ export const Projects = () => {
                       title="View on GitHub"
                     >
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                       </svg>
                     </a>
                   )}
                   {project.liveUrl && (
-                    <a 
+                    <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
-                        color: 'var(--text-muted)',
-                        transition: 'color 0.2s ease'
+                        fontFamily: "'JetBrains Mono', monospace",
+                        fontSize: '11px',
+                        fontWeight: '600',
+                        color: 'var(--accent)',
+                        textDecoration: 'none',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        padding: '6px 12px',
+                        border: '1px solid var(--accent)', // Using border to make it stand out
+                        borderRadius: '20px', // Pill shape
+                        transition: 'all 0.2s ease',
+                        backgroundColor: 'var(--accent-muted)', // Slight background to pop
+                        height: '32px' // Consistent height
                       }}
-                      onMouseEnter={(e) => e.currentTarget.style.color = 'var(--accent)'}
-                      onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
-                      title="View Live"
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = 'var(--accent)';
+                        e.currentTarget.style.color = '#000'; // Assuming dark mode, black text on accent color usually works best
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = 'var(--accent-muted)';
+                        e.currentTarget.style.color = 'var(--accent)';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                      }}
+                      title="View Live Demo"
                     >
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <span>Live Demo</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                         <polyline points="15 3 21 3 21 9" />
                         <line x1="10" y1="14" x2="21" y2="3" />
@@ -239,7 +260,7 @@ export const Projects = () => {
                 marginTop: 'auto'
               }}>
                 {project.technologies.map((tech, techIndex) => (
-                  <span 
+                  <span
                     key={techIndex}
                     style={{
                       fontFamily: "'JetBrains Mono', monospace",
@@ -261,7 +282,7 @@ export const Projects = () => {
           textAlign: 'center',
           marginTop: '48px'
         }}>
-          <a 
+          <a
             href="https://github.com/shreyas-debug"
             target="_blank"
             rel="noopener noreferrer"
