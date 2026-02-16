@@ -22,7 +22,7 @@ export const Projects = () => {
       description: 'Analytical Chrome-extension toolkit for prompt evaluation and refinement, built as part of my MSc dissertation. Combines a rule-based scoring engine (clarity, specificity, actionability) with an AI refiner to generate stronger prompts with metric-based feedback.',
       technologies: ['Python', 'AI', 'Flask'],
       githubUrl: 'https://github.com/shreyas-debug/PromptGuide',
-      liveUrl: null,
+      liveUrl: 'https://prompt-guide-ten.vercel.app/',
       featured: false
     },
     {
