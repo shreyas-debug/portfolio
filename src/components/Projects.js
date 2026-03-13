@@ -2,27 +2,43 @@ export const Projects = () => {
 
   const projects = [
     {
-      title: 'Sentinel-G3',
-      description: 'Autonomous self-healing security auditor built for the Google Gemini 3 Hackathon that uses Gemini 3’s deep reasoning and cryptographically signed chain-of-thought to find, fix, and verify vulnerabilities, with a real-time dashboard and GitHub integration that can open pull requests with the generated patches.',
-      technologies: ['Python', 'FastAPI', 'Next.js', 'Gemini 3', 'TypeScript'],
-      githubUrl: 'https://github.com/shreyas-debug/SentinelG3',
-      liveUrl: null,
-      featured: true
-    },
-    {
-      title: 'StudySync',
-      description: 'Full-stack web application built at Birminghack 1.0 that connects students with compatible study partners using a cosine-similarity based matching engine, rich profiles, and a clean dashboard experience. Won the Public Choice Award for making it easier to find the right people to learn with.',
-      technologies: ['React', 'Node.js', 'MongoDB', 'ML'],
-      githubUrl: 'https://github.com/shreyas-debug/StudySync',
-      liveUrl: null,
-      featured: true
-    },
-    {
       title: 'PromptGuide',
       description: 'Analytical Chrome-extension toolkit for prompt evaluation and refinement, built as part of my MSc dissertation. Combines a rule-based scoring engine (clarity, specificity, actionability) with an AI refiner to generate stronger prompts with metric-based feedback.',
       technologies: ['Python', 'AI', 'Flask'],
       githubUrl: 'https://github.com/shreyas-debug/PromptGuide',
       liveUrl: 'https://prompt-guide-ten.vercel.app/',
+      featured: false
+    },
+    {
+      title: 'Sentinel-G3',
+      description: 'Autonomous self-healing security auditor built for the Google Gemini 3 Hackathon that uses Gemini 3’s deep reasoning and cryptographically signed chain-of-thought to find, fix, and verify vulnerabilities, with a real-time dashboard and GitHub integration that can open pull requests with the generated patches.',
+      technologies: ['Python', 'FastAPI', 'Next.js', 'Gemini 3', 'TypeScript'],
+      githubUrl: 'https://github.com/shreyas-debug/SentinelG3',
+      liveUrl: 'https://devpost.com/software/sentinelg3-autonomous-self-healing-security?ref_content=user-portfolio&ref_feature=in_progress',
+      featured: true
+    },
+    {
+      title: 'IssueTracker',
+      description: 'Production-grade multi-tenant issue management SaaS where each organization gets a fully isolated workspace. Built with Next.js 15, TypeScript, Prisma, PostgreSQL, and JWT auth, with tenant-safe issue lifecycle workflows, searchable/sortable boards, and architecture-level data isolation using Prisma extensions.',
+      technologies: ['Next.js 15', 'TypeScript', 'Prisma', 'PostgreSQL', 'JWT'],
+      githubUrl: 'https://github.com/shreyas-debug/issue-tracker',
+      liveUrl: 'https://issue-tracker-navy-two.vercel.app/',
+      featured: false
+    },
+    {
+      title: 'Web Monitor',
+      description: 'Lightweight production-ready webpage change monitor that fetches and cleans page content, detects differences using hashing and word-level diffing, and generates concise AI summaries with Gemini 2.5 Flash. Includes Supabase-backed check history and Vercel-focused security and performance hardening.',
+      technologies: ['Next.js 15', 'TypeScript', 'Supabase', 'Gemini 2.5 Flash', 'Vercel'],
+      githubUrl: 'https://github.com/shreyas-debug/web-monitor',
+      liveUrl: 'https://web-monitor-two.vercel.app/',
+      featured: false
+    },
+    {
+      title: 'Fraud Detection System',
+      description: 'Real-time financial fraud detection using event-driven microservices. Ingests transactions via Kafka, processes with .NET 9, evaluates risk using Python ML engine, and displays live alerts on React dashboard via SignalR.',
+      technologies: ['.NET 9', 'React', 'Python', 'Kafka', 'Docker'],
+      githubUrl: 'https://github.com/shreyas-debug/FraudDetectionSystem',
+      liveUrl: null,
       featured: false
     },
     {
@@ -34,12 +50,12 @@ export const Projects = () => {
       featured: false
     },
     {
-      title: 'Fraud Detection System',
-      description: 'Real-time financial fraud detection using event-driven microservices. Ingests transactions via Kafka, processes with .NET 9, evaluates risk using Python ML engine, and displays live alerts on React dashboard via SignalR.',
-      technologies: ['.NET 9', 'React', 'Python', 'Kafka', 'Docker'],
-      githubUrl: 'https://github.com/shreyas-debug/FraudDetectionSystem',
-      liveUrl: null,
-      featured: false
+      title: 'StudySync',
+      description: 'Full-stack web application built at Birminghack 1.0 that connects students with compatible study partners using a cosine-similarity based matching engine, rich profiles, and a clean dashboard experience. Won the Public Choice Award for making it easier to find the right people to learn with.',
+      technologies: ['React', 'Node.js', 'MongoDB', 'ML'],
+      githubUrl: 'https://github.com/shreyas-debug/StudySync',
+      liveUrl: 'https://devpost.com/software/studysync-enosua',
+      featured: true
     },
     {
       title: 'PizzaHub',
@@ -138,23 +154,31 @@ export const Projects = () => {
               }}
             >
               {/* Featured Badge */}
-              {project.featured && (
-                <span style={{
-                  position: 'absolute',
-                  top: '16px',
-                  left: '16px',
-                  fontFamily: "'JetBrains Mono', monospace",
-                  fontSize: '10px',
-                  color: 'var(--accent)',
-                  backgroundColor: 'var(--accent-muted)',
-                  padding: '4px 8px',
-                  borderRadius: '4px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
-                  zIndex: 2
-                }}>
+              {project.featured && project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    position: 'absolute',
+                    top: '16px',
+                    left: '16px',
+                    fontFamily: "'JetBrains Mono', monospace",
+                    fontSize: '10px',
+                    color: 'var(--accent)',
+                    backgroundColor: 'var(--accent-muted)',
+                    padding: '4px 8px',
+                    borderRadius: '4px',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.05em',
+                    zIndex: 2,
+                    textDecoration: 'none',
+                    cursor: 'pointer'
+                  }}
+                  title="View Devpost"
+                >
                   Featured
-                </span>
+                </a>
               )}
 
               {/* Header */}
@@ -186,7 +210,7 @@ export const Projects = () => {
                       </svg>
                     </a>
                   )}
-                  {project.liveUrl && (
+                  {project.liveUrl && !project.featured && (
                     <a
                       href={project.liveUrl}
                       target="_blank"

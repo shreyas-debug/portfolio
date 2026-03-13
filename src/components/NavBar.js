@@ -162,8 +162,36 @@ export const NavBar = () => {
           {navLinks.map((link) => renderNavLink(link, false))}
         </div>
 
-        {/* Right Side - Theme Toggle & Social */}
+        {/* Right Side - Open to work + Theme Toggle */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          {/* Open to work badge */}
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '4px 10px',
+              borderRadius: '999px',
+              border: '1px solid var(--accent)',
+              backgroundColor: 'var(--accent-muted)',
+              fontFamily: "'JetBrains Mono', monospace",
+              fontSize: '11px',
+              color: 'var(--accent)',
+              whiteSpace: 'nowrap',
+              boxShadow: '0 0 12px rgba(170, 54, 124, 0.35)'
+            }}
+          >
+            <span
+              style={{
+                width: '7px',
+                height: '7px',
+                borderRadius: '50%',
+                backgroundColor: '#22c55e'
+              }}
+            />
+            <span>Open to work</span>
+          </div>
+
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
