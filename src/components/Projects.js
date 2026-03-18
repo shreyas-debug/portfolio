@@ -58,11 +58,11 @@ export const Projects = () => {
       featured: true
     },
     {
-      title: 'PizzaHub',
-      description: 'C# desktop application for pizza ordering and management system. Features user-friendly interface, order tracking, and inventory management.',
-      technologies: ['C#', '.NET', 'SQL'],
-      githubUrl: 'https://github.com/shreyas-debug/PizzaHub',
-      liveUrl: null,
+      title: 'JobBoard.OS',
+      description: 'Feature-rich dynamic job board built with Atomic Design architecture. Includes real-time debounced search, URL-synced filters, department-coloured card hovers, skeleton loaders, Apply/Withdraw flow with localStorage persistence, and a Share-able job detail modal — all backed by a clean Next.js + Tailwind + Shadcn stack.',
+      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Shadcn UI'],
+      githubUrl: 'https://github.com/shreyas-debug/JobBoard.OS',
+      liveUrl: 'https://job-board-os.vercel.app',
       featured: false
     },
     {
