@@ -7,23 +7,23 @@ export const Skills = () => {
     },
     {
       title: 'Frameworks',
-      skills: ['React.js', 'Next.js', '.NET Core', 'Flask', 'FastAPI', 'Express.js', 'Node.js']
+      skills: ['React.js', 'Next.js', '.NET 8/9', 'Tailwind CSS', 'FastAPI', 'Flask', 'Node.js', 'Express.js']
     },
     {
       title: 'Cloud & DevOps',
-      skills: ['Microsoft Azure', 'GitHub', 'GitHub Actions', 'Vercel', 'REST APIs', 'CI/CD', 'Docker']
+      skills: ['Microsoft Azure', 'GitHub', 'GitHub Actions', 'Vercel', 'Docker', 'Kafka', 'CI/CD', 'REST APIs']
     },
     {
       title: 'Databases',
-      skills: ['SQL Server', 'PostgreSQL', 'MongoDB', 'SQLite','MySQL']
+      skills: ['PostgreSQL', 'Supabase', 'SQL Server', 'MongoDB', 'Vercel KV', 'SQLite', 'MySQL']
     },
     {
       title: 'ML & Data',
-      skills: ['Machine Learning', 'LLMs & Prompt Engineering', 'Scikit-learn', 'Pandas', 'NumPy']
+      skills: ['Machine Learning', 'Google Gemini', 'LLMs & Prompt Engineering', 'Scikit-learn', 'Pandas', 'NumPy']
     },
     {
-      title: 'Tools',
-      skills: ['VS Code', 'Visual Studio', 'Postman', 'Cursor', 'Git', 'Chrome Extensions', 'Adobe Photoshop', 'Adobe Lightroom']
+      title: 'Tools & Libraries',
+      skills: ['VS Code', 'Visual Studio', 'Cursor', 'Postman', 'Git', 'Prisma', 'Shadcn UI', 'JWT', 'SignalR', 'Chrome Extensions', 'Adobe Photoshop']
     }
   ];
 

@@ -10,16 +10,37 @@ export const NavBar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  // Check if we're on the about page
+  const isAboutPage = location.pathname === '/about';
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
-  // Check if we're on the about page
-  const isAboutPage = location.pathname === '/about';
+      if (!isAboutPage) {
+        const sections = ['skills', 'experience', 'projects'];
+        let currentSection = 'home';
+        
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            // A section is active if it spans across the 250px mark from the top
+            if (rect.top <= 250 && rect.bottom >= 250) {
+              currentSection = section;
+            }
+          }
+        }
+        
+        setActiveLink(currentSection);
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    onScroll(); // Call once on mount to set initial section
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [isAboutPage]);
 
   const handleNavClick = (id, isPageLink = false) => {
     setActiveLink(id);

@@ -3,11 +3,15 @@ export const Experience = () => {
   const timelineItems = [
     {
       type: 'education',
-      title: 'MSc Computer Science (Distinction)',
+      title: 'MSc Computer Science',
       organization: 'University of Birmingham',
       location: 'Birmingham, United Kingdom',
       duration: 'Sept 2024 - Sept 2025',
-      description: 'Graduated with Distinction. Advanced studies in computer science with focus on modern software development practices and emerging technologies.',
+      description: [
+        'Graduated with Distinction. Advanced studies in computer science with focus on modern software development practices and emerging technologies.',
+        'Course Student Representative: Represented the cohort in student-staff meetings, voiced concerns, addressed peer queries, and contributed to academic improvements.',
+        'Activities & Societies: Computer Science Society, Ethical Hacking Society (AFNOM).'
+      ],
       technologies: []
     },
     {
@@ -17,12 +21,12 @@ export const Experience = () => {
       location: 'Bangalore, India',
       duration: 'Sept 2022 - Sept 2024',
       description: [
-        'Collaborated on Microsoft project, migrating 500+ legacy test cases from SQL to C# using .NET',
-        'Ensured 100% accuracy in test case translation, improving overall testing efficiency',
-        'Developed automated .NET feature for migration, targeting 50% speed increase',
-        'Conducted sanity testing on 100+ features for Kellogg\'s web application'
+        'Collaborated within Microsoft\'s internal query processing team to migrate 500+ legacy test cases from SQL to C# using .NET.',
+        'Analyzed and translated existing test cases with 100% accuracy, preserving functionality and improving overall testing efficiency.',
+        'Designed the frontend architecture for an automated .NET migration system using React and JavaScript.',
+        'Streamlined migration workflows, eliminating manual conversion and targeting a 50% reduction in errors and processing time.'
       ],
-      technologies: ['.NET Core', 'C#', 'SQL', 'Azure', 'Agile']
+      technologies: ['.NET', 'C#', 'SQL', 'React', 'JavaScript', 'Azure']
     },
     {
       type: 'experience',
@@ -31,11 +35,10 @@ export const Experience = () => {
       location: 'Bangalore, India',
       duration: 'Mar 2022 - May 2022',
       description: [
-        'Completed 3-month internship gaining in-depth knowledge of .NET framework',
-        'Contributed to projects improving development efficiency',
-        'Gained hands-on experience in .NET framework and project workflows'
+        'Contributed to the development of internal web applications using ASP.NET MVC, Entity Framework, JavaScript, and Angular.',
+        'Gained hands-on experience in full-stack feature development and agile project workflows during a 3-month program.'
       ],
-      technologies: ['.NET', 'C#', 'Web Dev']
+      technologies: ['ASP.NET MVC', 'Entity Framework', 'Angular', 'JavaScript', 'C#']
     },
     {
       type: 'education',
@@ -43,24 +46,24 @@ export const Experience = () => {
       organization: 'Dayananda Sagar Academy of Technology and Management',
       location: 'Bangalore, India',
       duration: 'Aug 2018 - July 2022',
-      description: 'Graduated with GPA: 8.06. Strong foundation in electronics, communication systems, and programming.',
+      description: 'Graduated First Class with Distinction. Strong foundation in electronics, communication systems, and programming.',
       technologies: []
     }
   ];
 
   return (
-    <section 
-      className="experience" 
+    <section
+      className="experience"
       id="experience"
       style={{
         padding: '100px 0',
         backgroundColor: 'var(--bg-secondary)'
       }}
     >
-      <div className="container" style={{ 
-        maxWidth: '1200px', 
-        margin: '0 auto', 
-        padding: '0 24px' 
+      <div className="container" style={{
+        maxWidth: '1200px',
+        margin: '0 auto',
+        padding: '0 24px'
       }}>
         {/* Section Header */}
         <div style={{ marginBottom: '48px' }}>
@@ -112,7 +115,7 @@ export const Experience = () => {
 
           {/* Timeline Items */}
           {timelineItems.map((item, index) => (
-            <div 
+            <div
               key={index}
               style={{
                 position: 'relative',
@@ -133,7 +136,7 @@ export const Experience = () => {
               }} />
 
               {/* Content Card */}
-              <div 
+              <div
                 style={{
                   backgroundColor: 'var(--card-bg)',
                   border: '1px solid var(--border-color)',
@@ -206,7 +209,7 @@ export const Experience = () => {
                     margin: '0 0 20px 0'
                   }}>
                     {item.description.map((desc, descIndex) => (
-                      <li 
+                      <li
                         key={descIndex}
                         style={{
                           fontSize: '14px',
@@ -245,7 +248,7 @@ export const Experience = () => {
                     gap: '8px'
                   }}>
                     {item.technologies.map((tech, techIndex) => (
-                      <span 
+                      <span
                         key={techIndex}
                         style={{
                           fontFamily: "'JetBrains Mono', monospace",

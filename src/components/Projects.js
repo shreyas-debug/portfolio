@@ -18,6 +18,14 @@ export const Projects = () => {
       featured: true
     },
     {
+      title: 'RepoReel',
+      description: 'Structured, visual changelog generator for GitHub tags. Fetches commits via REST API, parses/categorizes locally to minimize token usage, and leverages Google Gemini to output a concise AI narrative. Features include a commit heatmap and permanent shareable URLs backed by Vercel KV.',
+      technologies: ['Next.js', 'TypeScript', 'Google Gemini', 'Vercel KV', 'Tailwind CSS'],
+      githubUrl: 'https://github.com/shreyas-debug/RepoReel',
+      liveUrl: 'https://repo-reel.vercel.app',
+      featured: false
+    },
+    {
       title: 'IssueTracker',
       description: 'Production-grade multi-tenant issue management SaaS where each organization gets a fully isolated workspace. Built with Next.js 15, TypeScript, Prisma, PostgreSQL, and JWT auth, with tenant-safe issue lifecycle workflows, searchable/sortable boards, and architecture-level data isolation using Prisma extensions.',
       technologies: ['Next.js 15', 'TypeScript', 'Prisma', 'PostgreSQL', 'JWT'],
@@ -70,6 +78,14 @@ export const Projects = () => {
       description: 'Advanced ML-based cyberattack detection system with real-time SMS alerts. Combines Python ML algorithms with Arduino/GSM hardware integration.',
       technologies: ['Python', 'ML', 'Arduino', 'C++'],
       githubUrl: 'https://github.com/shreyas-debug/Cyberattack-Detector',
+      liveUrl: null,
+      featured: false
+    },
+    {
+      title: 'PizzaHub',
+      description: 'Full-stack .NET 8 MVC web application for online pizza ordering. Features role-based access control (Admin/User) using ASP.NET Core Identity, a dynamic shopping cart, and comprehensive order management backed by Entity Framework Core and SQLite.',
+      technologies: ['C#', '.NET 8', 'ASP.NET Core MVC', 'Entity Framework Core', 'SQLite', 'Bootstrap'],
+      githubUrl: 'https://github.com/shreyas-debug/PizzaHub',
       liveUrl: null,
       featured: false
     }
