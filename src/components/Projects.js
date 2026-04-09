@@ -14,7 +14,8 @@ export const Projects = () => {
       description: 'Autonomous self-healing security auditor built for the Google Gemini 3 Hackathon that uses Gemini 3’s deep reasoning and cryptographically signed chain-of-thought to find, fix, and verify vulnerabilities, with a real-time dashboard and GitHub integration that can open pull requests with the generated patches.',
       technologies: ['Python', 'FastAPI', 'Next.js', 'Gemini 3', 'TypeScript'],
       githubUrl: 'https://github.com/shreyas-debug/SentinelG3',
-      liveUrl: 'https://devpost.com/software/sentinelg3-autonomous-self-healing-security?ref_content=user-portfolio&ref_feature=in_progress',
+      liveUrl: 'https://sentinel-g3-xi.vercel.app/',
+      devpostUrl: 'https://devpost.com/software/sentinelg3-autonomous-self-healing-security?ref_content=user-portfolio&ref_feature=in_progress',
       featured: true
     },
     {
@@ -62,7 +63,8 @@ export const Projects = () => {
       description: 'Full-stack web application built at Birminghack 1.0 that connects students with compatible study partners using a cosine-similarity based matching engine, rich profiles, and a clean dashboard experience. Won the Public Choice Award for making it easier to find the right people to learn with.',
       technologies: ['React', 'Node.js', 'MongoDB', 'ML'],
       githubUrl: 'https://github.com/shreyas-debug/StudySync',
-      liveUrl: 'https://devpost.com/software/studysync-enosua',
+      liveUrl: null,
+      devpostUrl: 'https://devpost.com/software/studysync-enosua',
       featured: true
     },
     {
@@ -170,9 +172,9 @@ export const Projects = () => {
               }}
             >
               {/* Featured Badge */}
-              {project.featured && project.liveUrl && (
+              {project.featured && (project.devpostUrl || project.liveUrl) && (
                 <a
-                  href={project.liveUrl}
+                  href={project.devpostUrl || project.liveUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
@@ -226,7 +228,7 @@ export const Projects = () => {
                       </svg>
                     </a>
                   )}
-                  {project.liveUrl && !project.featured && (
+                  {project.liveUrl && (
                     <a
                       href={project.liveUrl}
                       target="_blank"
