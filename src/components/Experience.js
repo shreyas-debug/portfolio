@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+
 import { motion } from 'framer-motion';
 
 const timelineItems = [
@@ -91,7 +91,7 @@ export const Experience = () => {
               <motion.div 
                 initial={{ backgroundColor: 'var(--bg-tertiary)', borderColor: 'var(--border-color)', boxShadow: 'none' }}
                 whileInView={{ backgroundColor: 'var(--accent)', borderColor: 'var(--bg-secondary)', boxShadow: '0 0 0 6px var(--accent-muted)' }}
-                viewport={{ margin: "-40% 0px -40% 0px" }}
+                viewport={{ margin: "-150px 0px -150px 0px" }}
                 transition={{ duration: 0.3 }}
                 style={{ 
                   position: 'absolute', 
@@ -111,7 +111,7 @@ export const Experience = () => {
                 <motion.div 
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
-                  viewport={{ margin: "-40% 0px -40% 0px" }}
+                  viewport={{ margin: "-150px 0px -150px 0px" }}
                   style={{ position: 'absolute', width: '100%', height: '100%' }}
                 >
                   <motion.div 
@@ -132,7 +132,7 @@ export const Experience = () => {
                 <motion.div
                   initial={{ scale: 0.98, opacity: 0.6, borderColor: 'var(--border-color)', boxShadow: 'none' }}
                   whileInView={{ scale: 1.02, opacity: 1, borderColor: 'var(--accent)', boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)' }}
-                  viewport={{ margin: "-40% 0px -40% 0px" }}
+                  viewport={{ margin: "-150px 0px -150px 0px" }}
                   transition={{ duration: 0.4 }}
                   style={{ 
                     backgroundColor: 'var(--card-bg)', 
