@@ -63,7 +63,7 @@ export const Projects = () => {
       description: 'Full-stack web application built at Birminghack 1.0 that connects students with compatible study partners using a cosine-similarity based matching engine, rich profiles, and a clean dashboard experience. Won the Public Choice Award for making it easier to find the right people to learn with.',
       technologies: ['React', 'Node.js', 'MongoDB', 'ML'],
       githubUrl: 'https://github.com/shreyas-debug/StudySync',
-      liveUrl: null,
+      liveUrl: 'https://study-sync-ebon-chi.vercel.app/',
       devpostUrl: 'https://devpost.com/software/studysync-enosua',
       featured: true
     },
