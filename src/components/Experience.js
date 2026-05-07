@@ -3,6 +3,17 @@ import { motion } from 'framer-motion';
 
 const timelineItems = [
   {
+    type: 'experience',
+    title: 'Senior FullStack Developer',
+    organization: 'Rudratek',
+    location: 'Remote',
+    duration: 'Mar 2026 - Present',
+    description: [
+      'Engaged as a senior freelance developer for full stack architecture and development across Python and JavaScript ecosystems.'
+    ],
+    technologies: ['Python', 'JavaScript', 'React', 'Next.js']
+  },
+  {
     type: 'education',
     title: 'MSc Computer Science',
     organization: 'University of Birmingham',
