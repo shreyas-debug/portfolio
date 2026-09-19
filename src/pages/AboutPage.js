@@ -18,20 +18,20 @@ export const AboutPage = () => {
   }, []);
 
   return (
-    <section 
+    <section
       style={{
         minHeight: '100vh',
         padding: '120px 0 100px',
         backgroundColor: 'var(--bg-primary)'
       }}
     >
-      <div className="container" style={{ 
-        maxWidth: '900px', 
-        margin: '0 auto', 
-        padding: '0 24px' 
+      <div className="container" style={{
+        maxWidth: '900px',
+        margin: '0 auto',
+        padding: '0 24px'
       }}>
         {/* Back Link */}
-        <Link 
+        <Link
           to="/"
           style={{
             fontFamily: "'JetBrains Mono', monospace",
@@ -51,7 +51,7 @@ export const AboutPage = () => {
         </Link>
 
         {/* Page Header with Profile Picture */}
-        <div style={{ 
+        <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
@@ -93,7 +93,7 @@ export const AboutPage = () => {
             border: '2px solid var(--border-color)',
             boxShadow: '0 8px 32px rgba(0, 0, 0, 0.15)'
           }}>
-            <img 
+            <img
               src={profileImg}
               alt="Shreyas Satpute"
             />
@@ -108,10 +108,10 @@ export const AboutPage = () => {
             lineHeight: '1.8',
             marginBottom: '28px'
           }}>
-            Hello! I'm <span style={{ color: 'var(--text-primary)', fontWeight: '500' }}>Shreyas Satpute</span>, 
-            a passionate Software Engineer with a strong foundation in full-stack development and machine learning. 
-            I recently graduated with <span style={{ color: 'var(--accent)', fontWeight: '500' }}>Distinction</span> in my <span style={{ color: 'var(--text-primary)', fontWeight: '500' }}>MSc in Computer Science</span> from 
-            the <span style={{ color: 'var(--accent)', fontWeight: '500' }}>University of Birmingham</span>, and bring hands-on 
+            Hello! I'm <span style={{ color: 'var(--text-primary)', fontWeight: '500' }}>Shreyas Satpute</span>,
+            a passionate Software Engineer with a strong foundation in full-stack development and machine learning.
+            I recently graduated with <span style={{ color: 'var(--accent)', fontWeight: '500' }}>Distinction</span> in my <span style={{ color: 'var(--text-primary)', fontWeight: '500' }}>MSc in Computer Science</span> from
+            the <span style={{ color: 'var(--accent)', fontWeight: '500' }}>University of Birmingham</span>, and bring hands-on
             experience from my role at LTIMindtree where I worked with major clients like Microsoft and Kellogg's.
           </p>
 
@@ -121,9 +121,8 @@ export const AboutPage = () => {
             lineHeight: '1.8',
             marginBottom: '28px'
           }}>
-            My expertise spans across multiple technologies including Python, JavaScript, C#, React.js, .NET Core.
-            I'm particularly passionate about creating innovative solutions that solve real-world problems, 
-            as demonstrated in my award-winning <span style={{ color: 'var(--accent)', fontWeight: '500' }}>StudySync</span> project.
+            My expertise spans across multiple technologies including Python, C#, .NET, JavaScript, and React.js.
+            I'm particularly passionate about creating innovative solutions that solve real-world problems.
           </p>
 
           <p style={{
@@ -132,8 +131,8 @@ export const AboutPage = () => {
             lineHeight: '1.8',
             marginBottom: '0'
           }}>
-            When I'm not coding, you'll find me exploring new technologies, participating in hackathons, 
-            or capturing moments through photography. I believe in continuous learning and staying updated 
+            When I'm not coding, you'll find me exploring new technologies, participating in hackathons,
+            or capturing moments through photography. I believe in continuous learning and staying updated
             with the latest trends in software development and artificial intelligence.
           </p>
         </div>
@@ -153,7 +152,7 @@ export const AboutPage = () => {
       </div>
 
       {/* Full-width Photo Carousel */}
-      <div 
+      <div
         style={{
           width: '100%',
           overflow: 'hidden',
@@ -183,9 +182,9 @@ export const AboutPage = () => {
           zIndex: 2,
           pointerEvents: 'none'
         }} />
-        
+
         {/* Scrolling container */}
-        <div 
+        <div
           style={{
             display: 'flex',
             gap: '16px',
@@ -196,7 +195,7 @@ export const AboutPage = () => {
         >
           {/* First set of images */}
           {photos.map((photo, index) => (
-            <div 
+            <div
               key={`first-${index}`}
               style={{
                 flexShrink: 0,
@@ -207,8 +206,8 @@ export const AboutPage = () => {
                 backgroundColor: 'var(--bg-secondary)'
               }}
             >
-              <img 
-                src={photo} 
+              <img
+                src={photo}
                 alt={`Photography ${index + 1}`}
                 loading="lazy"
                 draggable="false"
@@ -223,7 +222,7 @@ export const AboutPage = () => {
           ))}
           {/* Duplicate set for seamless loop */}
           {photos.map((photo, index) => (
-            <div 
+            <div
               key={`second-${index}`}
               style={{
                 flexShrink: 0,
@@ -234,8 +233,8 @@ export const AboutPage = () => {
                 backgroundColor: 'var(--bg-secondary)'
               }}
             >
-              <img 
-                src={photo} 
+              <img
+                src={photo}
                 alt={`Photography ${index + 1}`}
                 loading="lazy"
                 draggable="false"
@@ -251,10 +250,10 @@ export const AboutPage = () => {
         </div>
       </div>
 
-      <div className="container" style={{ 
-        maxWidth: '900px', 
-        margin: '0 auto', 
-        padding: '0 24px' 
+      <div className="container" style={{
+        maxWidth: '900px',
+        margin: '0 auto',
+        padding: '0 24px'
       }}>
         {/* Quote Block */}
         <div style={{
@@ -295,7 +294,7 @@ export const AboutPage = () => {
         }}>
           Quick Facts
         </h2>
-        
+
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
@@ -308,7 +307,7 @@ export const AboutPage = () => {
             { label: 'Experience', value: '2+ Years' },
             { label: 'Focus', value: 'Full-Stack & ML' }
           ].map((item, index) => (
-            <div 
+            <div
               key={index}
               style={{
                 padding: '24px',
@@ -358,7 +357,7 @@ export const AboutPage = () => {
         }}>
           Interests
         </h2>
-        
+
         <div style={{
           display: 'flex',
           flexWrap: 'wrap',
@@ -373,7 +372,7 @@ export const AboutPage = () => {
               target: '_blank',
               rel: 'noopener noreferrer'
             } : {};
-            
+
             return (
               <Component
                 key={index}

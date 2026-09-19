@@ -3,20 +3,44 @@ export const Projects = () => {
   const projects = [
     {
       title: 'PromptGuide',
-      description: 'Analytical Chrome-extension toolkit for prompt evaluation and refinement, built as part of my MSc dissertation. Combines a rule-based scoring engine (clarity, specificity, actionability) with an AI refiner to generate stronger prompts with metric-based feedback.',
-      technologies: ['Python', 'AI', 'Flask'],
+      description: 'A multi-platform prompt engineering toolkit — available as a Chrome Extension, a VS Code Extension, and a Web App. Combines a deterministic evaluation engine with intelligent refinement to provide objective, systematic feedback for prompt engineering without leaving your editor.',
+      technologies: ['Python', 'TypeScript', 'React', 'VS Code API', 'Chrome Extension', 'AI'],
       githubUrl: 'https://github.com/shreyas-debug/PromptGuide',
       liveUrl: 'https://prompt-guide-ten.vercel.app/',
       featured: false
     },
     {
       title: 'Sentinel-G3',
-      description: 'Autonomous self-healing security auditor built for the Google Gemini 3 Hackathon that uses Gemini 3’s deep reasoning and cryptographically signed chain-of-thought to find, fix, and verify vulnerabilities, with a real-time dashboard and GitHub integration that can open pull requests with the generated patches.',
-      technologies: ['Python', 'FastAPI', 'Next.js', 'Gemini 3', 'TypeScript'],
+      description: 'Autonomous Self-Healing Security Auditor built for the Gemini 3 Hackathon. Uses Google Gemini 3 with deep reasoning to find vulnerabilities, fix them, and prove every decision with a cryptographically signed chain of thought.',
+      technologies: ['Python', 'FastAPI', 'Next.js 15', 'Google Gemini 3', 'TypeScript'],
       githubUrl: 'https://github.com/shreyas-debug/SentinelG3',
       liveUrl: 'https://sentinel-g3-xi.vercel.app/',
       devpostUrl: 'https://devpost.com/software/sentinelg3-autonomous-self-healing-security?ref_content=user-portfolio&ref_feature=in_progress',
       featured: true
+    },
+    {
+      title: 'Fraud Detection System',
+      description: 'Real-time financial fraud detection system using a high-throughput, distributed, event-driven architecture. Ingests transaction streams via Kafka, processes them using a .NET 9 microservice, evaluates risk using a Python ML engine, and pushes live alerts to a React Dashboard via SignalR.',
+      technologies: ['.NET 9', 'React', 'Python', 'Kafka', 'Docker', 'SignalR'],
+      githubUrl: 'https://github.com/shreyas-debug/FraudDetectionSystem',
+      liveUrl: null,
+      featured: false
+    },
+    {
+      title: 'IssueTracker',
+      description: 'Production-grade multi-tenant issue management SaaS. Built with Next.js 15, TypeScript, Prisma, PostgreSQL, and JWT auth, featuring tenant-safe issue lifecycle workflows, searchable boards, and architecture-level data isolation using a Prisma Extension for structural data isolation boundaries.',
+      technologies: ['Next.js 15', 'TypeScript', 'Prisma', 'PostgreSQL', 'JWT'],
+      githubUrl: 'https://github.com/shreyas-debug/issue-tracker',
+      liveUrl: 'https://issue-tracker-navy-two.vercel.app/',
+      featured: false
+    },
+    {
+      title: 'JobScore',
+      description: 'Swipe-based job matching with explainable scores. Candidates swipe on curated job cards, triggering a match if the computed score clears the threshold. Features fully transparent match logic including weighted skill overlap, experience fit, and semantic similarity using local pgvector embeddings.',
+      technologies: ['Python', 'FastAPI', 'PostgreSQL', 'Next.js', 'Docker'],
+      githubUrl: 'https://github.com/shreyas-debug/JobScore',
+      liveUrl: 'https://job-score-seven.vercel.app/',
+      featured: false
     },
     {
       title: 'RepoReel',
@@ -27,27 +51,11 @@ export const Projects = () => {
       featured: false
     },
     {
-      title: 'IssueTracker',
-      description: 'Production-grade multi-tenant issue management SaaS where each organization gets a fully isolated workspace. Built with Next.js 15, TypeScript, Prisma, PostgreSQL, and JWT auth, with tenant-safe issue lifecycle workflows, searchable/sortable boards, and architecture-level data isolation using Prisma extensions.',
-      technologies: ['Next.js 15', 'TypeScript', 'Prisma', 'PostgreSQL', 'JWT'],
-      githubUrl: 'https://github.com/shreyas-debug/issue-tracker',
-      liveUrl: 'https://issue-tracker-navy-two.vercel.app/',
-      featured: false
-    },
-    {
       title: 'Web Monitor',
       description: 'Lightweight production-ready webpage change monitor that fetches and cleans page content, detects differences using hashing and word-level diffing, and generates concise AI summaries with Gemini 2.5 Flash. Includes Supabase-backed check history and Vercel-focused security and performance hardening.',
       technologies: ['Next.js 15', 'TypeScript', 'Supabase', 'Gemini 2.5 Flash', 'Vercel'],
       githubUrl: 'https://github.com/shreyas-debug/web-monitor',
       liveUrl: 'https://web-monitor-two.vercel.app/',
-      featured: false
-    },
-    {
-      title: 'Fraud Detection System',
-      description: 'Real-time financial fraud detection using event-driven microservices. Ingests transactions via Kafka, processes with .NET 9, evaluates risk using Python ML engine, and displays live alerts on React dashboard via SignalR.',
-      technologies: ['.NET 9', 'React', 'Python', 'Kafka', 'Docker'],
-      githubUrl: 'https://github.com/shreyas-debug/FraudDetectionSystem',
-      liveUrl: null,
       featured: false
     },
     {

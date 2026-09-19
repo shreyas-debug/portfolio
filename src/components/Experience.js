@@ -3,25 +3,15 @@ import { motion } from 'framer-motion';
 
 const timelineItems = [
   {
-    type: 'experience',
-    title: 'Senior FullStack Developer',
-    organization: 'Rudratek',
-    location: 'Remote',
-    duration: 'Mar 2026 - Present',
-    description: [
-      'Engaged as a senior freelance developer for full stack architecture and development across Python and JavaScript ecosystems.'
-    ],
-    technologies: ['Python', 'JavaScript', 'React', 'Next.js']
-  },
-  {
     type: 'education',
     title: 'MSc Computer Science',
     organization: 'University of Birmingham',
     location: 'Birmingham, United Kingdom',
     duration: 'Sept 2024 - Sept 2025',
     description: [
-      'Graduated with Distinction. Advanced studies in computer science with focus on modern software development practices and emerging technologies.',
-      'Course Student Representative: Represented the cohort in student-staff meetings, voiced concerns, addressed peer queries, and contributed to academic improvements.',
+      'Graduated with Distinction. Advanced studies with a focus on distributed systems, backend architecture, and applied AI/LLM engineering.',
+      'MSc Dissertation: Built PromptGuide - a multi-surface evaluation system backed by a Flask API, using deterministic NLP scoring as a filter before LLM invocation, achieving a statistically significant 42.1% improvement in prompt quality scores.',
+      'Student Representative: Represented the cohort in faculty meetings, drove academic improvements, and participated in cybersecurity challenges and hackathons.',
       'Activities & Societies: Computer Science Society, Ethical Hacking Society (AFNOM).'
     ],
     technologies: []
@@ -33,12 +23,11 @@ const timelineItems = [
     location: 'Bangalore, India',
     duration: 'Sept 2022 - Sept 2024',
     description: [
-      'Collaborated within Microsoft\'s internal query processing team to migrate 500+ legacy test cases from SQL to C# using .NET.',
-      'Analyzed and translated existing test cases with 100% accuracy, preserving functionality and improving overall testing efficiency.',
-      'Designed the frontend architecture for an automated .NET migration system using React and JavaScript.',
-      'Streamlined migration workflows, eliminating manual conversion and targeting a 50% reduction in errors and processing time.'
+      'Identified inefficiencies in the manual SQL-to-C#/.NET test case migration process on Microsoft\'s internal query processing team, and spearheaded the development of an automated one-click migration tool in C#/.NET and React - cutting manual processing time by 50% and eliminating error-prone multi-step workflows.',
+      'Validated the tool at scale by migrating 500+ legacy SQL test cases to C#/.NET, achieving 100% functional parity and significantly improving test suite maintainability across Microsoft\'s internal codebase.',
+      'Developed Python backend features for the Kellogg\'s account and conducted pre-deployment validation across international regional websites to verify production readiness before global releases.'
     ],
-    technologies: ['.NET', 'C#', 'SQL', 'React', 'JavaScript', 'Azure']
+    technologies: ['.NET', 'C#', 'Python', 'SQL', 'React', 'JavaScript']
   },
   {
     type: 'experience',
@@ -47,10 +36,9 @@ const timelineItems = [
     location: 'Bangalore, India',
     duration: 'Mar 2022 - May 2022',
     description: [
-      'Contributed to the development of internal web applications using ASP.NET MVC, Entity Framework, JavaScript, and Angular.',
-      'Gained hands-on experience in full-stack feature development and agile project workflows during a 3-month program.'
+      'Built RESTful APIs and full-stack features in Python (Flask) and React.js, contributing to internal tooling used across the LTIMindtree engineering training programme.'
     ],
-    technologies: ['ASP.NET MVC', 'Entity Framework', 'Angular', 'JavaScript', 'C#']
+    technologies: ['Python', 'Flask', 'React.js', 'REST APIs']
   },
   {
     type: 'education',
@@ -67,7 +55,7 @@ export const Experience = () => {
   return (
     <section className="experience" id="experience" style={{ backgroundColor: 'var(--bg-secondary)', padding: '120px 0', position: 'relative' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px', position: 'relative' }}>
-        
+
         {/* Intro Block */}
         <div style={{ marginBottom: '64px' }}>
           <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '14px', color: 'var(--accent)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -83,49 +71,49 @@ export const Experience = () => {
 
         {/* Timeline Container */}
         <div style={{ position: 'relative' }}>
-          
+
           {/* Vertical Track Line */}
-          <div style={{ 
-            position: 'absolute', 
-            top: 0, 
-            bottom: 0, 
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
             left: '9px', // Centers perfectly under the 20px dot (20/2 - 2/2 = 9)
-            width: '2px', 
-            background: 'linear-gradient(to bottom, var(--accent), var(--border-color))', 
-            zIndex: 0 
+            width: '2px',
+            background: 'linear-gradient(to bottom, var(--accent), var(--border-color))',
+            zIndex: 0
           }} />
 
           {timelineItems.map((item, index) => (
             <div key={index} style={{ position: 'relative', paddingLeft: '48px', paddingBottom: index === timelineItems.length - 1 ? '0' : '64px' }}>
-              
+
               {/* Timeline Dot with Interaction */}
-              <motion.div 
+              <motion.div
                 initial={{ backgroundColor: 'var(--bg-tertiary)', borderColor: 'var(--border-color)', boxShadow: 'none' }}
                 whileInView={{ backgroundColor: 'var(--accent)', borderColor: 'var(--bg-secondary)', boxShadow: '0 0 0 6px var(--accent-muted)' }}
                 viewport={{ margin: "-150px 0px -150px 0px" }}
                 transition={{ duration: 0.3 }}
-                style={{ 
-                  position: 'absolute', 
-                  top: '0', 
-                  left: '0', 
-                  width: '20px', 
-                  height: '20px', 
-                  borderRadius: '50%', 
-                  border: '4px solid', 
-                  zIndex: 2, 
-                  display: 'flex', 
-                  justifyContent: 'center', 
-                  alignItems: 'center' 
+                style={{
+                  position: 'absolute',
+                  top: '0',
+                  left: '0',
+                  width: '20px',
+                  height: '20px',
+                  borderRadius: '50%',
+                  border: '4px solid',
+                  zIndex: 2,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center'
                 }}
               >
                 {/* Active Pulse Ring */}
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ margin: "-150px 0px -150px 0px" }}
                   style={{ position: 'absolute', width: '100%', height: '100%' }}
                 >
-                  <motion.div 
+                  <motion.div
                     animate={{ opacity: [0, 0.8, 0], scale: [1, 2.5, 3] }}
                     transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
                     style={{ width: '100%', height: '100%', borderRadius: '50%', backgroundColor: 'var(--accent)' }}
@@ -145,10 +133,10 @@ export const Experience = () => {
                   whileInView={{ scale: 1.02, opacity: 1, borderColor: 'var(--accent)', boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)' }}
                   viewport={{ margin: "-150px 0px -150px 0px" }}
                   transition={{ duration: 0.4 }}
-                  style={{ 
-                    backgroundColor: 'var(--card-bg)', 
-                    border: '1px solid', 
-                    borderRadius: '12px', 
+                  style={{
+                    backgroundColor: 'var(--card-bg)',
+                    border: '1px solid',
+                    borderRadius: '12px',
                     padding: '32px',
                     display: 'flex',
                     flexDirection: 'column'
@@ -164,9 +152,9 @@ export const Experience = () => {
                       {item.duration}
                     </span>
                   </div>
-                  
+
                   <p style={{ fontSize: '14px', color: 'var(--text-muted)', marginBottom: '24px' }}>📍 {item.location}</p>
-                  
+
                   {/* Card Body (Bullets/Text) */}
                   {Array.isArray(item.description) ? (
                     <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px 0' }}>
@@ -179,7 +167,7 @@ export const Experience = () => {
                   ) : (
                     <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: item.technologies.length > 0 ? '24px' : '0' }}>{item.description}</p>
                   )}
-                  
+
                   {/* Card Footer (Tags) */}
                   {item.technologies.length > 0 && (
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: 'auto' }}>

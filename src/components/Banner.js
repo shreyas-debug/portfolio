@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
-import resumePdf from '../assets/Resume(Shreyas_Satpute).pdf';
 
-const ROLES = ["Software Developer", "Full-Stack Engineer", "ML Enthusiast"];
+const RESUME_URL = 'https://docs.google.com/document/d/1W0fHaVJJGS_-CtuHzK1dXddjj-6Q-AHE1nFBnpRX-jY/export?format=pdf';
+
+const ROLES = ["Software Developer", "Backend Engineer", "ML Enthusiast"];
 const TYPING_SPEED = 150;
 const DELETING_SPEED = 75;
 const PAUSE_TIME = 2000;
@@ -116,11 +117,10 @@ export const Banner = () => {
           marginBottom: '40px',
           lineHeight: '1.7'
         }}>
-          Detail-oriented software engineer with a passion for building clean, 
-          efficient applications. Experienced in full-stack development, 
-          machine learning, and cloud technologies, backed by an 
-          <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}> MSc in Computer Science</strong> from 
-          the University of Birmingham.
+          Backend-focused engineer with 2+ years of enterprise experience on <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Microsoft's internal query processing team</strong> at LTIMindtree.
+          I build scalable APIs, distributed data pipelines, and high-concurrency services in{' '}
+          <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>C#/.NET and Python</strong>, with applied experience extending that foundation into multi-agent and LLM-integrated systems.
+          Holding an <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>MSc in Computer Science (Distinction)</strong> from the University of Birmingham.
         </p>
 
         {/* CTA Buttons */}
@@ -161,9 +161,24 @@ export const Banner = () => {
             <span>→</span>
           </button>
 
-          <a 
-            href={resumePdf}
-            download="Shreyas_Satpute_Resume.pdf"
+          <button
+            onClick={async () => {
+              try {
+                const res = await fetch(RESUME_URL);
+                const blob = await res.blob();
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'Shreyas_Satpute_Resume.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+              } catch (err) {
+                // Fallback: open in new tab if fetch fails
+                window.open(RESUME_URL, '_blank');
+              }
+            }}
             style={{
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: '14px',
@@ -191,7 +206,7 @@ export const Banner = () => {
           >
             Download CV
             <span>↓</span>
-          </a>
+          </button>
         </div>
 
         {/* Scroll indicator - hidden on mobile */}

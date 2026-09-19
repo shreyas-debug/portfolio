@@ -3,27 +3,27 @@ export const Skills = () => {
   const skillCategories = [
     {
       title: 'Languages',
-      skills: ['Python', 'JavaScript', 'TypeScript', 'C#', 'SQL', 'C++']
+      skills: ['C#', 'Python', 'C++', 'Java', 'JavaScript', 'TypeScript']
     },
     {
       title: 'Frameworks',
-      skills: ['React.js', 'Next.js', '.NET 8/9', 'Tailwind CSS', 'FastAPI', 'Flask', 'Node.js', 'Express.js']
+      skills: ['.Net', 'Flask', 'FastAPI', 'Spring Boot', 'Entity Framework', 'React.js', 'Next.js', 'Node.js']
     },
     {
-      title: 'Cloud & DevOps',
-      skills: ['Microsoft Azure', 'GitHub', 'GitHub Actions', 'Vercel', 'Docker', 'Kafka', 'CI/CD', 'REST APIs']
+      title: 'Systems',
+      skills: ['Distributed Systems', 'Multi-Agent Orchestration', 'REST API Design', 'Event-Driven Architecture']
     },
     {
       title: 'Databases',
-      skills: ['PostgreSQL', 'Supabase', 'SQL Server', 'MongoDB', 'Vercel KV', 'SQLite', 'MySQL']
+      skills: ['PostgreSQL', 'SQLite', 'SQL Server', 'MongoDB', 'Redis']
     },
     {
-      title: 'ML & Data',
+            title: 'ML & Data',
       skills: ['Machine Learning', 'Google Gemini', 'LLMs & Prompt Engineering', 'Scikit-learn', 'Pandas', 'NumPy']
     },
     {
-      title: 'Tools & Libraries',
-      skills: ['VS Code', 'Visual Studio', 'Cursor', 'Postman', 'Git', 'Prisma', 'Shadcn UI', 'JWT', 'SignalR', 'Chrome Extensions', 'Adobe Photoshop']
+      title: 'Tools & Practices',
+      skills: ['Docker', 'Apache Kafka', 'CI/CD', 'Git', 'Vercel', 'Agile', 'Scrum', 'OOP']
     }
   ];
 
@@ -76,7 +76,7 @@ export const Skills = () => {
         {/* Skills Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
           gap: '24px'
         }}>
           {skillCategories.map((category, index) => (
@@ -85,9 +85,13 @@ export const Skills = () => {
               style={{
                 backgroundColor: 'var(--card-bg)',
                 border: '1px solid var(--border-color)',
-                borderRadius: '12px',
-                padding: '28px',
-                transition: 'all 0.3s ease'
+                borderRadius: '0 32px 0 32px', // Futuristic asymmetrical shape
+                padding: '32px',
+                transition: 'all 0.3s ease',
+                display: 'flex',
+                flexDirection: 'column',
+                position: 'relative',
+                overflow: 'hidden'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = 'var(--accent)';
@@ -120,7 +124,9 @@ export const Skills = () => {
               <div style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '10px'
+                gap: '10px',
+                flex: 1,
+                alignContent: 'flex-start'
               }}>
                 {category.skills.map((skill, skillIndex) => (
                   <span 
@@ -128,23 +134,25 @@ export const Skills = () => {
                     style={{
                       fontFamily: "'JetBrains Mono', monospace",
                       fontSize: '13px',
-                      color: 'var(--text-secondary)',
-                      backgroundColor: 'var(--bg-tertiary)',
-                      padding: '8px 14px',
-                      borderRadius: '6px',
-                      border: '1px solid var(--border-color)',
+                      color: 'var(--text-primary)',
+                      backgroundColor: 'transparent',
+                      padding: '8px 16px',
+                      borderRadius: '100px', // Sleek pill shape
+                      border: '1px solid var(--accent-muted)',
                       transition: 'all 0.2s ease',
                       cursor: 'default'
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.color = 'var(--accent)';
+                      e.currentTarget.style.color = 'var(--bg-primary)';
                       e.currentTarget.style.borderColor = 'var(--accent)';
-                      e.currentTarget.style.backgroundColor = 'var(--accent-muted)';
+                      e.currentTarget.style.backgroundColor = 'var(--accent)';
+                      e.currentTarget.style.transform = 'scale(1.05)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.color = 'var(--text-secondary)';
-                      e.currentTarget.style.borderColor = 'var(--border-color)';
-                      e.currentTarget.style.backgroundColor = 'var(--bg-tertiary)';
+                      e.currentTarget.style.color = 'var(--text-primary)';
+                      e.currentTarget.style.borderColor = 'var(--accent-muted)';
+                      e.currentTarget.style.backgroundColor = 'transparent';
+                      e.currentTarget.style.transform = 'scale(1)';
                     }}
                   >
                     {skill}
