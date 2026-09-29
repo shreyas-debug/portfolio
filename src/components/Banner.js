@@ -60,9 +60,6 @@ export const Banner = () => {
       }} />
 
       <div className="container" style={{ 
-        maxWidth: '1200px', 
-        margin: '0 auto', 
-        padding: '0 24px',
         position: 'relative',
         zIndex: 1
       }}>
@@ -76,7 +73,7 @@ export const Banner = () => {
           alignItems: 'center',
           gap: '8px'
         }}>
-          <span style={{ opacity: 0.5 }}>&gt;</span> Hello, my name is
+          <span style={{ opacity: 0.5 }}>&gt;</span> Hello, I'm
         </p>
 
         {/* Name */}
@@ -110,18 +107,20 @@ export const Banner = () => {
         </h2>
 
         {/* Description */}
-        <p style={{
+        <div style={{
           fontSize: '18px',
           color: 'var(--text-secondary)',
           maxWidth: '600px',
           marginBottom: '40px',
           lineHeight: '1.7'
         }}>
-          Backend-focused engineer with 2+ years of enterprise experience on <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>Microsoft's internal query processing team</strong> at LTIMindtree.
-          I build scalable APIs, distributed data pipelines, and high-concurrency services in{' '}
-          <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>C#/.NET and Python</strong>, with applied experience extending that foundation into multi-agent and LLM-integrated systems.
-          Holding an <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>MSc in Computer Science (Distinction)</strong> from the University of Birmingham.
-        </p>
+          <p style={{ marginBottom: '16px' }}>
+            <strong style={{ color: 'var(--text-primary)', fontWeight: 600 }}>I build systems that scale.</strong>
+          </p>
+          <p style={{ marginBottom: '16px' }}>
+            From distributed fraud detection pipelines to autonomous AI agents, I work across the full stack with a backend-first mindset and a sharp eye for what breaks at scale.
+          </p>
+        </div>
 
         {/* CTA Buttons */}
         <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>

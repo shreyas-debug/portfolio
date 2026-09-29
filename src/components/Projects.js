@@ -110,11 +110,7 @@ export const Projects = () => {
         backgroundColor: 'var(--bg-primary)'
       }}
     >
-      <div className="container" style={{
-        maxWidth: '1200px',
-        margin: '0 auto',
-        padding: '0 24px'
-      }}>
+      <div className="container">
         {/* Section Header */}
         <div style={{ marginBottom: '48px' }}>
           <p style={{
@@ -149,11 +145,7 @@ export const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))',
-          gap: '24px'
-        }}>
+        <div className="projects-grid" style={{ marginTop: 0 }}>
           {projects.map((project, index) => (
             <div
               key={index}

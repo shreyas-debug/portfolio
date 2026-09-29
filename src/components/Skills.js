@@ -36,11 +36,7 @@ export const Skills = () => {
         backgroundColor: 'var(--bg-primary)'
       }}
     >
-      <div className="container" style={{ 
-        maxWidth: '1200px', 
-        margin: '0 auto', 
-        padding: '0 24px' 
-      }}>
+      <div className="container">
         {/* Section Header */}
         <div style={{ marginBottom: '48px' }}>
           <p style={{
@@ -74,11 +70,7 @@ export const Skills = () => {
         </div>
 
         {/* Skills Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-          gap: '24px'
-        }}>
+        <div className="skills-container" style={{ marginTop: 0 }}>
           {skillCategories.map((category, index) => (
             <div 
               key={index}

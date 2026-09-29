@@ -54,7 +54,7 @@ const timelineItems = [
 export const Experience = () => {
   return (
     <section className="experience" id="experience" style={{ backgroundColor: 'var(--bg-secondary)', padding: '120px 0', position: 'relative' }}>
-      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px', position: 'relative' }}>
+      <div className="container" style={{ maxWidth: '800px', position: 'relative' }}>
 
         {/* Intro Block */}
         <div style={{ marginBottom: '64px' }}>
