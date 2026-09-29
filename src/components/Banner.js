@@ -208,10 +208,57 @@ export const Banner = () => {
 
       </div>{/* end container */}
 
+      {/* Scroll indicator - hidden on mobile */}
+      <div 
+        className="scroll-indicator"
+        style={{
+          position: 'absolute',
+          bottom: '40px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '8px',
+          color: 'var(--text-muted)',
+          fontSize: '12px',
+          fontFamily: "'JetBrains Mono', monospace",
+          zIndex: 2
+        }}
+      >
+        <span style={{ opacity: 0.6 }}>scroll</span>
+        <div style={{
+          width: '1px',
+          height: '40px',
+          backgroundColor: 'var(--border-color)',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          <div style={{
+            position: 'absolute',
+            top: '-40px',
+            left: 0,
+            width: '100%',
+            height: '40px',
+            backgroundColor: 'var(--accent)',
+            animation: 'scrollDown 2s ease-in-out infinite'
+          }} />
+        </div>
+      </div>
+
       <style>{`
         @keyframes blink {
           0%, 100% { opacity: 1; }
           50% { opacity: 0; }
+        }
+        @keyframes scrollDown {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(80px); }
+        }
+        @media (max-width: 768px) {
+          .scroll-indicator {
+            display: none !important;
+          }
         }
       `}</style>
     </section>

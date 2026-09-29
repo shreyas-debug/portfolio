@@ -18,7 +18,7 @@ export const NavBar = () => {
       setScrolled(window.scrollY > 50);
 
       if (!isAboutPage) {
-        const sections = ['skills', 'experience', 'projects'];
+        const sections = ['experience', 'projects', 'skills'];
         let currentSection = 'home';
         
         for (const section of sections) {
@@ -61,9 +61,9 @@ export const NavBar = () => {
   const navLinks = [
     // { id: 'home', label: 'home', type: 'hash' },
     { id: 'about', label: 'about', type: 'page', path: '/about' },
-    { id: 'skills', label: 'skills', type: 'hash' },
     { id: 'experience', label: 'experience', type: 'hash' },
     { id: 'projects', label: 'projects', type: 'hash' },
+    { id: 'skills', label: 'skills', type: 'hash' },
   ];
 
   const renderNavLink = (link, isMobile = false) => {
