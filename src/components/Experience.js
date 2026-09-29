@@ -10,10 +10,10 @@ const timelineItems = [
     duration: 'Sept 2024 - Sept 2025',
     description: [
       'Graduated with Distinction. Advanced studies with a focus on distributed systems, backend architecture, and applied AI/LLM engineering.',
-      'MSc Dissertation: Built PromptGuide - a multi-surface evaluation system backed by a Flask API, using deterministic NLP scoring as a filter before LLM invocation, achieving a statistically significant 42.1% improvement in prompt quality scores.',
-      'Student Representative: Represented the cohort in faculty meetings, drove academic improvements, and participated in cybersecurity challenges and hackathons.',
-      'Activities & Societies: Computer Science Society, Ethical Hacking Society (AFNOM).'
+      'MSc Dissertation: Built PromptGuide — a multi-surface evaluation system backed by a Flask API, using deterministic NLP scoring as a filter before LLM invocation, achieving a statistically significant 42.1% improvement in prompt quality scores.',
+      'Student Representative: Represented the cohort in faculty meetings, drove academic improvements, and participated in cybersecurity challenges and hackathons.'
     ],
+    activities: 'Computer Science Society, Ethical Hacking Society (AFNOM)',
     technologies: []
   },
   {
@@ -23,9 +23,9 @@ const timelineItems = [
     location: 'Bangalore, India',
     duration: 'Sept 2022 - Sept 2024',
     description: [
-      'Identified inefficiencies in the manual SQL-to-C#/.NET test case migration process on Microsoft\'s internal query processing team, and spearheaded the development of an automated one-click migration tool in C#/.NET and React - cutting manual processing time by 50% and eliminating error-prone multi-step workflows.',
-      'Validated the tool at scale by migrating 500+ legacy SQL test cases to C#/.NET, achieving 100% functional parity and significantly improving test suite maintainability across Microsoft\'s internal codebase.',
-      'Developed Python backend features for the Kellogg\'s account and conducted pre-deployment validation across international regional websites to verify production readiness before global releases.'
+      'Developed an automated SQL-to-C#/.NET migration tool for Microsoft\'s query processing team, cutting manual processing time by 50%.',
+      'Migrated 500+ legacy SQL test cases to C#/.NET with 100% functional parity, improving maintainability.',
+      'Developed Python backend features and conducted pre-deployment validation for the Kellogg\'s account.'
     ],
     technologies: ['.NET', 'C#', 'Python', 'SQL', 'React', 'JavaScript']
   },
@@ -36,7 +36,7 @@ const timelineItems = [
     location: 'Bangalore, India',
     duration: 'Mar 2022 - May 2022',
     description: [
-      'Built RESTful APIs and full-stack features in Python (Flask) and React.js, contributing to internal tooling used across the LTIMindtree engineering training programme.'
+      'Built RESTful APIs and full-stack features in Python (Flask) and React.js for internal LTIMindtree training tools.'
     ],
     technologies: ['Python', 'Flask', 'React.js', 'REST APIs']
   },
@@ -54,7 +54,7 @@ const timelineItems = [
 export const Experience = () => {
   return (
     <section className="experience" id="experience" style={{ backgroundColor: 'var(--bg-secondary)', padding: '120px 0', position: 'relative' }}>
-      <div className="container" style={{ maxWidth: '800px', position: 'relative' }}>
+      <div className="container" style={{ position: 'relative' }}>
 
         {/* Intro Block */}
         <div style={{ marginBottom: '64px' }}>
@@ -130,12 +130,13 @@ export const Experience = () => {
                 {/* Card with Center Vignette Highlighting */}
                 <motion.div
                   initial={{ scale: 0.98, opacity: 0.6, borderColor: 'var(--border-color)', boxShadow: 'none' }}
-                  whileInView={{ scale: 1.02, opacity: 1, borderColor: 'var(--accent)', boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)' }}
+                  whileInView={{ scale: 1, opacity: 1, borderColor: 'var(--border-color)', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)' }}
                   viewport={{ margin: "-150px 0px -150px 0px" }}
                   transition={{ duration: 0.4 }}
+                  whileHover={{ borderColor: 'var(--accent)', boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)' }}
                   style={{
                     backgroundColor: 'var(--card-bg)',
-                    border: '1px solid',
+                    border: '1px solid rgba(255,255,255,0.08)',
                     borderRadius: '12px',
                     padding: '32px',
                     display: 'flex',
@@ -153,7 +154,14 @@ export const Experience = () => {
                     </span>
                   </div>
 
-                  <p style={{ fontSize: '14px', color: 'var(--text-muted)', marginBottom: '24px' }}>📍 {item.location}</p>
+                  {/* Location — grey SVG pin instead of red emoji */}
+                  <p style={{ fontSize: '14px', color: 'var(--text-muted)', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    {item.location}
+                  </p>
 
                   {/* Card Body (Bullets/Text) */}
                   {Array.isArray(item.description) ? (
@@ -163,6 +171,11 @@ export const Experience = () => {
                           <span style={{ position: 'absolute', left: 0, color: 'var(--accent)' }}>→</span>{desc}
                         </li>
                       ))}
+                      {item.activities && (
+                        <li style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: '1.5', paddingLeft: '0', listStyle: 'none', marginTop: '4px', fontStyle: 'italic' }}>
+                          Activities &amp; Societies: {item.activities}
+                        </li>
+                      )}
                     </ul>
                   ) : (
                     <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: item.technologies.length > 0 ? '24px' : '0' }}>{item.description}</p>
@@ -172,7 +185,7 @@ export const Experience = () => {
                   {item.technologies.length > 0 && (
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: 'auto' }}>
                       {item.technologies.map((tech, techIndex) => (
-                        <span key={techIndex} style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '11px', color: 'var(--accent)', backgroundColor: 'var(--accent-muted)', padding: '4px 10px', borderRadius: '4px' }}>
+                        <span key={techIndex} style={{ fontFamily: "'Inter', sans-serif", fontSize: '11px', color: 'var(--text-secondary)', backgroundColor: 'rgba(255, 255, 255, 0.03)', padding: '4px 10px', borderRadius: '4px', border: '1px solid var(--border-color)' }}>
                           {tech}
                         </span>
                       ))}

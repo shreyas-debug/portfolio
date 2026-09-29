@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import profileImg from '../assets/me.jpg';
+import { Oneko } from '../components/Oneko';
 
 // Dynamically import all images from the pictures folder
 function importAll(r) {
@@ -18,7 +19,10 @@ export const AboutPage = () => {
   }, []);
 
   return (
-    <section
+    <>
+      {/* Cat only lives on the About page */}
+      <Oneko />
+      <section
       style={{
         minHeight: '100vh',
         padding: '120px 0 100px',
@@ -144,9 +148,17 @@ export const AboutPage = () => {
             fontFamily: "'JetBrains Mono', monospace",
             fontWeight: '600',
             color: 'var(--text-primary)',
-            marginBottom: '16px'
+            marginBottom: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px'
           }}>
-            Through My Lens 📷
+            {/* Camera SVG icon instead of emoji */}
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--text-muted)', flexShrink: 0 }}>
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+              <circle cx="12" cy="13" r="4" />
+            </svg>
+            Through My Lens
           </h2>
         </div>
       </div>
@@ -255,34 +267,6 @@ export const AboutPage = () => {
         margin: '0 auto',
         padding: '0 24px'
       }}>
-        {/* Quote Block */}
-        <div style={{
-          position: 'relative',
-          padding: '32px 36px',
-          backgroundColor: 'var(--bg-secondary)',
-          borderLeft: '3px solid var(--accent)',
-          borderRadius: '0 12px 12px 0',
-          marginBottom: '60px'
-        }}>
-          <p style={{
-            fontSize: '18px',
-            fontStyle: 'italic',
-            color: 'var(--text-secondary)',
-            lineHeight: '1.7',
-            margin: 0
-          }}>
-            "Code is like humor. When you have to explain it, it's bad."
-          </p>
-          <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '14px',
-            color: 'var(--text-muted)',
-            marginTop: '16px',
-            marginBottom: 0
-          }}>
-            — Cory House
-          </p>
-        </div>
 
         {/* Quick Facts */}
         <h2 style={{
@@ -417,6 +401,7 @@ export const AboutPage = () => {
           }
         }
       `}</style>
-    </section>
+      </section>
+    </>
   );
 };

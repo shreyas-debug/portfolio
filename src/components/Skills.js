@@ -7,11 +7,11 @@ export const Skills = () => {
     },
     {
       title: 'Frameworks',
-      skills: ['.Net', 'Flask', 'FastAPI', 'Spring Boot', 'Entity Framework', 'React.js', 'Next.js', 'Node.js']
+      skills: ['.Net', 'Flask', 'FastAPI', 'Spring Boot', 'Entity Framework', 'React.js', 'Next.js']
     },
     {
       title: 'Systems',
-      skills: ['Distributed Systems', 'Multi-Agent Orchestration', 'REST API Design', 'Event-Driven Architecture']
+      skills: ['Distributed Systems', 'Multi-Agent Orchestration', 'REST API Design', 'Event-Driven Architecture', 'Node.js']
     },
     {
       title: 'Databases',
@@ -77,13 +77,14 @@ export const Skills = () => {
               style={{
                 backgroundColor: 'var(--card-bg)',
                 border: '1px solid var(--border-color)',
-                borderRadius: '0 32px 0 32px', // Futuristic asymmetrical shape
-                padding: '32px',
+                borderRadius: '12px',
+                padding: '24px',
                 transition: 'all 0.3s ease',
                 display: 'flex',
                 flexDirection: 'column',
                 position: 'relative',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                height: '100%'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.borderColor = 'var(--accent)';
@@ -96,60 +97,56 @@ export const Skills = () => {
                 e.currentTarget.style.boxShadow = 'none';
               }}
             >
-              {/* Category Title */}
+              {/* Category Title - Quiet, sentence case, sans-serif */}
               <h3 style={{
-                fontFamily: "'JetBrains Mono', monospace",
-                fontSize: '13px',
-                fontWeight: '600',
-                color: 'var(--accent)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em',
-                marginBottom: '20px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px'
+                fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                fontSize: '14px',
+                fontWeight: '500',
+                color: 'var(--text-muted)',
+                marginBottom: '16px',
+                margin: '0 0 16px 0'
               }}>
-                <span style={{ opacity: 0.5 }}>{'// '}</span>{category.title}
+                {category.title}
               </h3>
 
-              {/* Skills List */}
+              {/* Skills Pills */}
               <div style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '10px',
+                gap: '8px',
                 flex: 1,
                 alignContent: 'flex-start'
               }}>
-                {category.skills.map((skill, skillIndex) => (
-                  <span 
-                    key={skillIndex}
-                    style={{
-                      fontFamily: "'JetBrains Mono', monospace",
-                      fontSize: '13px',
-                      color: 'var(--text-primary)',
-                      backgroundColor: 'transparent',
-                      padding: '8px 16px',
-                      borderRadius: '100px', // Sleek pill shape
-                      border: '1px solid var(--accent-muted)',
-                      transition: 'all 0.2s ease',
-                      cursor: 'default'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.color = 'var(--bg-primary)';
-                      e.currentTarget.style.borderColor = 'var(--accent)';
-                      e.currentTarget.style.backgroundColor = 'var(--accent)';
-                      e.currentTarget.style.transform = 'scale(1.05)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.color = 'var(--text-primary)';
-                      e.currentTarget.style.borderColor = 'var(--accent-muted)';
-                      e.currentTarget.style.backgroundColor = 'transparent';
-                      e.currentTarget.style.transform = 'scale(1)';
-                    }}
-                  >
-                    {skill}
-                  </span>
-                ))}
+                {category.skills.map((skill, skillIndex) => {
+                  const isPrimary = skillIndex <= 2; // Top 3 skills get primary visual weight
+                  return (
+                    <span 
+                      key={skillIndex}
+                      style={{
+                        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                        fontSize: '13px',
+                        color: isPrimary ? 'var(--text-primary)' : 'var(--text-secondary)',
+                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                        padding: '6px 12px',
+                        borderRadius: '6px',
+                        border: 'none',
+                        transition: 'all 0.2s ease',
+                        cursor: 'default',
+                        fontWeight: isPrimary ? '500' : '400'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.color = 'var(--accent)';
+                        e.currentTarget.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.color = isPrimary ? 'var(--text-primary)' : 'var(--text-secondary)';
+                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+                      }}
+                    >
+                      {skill}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           ))}
