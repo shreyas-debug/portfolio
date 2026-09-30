@@ -46,7 +46,7 @@ const timelineItems = [
     organization: 'Dayananda Sagar Academy of Technology and Management',
     location: 'Bangalore, India',
     duration: 'Aug 2018 - July 2022',
-    description: 'Graduated First Class with Distinction. Strong foundation in electronics, communication systems, and programming.',
+    description: ['Graduated First Class with Distinction. Strong foundation in electronics, communication systems, and programming.'],
     technologies: []
   }
 ];
