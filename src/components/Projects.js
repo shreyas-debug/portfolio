@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 /* ─── Terminal card component ─── */
 const TerminalCard = ({ project }) => {
@@ -78,7 +79,7 @@ const TerminalCard = ({ project }) => {
 
         {/* Links row */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>
-          
+
           {/* Left side: GitHub Icon + Devpost or View Code */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             {project.githubUrl && (
@@ -97,7 +98,7 @@ const TerminalCard = ({ project }) => {
                 </svg>
               </a>
             )}
-            
+
             {project.devpostUrl && (
               <a
                 href={project.devpostUrl}
@@ -129,15 +130,15 @@ const TerminalCard = ({ project }) => {
                 backgroundColor: 'transparent',
                 transition: 'all 0.2s ease',
               }}
-              onMouseEnter={e => { 
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.04)'; 
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)'; 
+              onMouseEnter={e => {
+                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.04)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
                 e.currentTarget.style.color = 'rgba(255, 255, 255, 0.9)';
               }}
-              onMouseLeave={e => { 
-                e.currentTarget.style.backgroundColor = 'transparent'; 
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)'; 
-                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'; 
+              onMouseLeave={e => {
+                e.currentTarget.style.backgroundColor = 'transparent';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)';
               }}
             >
               Live Demo
@@ -247,7 +248,7 @@ export const Projects = () => {
   ];
 
   return (
-    <section className="project" id="projects" style={{ padding: '100px 0', backgroundColor: 'var(--bg-primary)' }}>
+    <section className="project" id="projects" style={{ padding: '100px 0', backgroundColor: 'transparent' }}>
       <div className="container">
 
         <div style={{ marginBottom: '48px' }}>
@@ -268,7 +269,16 @@ export const Projects = () => {
           gap: '24px',
         }}>
           {projects.map((project, index) => (
-            <TerminalCard key={index} project={project} />
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: index * 0.08, ease: 'easeOut' }}
+              style={{ display: 'flex', flexDirection: 'column' }}
+            >
+              <TerminalCard project={project} />
+            </motion.div>
           ))}
         </div>
 

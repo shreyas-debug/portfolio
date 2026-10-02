@@ -14,7 +14,7 @@ const timelineItems = [
       'Student Representative: Represented the cohort in faculty meetings, drove academic improvements, and participated in cybersecurity challenges and hackathons.'
     ],
     activities: 'Computer Science Society, Ethical Hacking Society (AFNOM)',
-    technologies: ['Python', 'Flask', 'NLP', 'LLMs', 'TypeScript', 'React', 'Chrome Extension API', 'VS Code API']
+    technologies: ['Python', 'Flask', 'NLP', 'Machine Learning', 'Deep Learning', 'LLMs', 'TypeScript', 'React', 'Chrome Extension API']
   },
   {
     type: 'experience',
@@ -27,7 +27,7 @@ const timelineItems = [
       'Achieved 100% functional parity migrating 500+ legacy SQL test cases — zero regression failures in production deployment.',
       'Developed Python backend features and conducted pre-deployment validation for the Kellogg\'s account.'
     ],
-    technologies: ['.NET', 'C#', 'Python', 'SQL', 'React', 'JavaScript']
+    technologies: ['.NET', 'C#', 'Python', 'SQL', 'React.js', 'JavaScript']
   },
   {
     type: 'experience',
@@ -38,7 +38,7 @@ const timelineItems = [
     description: [
       'Built RESTful APIs and full-stack features in Python (Flask) and React.js for internal LTIMindtree training tools.'
     ],
-    technologies: ['Python', 'Flask', 'React.js', 'REST APIs']
+    technologies: ['Python', 'Flask', 'React.js', 'JavaScript', 'REST APIs']
   },
   {
     type: 'education',
@@ -47,13 +47,13 @@ const timelineItems = [
     location: 'Bangalore, India',
     duration: 'Aug 2018 - July 2022',
     description: ['Graduated First Class with Distinction. Strong foundation in electronics, communication systems, and programming.'],
-    technologies: []
+    technologies: ['C++', 'Python', 'C', 'Digital Electronics', 'Microcontrollers', 'VLSI']
   }
 ];
 
 export const Experience = () => {
   return (
-    <section className="experience" id="experience" style={{ backgroundColor: 'var(--bg-secondary)', padding: '120px 0', position: 'relative' }}>
+    <section className="experience" id="experience" style={{ backgroundColor: 'transparent', padding: '120px 0', position: 'relative' }}>
       <div className="container" style={{ position: 'relative' }}>
 
         {/* Intro Block */}
@@ -123,9 +123,10 @@ export const Experience = () => {
 
               {/* Reveal Wrapper */}
               <motion.div
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.4, delay: index * 0.08, ease: 'easeOut' }}
               >
                 {/* Card with Center Vignette Highlighting */}
                 <motion.div

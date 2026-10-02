@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 export const Skills = () => {
 
   const skillCategories = [
@@ -67,12 +69,12 @@ export const Skills = () => {
   ];
 
   return (
-    <section 
-      className="skill" 
+    <section
+      className="skill"
       id="skills"
       style={{
         padding: '100px 0',
-        backgroundColor: 'var(--bg-primary)'
+        backgroundColor: 'transparent'
       }}
     >
       <div className="container">
@@ -124,8 +126,12 @@ export const Skills = () => {
         {/* Skills Grid */}
         <div className="skills-container" style={{ marginTop: 0 }}>
           {skillCategories.map((category, index) => (
-            <div 
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: index * 0.08, ease: 'easeOut' }}
               style={{
                 backgroundColor: 'var(--card-bg)',
                 border: '1px solid var(--border-color)',
@@ -208,7 +214,7 @@ export const Skills = () => {
                   );
                 })}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

@@ -22,7 +22,7 @@ export const AboutPage = () => {
       style={{
         minHeight: '100vh',
         padding: '120px 0 100px',
-        backgroundColor: 'var(--bg-primary)'
+        backgroundColor: 'transparent'
       }}
     >
       <div className="container" style={{

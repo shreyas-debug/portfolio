@@ -15,7 +15,7 @@ export const Footer = () => {
       className="footer"
       style={{
         padding: '80px 0 60px',
-        backgroundColor: 'var(--bg-secondary)',
+        backgroundColor: 'transparent',
         borderTop: '1px solid var(--border-color)'
       }}
     >

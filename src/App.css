@@ -428,11 +428,11 @@ nav.navbar .navbar-text {
    ============================================ */
 .section {
   padding: 100px 0;
-  background-color: var(--bg-primary);
+  background-color: transparent;
 }
 
 .section-alt {
-  background-color: var(--bg-secondary);
+  background-color: transparent;
 }
 
 .section-header {
@@ -472,7 +472,7 @@ nav.navbar .navbar-text {
    ============================================ */
 .about {
   padding: 100px 0;
-  background-color: var(--bg-secondary);
+  background-color: transparent;
 }
 
 .about-content {
@@ -508,7 +508,7 @@ nav.navbar .navbar-text {
    ============================================ */
 .skill {
   padding: 100px 0;
-  background-color: var(--bg-primary);
+  background-color: transparent;
 }
 
 .skills-container {
@@ -749,7 +749,7 @@ nav.navbar .navbar-text {
    ============================================ */
 .project {
   padding: 100px 0;
-  background-color: var(--bg-primary);
+  background-color: transparent;
 }
 
 .projects-grid {
