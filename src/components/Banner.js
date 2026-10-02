@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect } from "react";
 
 const ROLES = [
   "Backend Engineer",
@@ -9,70 +9,6 @@ const TYPING_SPEED = 110;
 const DELETING_SPEED = 60;
 const PAUSE_TIME = 1800;
 
-/* ─── Animated counter hook ─── */
-function useCountUp(target, duration = 1400, suffix = "") {
-  const [display, setDisplay] = useState("0" + suffix);
-  const rafRef = useRef(null);
-  const startedRef = useRef(false);
-
-  const start = useCallback(() => {
-    if (startedRef.current) return;
-    startedRef.current = true;
-    const startTime = performance.now();
-    const isFloat = String(target).includes(".");
-    const numericTarget = parseFloat(target);
-
-    const tick = (now) => {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const current = eased * numericTarget;
-      const formatted = isFloat ? current.toFixed(1) : Math.floor(current);
-      setDisplay(formatted + suffix);
-      if (progress < 1) rafRef.current = requestAnimationFrame(tick);
-    };
-    rafRef.current = requestAnimationFrame(tick);
-  }, [target, duration, suffix]);
-
-  useEffect(() => () => rafRef.current && cancelAnimationFrame(rafRef.current), []);
-  return [display, start];
-}
-
-/* ─── Single stat item with scroll-triggered counter ─── */
-function StatItem({ value, suffix, label }) {
-  const [display, startCount] = useCountUp(value, 1400, suffix);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) startCount(); },
-      { threshold: 0.6 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [startCount]);
-
-  return (
-    <div ref={ref} style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-      <span style={{
-        fontFamily: "'JetBrains Mono', monospace",
-        fontSize: "clamp(20px, 2.5vw, 30px)",
-        fontWeight: "700",
-        color: "var(--accent)",
-        lineHeight: 1,
-      }}>{display}</span>
-      <span style={{
-        fontFamily: "'Inter', sans-serif",
-        fontSize: "11px",
-        color: "var(--text-muted)",
-        textTransform: "uppercase",
-        letterSpacing: "0.1em",
-      }}>{label}</span>
-    </div>
-  );
-}
 
 /* ─── Animated dot-grid canvas with mouse parallax ─── */
 function DotGrid() {
