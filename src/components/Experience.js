@@ -10,11 +10,11 @@ const timelineItems = [
     duration: 'Sept 2024 - Sept 2025',
     description: [
       'Graduated with Distinction. Advanced studies with a focus on distributed systems, backend architecture, and applied AI/LLM engineering.',
-      'MSc Dissertation: Built PromptGuide — a multi-surface evaluation system backed by a Flask API, using deterministic NLP scoring as a filter before LLM invocation, achieving a statistically significant 42.1% improvement in prompt quality scores.',
+      'MSc Dissertation: Built PromptGuide — a multi-surface evaluation system backed by a Flask API, using deterministic NLP scoring as a filter before LLM invocation, achieving a statistically significant <strong>42.1% improvement</strong> in prompt quality scores.',
       'Student Representative: Represented the cohort in faculty meetings, drove academic improvements, and participated in cybersecurity challenges and hackathons.'
     ],
     activities: 'Computer Science Society, Ethical Hacking Society (AFNOM)',
-    technologies: []
+    technologies: ['Python', 'Flask', 'NLP', 'LLMs', 'TypeScript', 'React', 'Chrome Extension API', 'VS Code API']
   },
   {
     type: 'experience',
@@ -23,8 +23,8 @@ const timelineItems = [
     location: 'Bangalore, India',
     duration: 'Sept 2022 - Sept 2024',
     description: [
-      'Developed an automated SQL-to-C#/.NET migration tool for Microsoft\'s query processing team, cutting manual processing time by 50%.',
-      'Migrated 500+ legacy SQL test cases to C#/.NET with 100% functional parity, improving maintainability.',
+      'Designed and shipped an automated SQL-to-C#/.NET migration tool for Microsoft\'s internal query processing team, eliminating 50% of manual processing time across 500+ test cases.',
+      'Achieved 100% functional parity migrating 500+ legacy SQL test cases — zero regression failures in production deployment.',
       'Developed Python backend features and conducted pre-deployment validation for the Kellogg\'s account.'
     ],
     technologies: ['.NET', 'C#', 'Python', 'SQL', 'React', 'JavaScript']
@@ -168,7 +168,8 @@ export const Experience = () => {
                     <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px 0' }}>
                       {item.description.map((desc, descIndex) => (
                         <li key={descIndex} style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.6', paddingLeft: '20px', position: 'relative', marginBottom: '12px' }}>
-                          <span style={{ position: 'absolute', left: 0, color: 'var(--accent)' }}>→</span>{desc}
+                          <span style={{ position: 'absolute', left: 0, color: 'var(--accent)' }}>→</span>
+                          <span dangerouslySetInnerHTML={{ __html: desc }} style={{ '--accent-color': 'var(--accent)' }} />
                         </li>
                       ))}
                       {item.activities && (

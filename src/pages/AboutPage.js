@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import profileImg from '../assets/me.jpg';
-import { Oneko } from '../components/Oneko';
 
 // Dynamically import all images from the pictures folder
 function importAll(r) {
@@ -19,10 +18,7 @@ export const AboutPage = () => {
   }, []);
 
   return (
-    <>
-      {/* Cat only lives on the About page */}
-      <Oneko />
-      <section
+    <section
       style={{
         minHeight: '100vh',
         padding: '120px 0 100px',
@@ -77,11 +73,12 @@ export const AboutPage = () => {
             </p>
             <h1 style={{
               fontSize: 'clamp(40px, 6vw, 56px)',
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "'Space Grotesk', sans-serif",
               fontWeight: '700',
               color: 'var(--text-primary)',
               marginBottom: '0',
-              lineHeight: '1.2'
+              lineHeight: '1.2',
+              letterSpacing: '-0.03em'
             }}>
               Who I Am
             </h1>
@@ -100,6 +97,9 @@ export const AboutPage = () => {
             <img
               src={profileImg}
               alt="Shreyas Satpute"
+              width={150}
+              height={150}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>
         </div>
@@ -112,21 +112,15 @@ export const AboutPage = () => {
             lineHeight: '1.8',
             marginBottom: '28px'
           }}>
-            Hello! I'm <span style={{ color: 'var(--text-primary)', fontWeight: '500' }}>Shreyas Satpute</span>,
-            a passionate Software Engineer with a strong foundation in full-stack development and machine learning.
-            I recently graduated with <span style={{ color: 'var(--accent)', fontWeight: '500' }}>Distinction</span> in my <span style={{ color: 'var(--text-primary)', fontWeight: '500' }}>MSc in Computer Science</span> from
-            the <span style={{ color: 'var(--accent)', fontWeight: '500' }}>University of Birmingham</span>, and bring hands-on
-            experience from my role at LTIMindtree where I worked with major clients like Microsoft and Kellogg's.
-          </p>
-
-          <p style={{
-            fontSize: '18px',
-            color: 'var(--text-secondary)',
-            lineHeight: '1.8',
-            marginBottom: '28px'
-          }}>
-            My expertise spans across multiple technologies including Python, C#, .NET, JavaScript, and React.js.
-            I'm particularly passionate about creating innovative solutions that solve real-world problems.
+            I'm a backend-leaning full-stack engineer who spent 2 years at{' '}
+            <span style={{ color: 'var(--text-primary)', fontWeight: '500' }}>LTIMindtree</span>{' '}
+            shipping production code for{' '}
+            <span style={{ color: 'var(--accent)', fontWeight: '500' }}>Microsoft</span> and{' '}
+            <span style={{ color: 'var(--accent)', fontWeight: '500' }}>Kellogg's</span>,
+            then went deep on distributed systems and AI engineering during my{' '}
+            <span style={{ color: 'var(--text-primary)', fontWeight: '500' }}>MSc at Birmingham</span>{' '}
+            (graduated with{' '}
+            <span style={{ color: 'var(--accent)', fontWeight: '500' }}>Distinction</span>).
           </p>
 
           <p style={{
@@ -135,9 +129,9 @@ export const AboutPage = () => {
             lineHeight: '1.8',
             marginBottom: '0'
           }}>
-            When I'm not coding, you'll find me exploring new technologies, participating in hackathons,
-            or capturing moments through photography. I believe in continuous learning and staying updated
-            with the latest trends in software development and artificial intelligence.
+            I care about systems that handle load, code that's maintainable at scale,
+            and shipping things that actually work in production. Outside engineering,
+            I shoot photos, grind hackathons, and occasionally win them.
           </p>
         </div>
 
@@ -145,20 +139,12 @@ export const AboutPage = () => {
         <div style={{ marginBottom: '40px' }}>
           <h2 style={{
             fontSize: '24px',
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'Space Grotesk', sans-serif",
             fontWeight: '600',
             color: 'var(--text-primary)',
-            marginBottom: '16px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '10px'
+            marginBottom: '16px'
           }}>
-            {/* Camera SVG icon instead of emoji */}
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ color: 'var(--text-muted)', flexShrink: 0 }}>
-              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-              <circle cx="12" cy="13" r="4" />
-            </svg>
-            Through My Lens
+            Through My Lens 📷
           </h2>
         </div>
       </div>
@@ -271,10 +257,11 @@ export const AboutPage = () => {
         {/* Quick Facts */}
         <h2 style={{
           fontSize: '24px',
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'Space Grotesk', sans-serif",
           fontWeight: '600',
           color: 'var(--text-primary)',
-          marginBottom: '24px'
+          marginBottom: '24px',
+          letterSpacing: '-0.02em'
         }}>
           Quick Facts
         </h2>
@@ -286,10 +273,10 @@ export const AboutPage = () => {
           marginBottom: '60px'
         }}>
           {[
-            { label: 'Location', value: 'Birmingham, UK' },
+            { label: 'Location', value: 'United Kingdom' },
             { label: 'Education', value: 'MSc (Distinction)' },
             { label: 'Experience', value: '2+ Years' },
-            { label: 'Focus', value: 'Full-Stack & ML' }
+            { label: 'Focus', value: 'Backend Development' }
           ].map((item, index) => (
             <div
               key={index}
@@ -334,10 +321,11 @@ export const AboutPage = () => {
         {/* Interests */}
         <h2 style={{
           fontSize: '24px',
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'Space Grotesk', sans-serif",
           fontWeight: '600',
           color: 'var(--text-primary)',
-          marginBottom: '24px'
+          marginBottom: '24px',
+          letterSpacing: '-0.02em'
         }}>
           Interests
         </h2>
@@ -348,7 +336,7 @@ export const AboutPage = () => {
           gap: '12px',
           marginBottom: '60px'
         }}>
-          {['Full-Stack Development', 'Machine Learning', 'Photography', 'Hackathons', 'Reading'].map((interest, index) => {
+          {['Backend Engineering', 'Distributed Systems', 'AI/LLM Engineering', 'Photography', 'Hackathons'].map((interest, index) => {
             const isPhotography = interest === 'Photography';
             const Component = isPhotography ? 'a' : 'span';
             const linkProps = isPhotography ? {
@@ -362,7 +350,7 @@ export const AboutPage = () => {
                 key={index}
                 {...linkProps}
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "'Space Grotesk', sans-serif",
                   fontSize: '14px',
                   color: 'var(--text-secondary)',
                   backgroundColor: 'var(--bg-secondary)',
@@ -390,18 +378,12 @@ export const AboutPage = () => {
 
       </div>
 
-      {/* CSS Animation */}
       <style>{`
         @keyframes smoothScroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
       `}</style>
-      </section>
-    </>
+    </section>
   );
 };

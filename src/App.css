@@ -1001,3 +1001,26 @@ nav.navbar .navbar-text {
     padding-right: 16px;
   }
 }
+
+/* ============================================
+   TIMELINE BULLET HIGHLIGHT (42.1% bold)
+   ============================================ */
+span strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* ============================================
+   PROJECT CARD HOVER GREEN GLOW
+   ============================================ */
+.flip-card:hover {
+  filter: drop-shadow(0 0 18px rgba(16, 185, 129, 0.18));
+}
+
+/* ============================================
+   SKILL TAG SHIMMER HOVER
+   ============================================ */
+@keyframes skillShimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}

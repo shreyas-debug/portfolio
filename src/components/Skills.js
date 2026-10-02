@@ -3,28 +3,67 @@ export const Skills = () => {
   const skillCategories = [
     {
       title: 'Languages',
-      skills: ['C#', 'Python', 'C++', 'Java', 'JavaScript', 'TypeScript']
+      skills: [
+        { name: 'Python', tier: 'proficient' },
+        { name: 'C#', tier: 'proficient' },
+        { name: 'JavaScript', tier: 'proficient' },
+        { name: 'Java', tier: 'familiar' },
+        { name: 'C++', tier: 'familiar' },
+      ]
     },
     {
-      title: 'Frameworks',
-      skills: ['.Net', 'Flask', 'FastAPI', 'Spring Boot', 'Entity Framework', 'React.js', 'Next.js']
+      title: 'Backend Frameworks',
+      skills: [
+        { name: '.NET / C#', tier: 'proficient' },
+        { name: 'FastAPI', tier: 'proficient' },
+        { name: 'Flask', tier: 'proficient' },
+        { name: 'Entity Framework', tier: 'proficient' },
+        { name: 'Spring Boot', tier: 'familiar' },
+        { name: 'Node.js', tier: 'familiar' },
+      ]
     },
     {
-      title: 'Systems',
-      skills: ['Distributed Systems', 'Multi-Agent Orchestration', 'REST API Design', 'Event-Driven Architecture', 'Node.js']
+      title: 'Frontend',
+      skills: [
+        { name: 'React.js', tier: 'proficient' },
+        { name: 'Next.js', tier: 'proficient' },
+        { name: 'TypeScript', tier: 'proficient' },
+        { name: 'HTML / CSS', tier: 'proficient' },
+      ]
+    },
+    {
+      title: 'Infrastructure',
+      skills: [
+        { name: 'Docker', tier: 'proficient' },
+        { name: 'Apache Kafka', tier: 'proficient' },
+        { name: 'Git / CI/CD', tier: 'proficient' },
+        { name: 'Vercel', tier: 'proficient' },
+        { name: 'REST API Design', tier: 'proficient' },
+        { name: 'SignalR', tier: 'familiar' },
+        { name: 'Event-Driven Architecture', tier: 'familiar' },
+      ]
     },
     {
       title: 'Databases',
-      skills: ['PostgreSQL', 'SQLite', 'SQL Server', 'MongoDB', 'Redis']
+      skills: [
+        { name: 'PostgreSQL', tier: 'proficient' },
+        { name: 'SQL Server', tier: 'proficient' },
+        { name: 'SQLite', tier: 'proficient' },
+        { name: 'MongoDB', tier: 'familiar' },
+        { name: 'Redis', tier: 'familiar' },
+      ]
     },
     {
-            title: 'ML & Data',
-      skills: ['Machine Learning', 'Google Gemini', 'LLMs & Prompt Engineering', 'Scikit-learn', 'Pandas', 'NumPy']
+      title: 'ML & AI',
+      skills: [
+        { name: 'LLM Engineering', tier: 'proficient' },
+        { name: 'Prompt Engineering', tier: 'proficient' },
+        { name: 'Google Gemini', tier: 'proficient' },
+        { name: 'Multi-Agent Systems', tier: 'proficient' },
+        { name: 'Scikit-learn', tier: 'familiar' },
+        { name: 'Pandas / NumPy', tier: 'familiar' },
+      ]
     },
-    {
-      title: 'Tools & Practices',
-      skills: ['Docker', 'Apache Kafka', 'CI/CD', 'Git', 'Vercel', 'Agile', 'Scrum', 'OOP']
-    }
   ];
 
   return (
@@ -67,6 +106,19 @@ export const Skills = () => {
           }}>
             Technologies and tools I work with to bring ideas to life.
           </p>
+        </div>
+
+        {/* Proficiency Legend */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '32px', flexWrap: 'wrap' }}>
+          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>legend:</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: "'Inter', sans-serif", fontSize: '12px', color: 'var(--text-secondary)' }}>
+            <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: 'var(--accent)', display: 'inline-block' }} />
+            Proficient
+          </span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: "'Inter', sans-serif", fontSize: '12px', color: 'var(--text-secondary)' }}>
+            <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: 'var(--text-muted)', opacity: 0.5, display: 'inline-block' }} />
+            Familiar
+          </span>
         </div>
 
         {/* Skills Grid */}
@@ -118,32 +170,40 @@ export const Skills = () => {
                 alignContent: 'flex-start'
               }}>
                 {category.skills.map((skill, skillIndex) => {
-                  const isPrimary = skillIndex <= 2; // Top 3 skills get primary visual weight
+                  const isProficient = skill.tier === 'proficient';
                   return (
-                    <span 
+                    <span
                       key={skillIndex}
                       style={{
                         fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
                         fontSize: '13px',
-                        color: isPrimary ? 'var(--text-primary)' : 'var(--text-secondary)',
+                        color: isProficient ? 'var(--text-primary)' : 'var(--text-secondary)',
                         backgroundColor: 'rgba(255, 255, 255, 0.03)',
                         padding: '6px 12px',
                         borderRadius: '6px',
                         border: 'none',
                         transition: 'all 0.2s ease',
                         cursor: 'default',
-                        fontWeight: isPrimary ? '500' : '400'
+                        fontWeight: isProficient ? '500' : '400',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.color = 'var(--accent)';
                         e.currentTarget.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.color = isPrimary ? 'var(--text-primary)' : 'var(--text-secondary)';
+                        e.currentTarget.style.color = isProficient ? 'var(--text-primary)' : 'var(--text-secondary)';
                         e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
                       }}
                     >
-                      {skill}
+                      <span style={{
+                        width: '6px', height: '6px', borderRadius: '50%', flexShrink: 0,
+                        backgroundColor: isProficient ? 'var(--accent)' : 'var(--text-muted)',
+                        opacity: isProficient ? 1 : 0.5,
+                      }} />
+                      {skill.name}
                     </span>
                   );
                 })}
