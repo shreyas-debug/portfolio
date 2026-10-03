@@ -1,3 +1,5 @@
+import { Oneko } from './Oneko';
+
 export const Footer = () => {
   const socialLinks = [
     {
@@ -167,6 +169,7 @@ export const Footer = () => {
           </p>
         </div>
       </div>
+      <Oneko />
     </footer>
   );
 };

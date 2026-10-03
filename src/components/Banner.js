@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 const ROLES = [
   "Backend Engineer",
@@ -61,7 +62,13 @@ export const Banner = () => {
         zIndex: 0,
       }} />
 
-      <div className="container" style={{ position: 'relative', zIndex: 1, width: '100%' }}>
+      <motion.div 
+        className="container" 
+        style={{ position: 'relative', zIndex: 1, width: '100%' }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
 
         {/* Greeting label */}
         <p style={{
@@ -166,8 +173,9 @@ export const Banner = () => {
           {/* SECONDARY — ghost, clearly subordinate */}
           <a
             id="hero-resume-btn"
-            href="/Shreyas_Satpute_Resume.pdf"
-            download="Shreyas_Satpute_Resume.pdf"
+            href="https://docs.google.com/document/d/1W0fHaVJJGS_-CtuHzK1dXddjj-6Q-AHE1nFBnpRX-jY/export?format=pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: '14px',
@@ -203,8 +211,7 @@ export const Banner = () => {
           </a>
         </div>
 
-
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <div

@@ -1,74 +1,48 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
 
 export const NavBar = () => {
   const [activeLink, setActiveLink] = useState('home');
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled,  setScrolled]  = useState(false);
+  const [menuOpen,  setMenuOpen]  = useState(false);
   const { isDarkMode, toggleTheme } = useTheme();
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  // Check if we're on the about page
-  const isAboutPage = location.pathname === '/about';
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
 
-      if (!isAboutPage) {
-        const sections = ['experience', 'projects', 'skills'];
-        let currentSection = 'home';
-        
-        for (const section of sections) {
-          const element = document.getElementById(section);
-          if (element) {
-            const rect = element.getBoundingClientRect();
-            // A section is active if it spans across the 250px mark from the top
-            if (rect.top <= 250 && rect.bottom >= 250) {
-              currentSection = section;
-            }
+      const sections = ['experience', 'projects', 'skills', 'about'];
+      let currentSection = 'home';
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 250 && rect.bottom >= 250) {
+            currentSection = section;
           }
         }
-        
-        setActiveLink(currentSection);
       }
+
+      setActiveLink(currentSection);
     };
 
     window.addEventListener("scroll", onScroll);
-    onScroll(); // Call once on mount to set initial section
+    onScroll();
 
     return () => window.removeEventListener("scroll", onScroll);
-  }, [isAboutPage]);
-
-  const handleNavClick = (id, isPageLink = false) => {
-    setActiveLink(id);
-    setMenuOpen(false);
-    
-    if (!isPageLink && isAboutPage && id !== 'home') {
-      // Navigate to home first, then scroll to section
-      navigate('/');
-      setTimeout(() => {
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    }
-  };
+  }, []);
 
   const navLinks = [
-    // { id: 'home', label: 'home', type: 'hash' },
-    { id: 'about', label: 'about', type: 'page', path: '/about' },
-    { id: 'experience', label: 'experience', type: 'hash' },
-    { id: 'projects', label: 'projects', type: 'hash' },
-    { id: 'skills', label: 'skills', type: 'hash' },
+    { label: 'experience', id: 'experience' },
+    { label: 'projects',   id: 'projects' },
+    { label: 'skills',     id: 'skills' },
+    { label: 'about',      id: 'about' },
   ];
 
   const renderNavLink = (link, isMobile = false) => {
-    const isActive = link.id === 'about' ? isAboutPage : (!isAboutPage && activeLink === link.id);
-    
+    const isActive = activeLink === link.id;
+
     const style = {
       fontFamily: "'JetBrains Mono', monospace",
       fontSize: '14px',
@@ -80,55 +54,29 @@ export const NavBar = () => {
       transition: 'all 0.2s ease',
       backgroundColor: isActive ? 'var(--accent-muted)' : 'transparent',
       display: isMobile ? 'block' : 'inline-block',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      border: 'none',
+      background: isActive ? 'var(--accent-muted)' : 'transparent',
     };
-
-    if (link.type === 'page') {
-      return (
-        <Link
-          key={link.id}
-          to={link.path}
-          style={style}
-          onClick={() => handleNavClick(link.id, true)}
-        >
-          {link.label}
-        </Link>
-      );
-    }
-
-    // For hash links
-    if (link.id === 'home') {
-      return (
-        <Link
-          key={link.id}
-          to="/"
-          style={style}
-          onClick={() => {
-            handleNavClick(link.id, true);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
-        >
-          {link.label}
-        </Link>
-      );
-    }
 
     return (
       <a
-        key={link.id}
         href={`#${link.id}`}
+        key={link.label}
         style={style}
         onClick={(e) => {
           e.preventDefault();
-          if (isAboutPage) {
-            handleNavClick(link.id);
-          } else {
-            handleNavClick(link.id);
-            const element = document.getElementById(link.id);
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth' });
-            }
+          setMenuOpen(false);
+          const element = document.getElementById(link.id);
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' });
           }
+        }}
+        onMouseEnter={(e) => {
+          if (!isActive) e.currentTarget.style.color = 'var(--text-primary)';
+        }}
+        onMouseLeave={(e) => {
+          if (!isActive) e.currentTarget.style.color = 'var(--text-secondary)';
         }}
       >
         {link.label}
@@ -148,33 +96,40 @@ export const NavBar = () => {
         padding: '0 24px'
       }}>
         {/* Logo — vertically centred via the parent flex row */}
-        <Link 
-          to="/" 
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
           style={{
             fontFamily: "'JetBrains Mono', monospace",
             fontSize: '18px',
             fontWeight: '700',
             color: 'var(--text-primary)',
-            textDecoration: 'none',
+            background: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
+            padding: 0,
+            textDecoration: 'none',
           }}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          <svg 
-            width="24" 
-            height="24" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="2" 
-            strokeLinecap="round" 
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
             strokeLinejoin="round"
           >
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
-        </Link>
+        </a>
 
         {/* Desktop Navigation */}
         <div className="desktop-nav" style={{

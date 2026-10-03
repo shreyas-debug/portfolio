@@ -11,7 +11,7 @@
    ============================================ */
 :root {
   /* Dark Theme (Default) */
-  --bg-primary: #0a0a0a;
+  --bg-primary: #0a0f0d;
   --bg-secondary: #111111;
   --bg-tertiary: #1a1a1a;
   --text-primary: #e5e5e5;
@@ -54,16 +54,28 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  background-color: #0a0f0d;
 }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 400;
-  background-color: var(--bg-primary);
+  background-color: #0a0f0d;
   color: var(--text-primary);
   line-height: 1.6;
-  overflow-x: hidden;
+  min-height: 100vh;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+section {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {

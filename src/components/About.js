@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import profileImg from '../assets/me.jpg';
 
 // Dynamically import all images from the pictures folder
@@ -12,53 +12,60 @@ function importAll(r) {
 }
 const photos = importAll(require.context('../assets/pictures', false, /\.(jpg|jpeg|png|JPG|JPEG|PNG)$/));
 
-export const AboutPage = () => {
+const sectionVariants = {
+  hidden: { opacity: 0, y: 35 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.6, 
+      ease: [0.25, 0.1, 0.25, 1],
+      staggerChildren: 0.12
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
+  }
+};
+
+export const About = () => {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    // no-op: kept for parity, scroll handled by navbar
   }, []);
 
   return (
-    <section
+    <motion.section
+      id="about"
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
       style={{
         minHeight: '100vh',
         padding: '120px 0 100px',
-        backgroundColor: 'transparent'
+        backgroundColor: 'var(--bg-primary)'
       }}
     >
-      <div className="container" style={{
-        maxWidth: '900px',
-        margin: '0 auto',
-        padding: '0 24px'
-      }}>
-        {/* Back Link */}
-        <Link
-          to="/"
-          style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '14px',
-            color: 'var(--accent)',
-            textDecoration: 'none',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            marginBottom: '40px',
-            transition: 'opacity 0.2s ease'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.opacity = '0.7'}
-          onMouseLeave={(e) => e.currentTarget.style.opacity = '1'}
-        >
-          <span>←</span> back to home
-        </Link>
+      <div className="container">
 
         {/* Page Header with Profile Picture */}
-        <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          marginBottom: '48px',
-          gap: '24px',
-          flexWrap: 'wrap'
-        }}>
+        <motion.div
+          variants={itemVariants}
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '48px',
+            gap: '24px',
+            flexWrap: 'wrap'
+          }}
+        >
           <div>
             <p style={{
               fontFamily: "'JetBrains Mono', monospace",
@@ -102,10 +109,13 @@ export const AboutPage = () => {
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>
-        </div>
+        </motion.div>
 
         {/* Main Content */}
-        <div style={{ marginBottom: '60px' }}>
+        <motion.div
+          variants={itemVariants}
+          style={{ marginBottom: '60px' }}
+        >
           <p style={{
             fontSize: '18px',
             color: 'var(--text-secondary)',
@@ -133,10 +143,13 @@ export const AboutPage = () => {
             and shipping things that actually work in production. Outside engineering,
             I shoot photos, grind hackathons, and occasionally win them.
           </p>
-        </div>
+        </motion.div>
 
         {/* Photo Gallery Section */}
-        <div style={{ marginBottom: '40px' }}>
+        <motion.div
+          variants={itemVariants}
+          style={{ marginBottom: '40px' }}
+        >
           <h2 style={{
             fontSize: '24px',
             fontFamily: "'Space Grotesk', sans-serif",
@@ -146,7 +159,7 @@ export const AboutPage = () => {
           }}>
             Through My Lens 📷
           </h2>
-        </div>
+        </motion.div>
       </div>
 
       {/* Full-width Photo Carousel */}
@@ -248,11 +261,7 @@ export const AboutPage = () => {
         </div>
       </div>
 
-      <div className="container" style={{
-        maxWidth: '900px',
-        margin: '0 auto',
-        padding: '0 24px'
-      }}>
+      <div className="container">
 
         {/* Quick Facts */}
         <h2 style={{
@@ -278,8 +287,12 @@ export const AboutPage = () => {
             { label: 'Experience', value: '2+ Years' },
             { label: 'Focus', value: 'Backend Development' }
           ].map((item, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.4, delay: index * 0.08, ease: 'easeOut' }}
               style={{
                 padding: '24px',
                 backgroundColor: 'var(--bg-secondary)',
@@ -314,7 +327,7 @@ export const AboutPage = () => {
               }}>
                 {item.value}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -384,6 +397,6 @@ export const AboutPage = () => {
           100% { transform: translateX(-50%); }
         }
       `}</style>
-    </section>
+    </motion.section>
   );
 };
