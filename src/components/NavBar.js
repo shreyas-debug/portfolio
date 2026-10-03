@@ -96,8 +96,7 @@ export const NavBar = () => {
         padding: '0 24px'
       }}>
         {/* Logo — vertically centred via the parent flex row */}
-        <a
-          href="#"
+        <button
           onClick={(e) => {
             e.preventDefault();
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -113,7 +112,6 @@ export const NavBar = () => {
             display: 'flex',
             alignItems: 'center',
             padding: 0,
-            textDecoration: 'none',
           }}
         >
           <svg
@@ -129,7 +127,7 @@ export const NavBar = () => {
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
             <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
-        </a>
+        </button>
 
         {/* Desktop Navigation */}
         <div className="desktop-nav" style={{
