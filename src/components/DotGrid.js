@@ -38,7 +38,7 @@ export function DotGrid() {
           const alpha = 0.045 + influence * 0.15;
           ctx.beginPath();
           ctx.arc(x + dx, y + dy, DOT_R + influence * 0.7, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(16, 185, 129, ${alpha})`;
+          ctx.fillStyle = `rgba(145, 130, 112, ${alpha})`;
           ctx.fill();
         }
       }

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const ROLES = [
   "Backend Engineer",
@@ -16,6 +16,9 @@ export const Banner = () => {
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const loopNumRef = useRef(0);
+  const { scrollYProgress } = useScroll();
+  const heroScale = useTransform(scrollYProgress, [0, 0.22], [1, 0.965]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.18]);
 
   useEffect(() => {
     const currentRole = ROLES[loopNumRef.current % ROLES.length];
@@ -38,7 +41,7 @@ export const Banner = () => {
   }, [text, isDeleting]);
 
   return (
-    <section
+    <motion.section
       className="banner"
       id="home"
       style={{
@@ -48,30 +51,25 @@ export const Banner = () => {
         padding: '120px 0 80px',
         backgroundColor: 'transparent',
         position: 'relative',
-        overflow: 'hidden'
+        overflow: 'hidden',
+        scale: heroScale,
+        opacity: heroOpacity,
       }}
     >
-
-
-      {/* Radial accent glow */}
-      <div style={{
-        position: 'absolute',
-        top: 0, left: 0, right: 0, bottom: 0,
-        background: 'radial-gradient(ellipse at 18% 0%, var(--accent-muted) 0%, transparent 55%)',
-        pointerEvents: 'none',
-        zIndex: 0,
-      }} />
 
       <motion.div 
         className="container" 
         style={{ position: 'relative', zIndex: 1, width: '100%' }}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.11, delayChildren: 0.12 } }
+        }}
       >
 
         {/* Greeting label */}
-        <p style={{
+        <motion.p variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: 'easeOut' }} style={{
           fontFamily: "'JetBrains Mono', monospace",
           fontSize: '15px',
           color: 'var(--accent)',
@@ -81,12 +79,12 @@ export const Banner = () => {
           gap: '8px'
         }}>
           <span style={{ opacity: 0.45 }}>&gt;</span> Hello, I'm
-        </p>
+        </motion.p>
 
         {/* Name */}
-        <h1 style={{
+        <motion.h1 className="hero-title" variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }} style={{
           fontSize: 'clamp(36px, 6vw, 68px)',
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'Instrument Serif', Georgia, serif",
           fontWeight: '700',
           color: 'var(--text-primary)',
           marginBottom: '6px',
@@ -94,12 +92,12 @@ export const Banner = () => {
           letterSpacing: '-0.02em'
         }}>
           Shreyas Satpute
-        </h1>
+        </motion.h1>
 
         {/* Typewriter role */}
-        <h2 style={{
+        <motion.h2 className="hero-role" variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: 'easeOut' }} style={{
           fontSize: 'clamp(16px, 2.4vw, 26px)',
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "'Instrument Serif', Georgia, serif",
           fontWeight: '400',
           color: 'var(--accent)',
           marginBottom: '28px',
@@ -108,12 +106,12 @@ export const Banner = () => {
         }}>
           {text}
           <span style={{ animation: 'blink 1s step-end infinite', marginLeft: '2px' }}>|</span>
-        </h2>
+        </motion.h2>
 
         {/* Hero description — specific, with impact */}
-        <p style={{
+        <motion.p variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: 'easeOut' }} style={{
           fontSize: '16px',
-          color: '#a8a8b3',
+          color: 'var(--text-secondary)',
           maxWidth: '560px',
           marginBottom: '40px',
           lineHeight: '1.8',
@@ -123,10 +121,10 @@ export const Banner = () => {
           from Birmingham. I build scalable APIs, distributed
           pipelines, and LLM-integrated systems and I own them
           end-to-end, from schema design to deployment.
-        </p>
+        </motion.p>
 
         {/* CTA Buttons — clear visual hierarchy */}
-        <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '56px' }}>
+        <motion.div className="hero-ctas" variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: 'easeOut' }} style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', marginBottom: '56px' }}>
           {/* PRIMARY — filled, dominant */}
           <button
             id="hero-see-work-btn"
@@ -135,7 +133,7 @@ export const Banner = () => {
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Manrope', sans-serif",
               fontSize: '15px',
               fontWeight: '600',
               padding: '13px 28px',
@@ -149,19 +147,19 @@ export const Banner = () => {
               alignItems: 'center',
               gap: '8px',
               height: '50px',
-              boxShadow: '0 0 24px rgba(16, 185, 129, 0.25)',
+              boxShadow: '0 0 24px rgba(112, 170, 162, 0.24)',
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-2px)';
               e.currentTarget.style.backgroundColor = 'var(--accent-hover)';
               e.currentTarget.style.borderColor = 'var(--accent-hover)';
-              e.currentTarget.style.boxShadow = '0 0 36px rgba(16, 185, 129, 0.4)';
+              e.currentTarget.style.boxShadow = '0 0 36px rgba(112, 170, 162, 0.38)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
               e.currentTarget.style.backgroundColor = 'var(--accent)';
               e.currentTarget.style.borderColor = 'var(--accent)';
-              e.currentTarget.style.boxShadow = '0 0 24px rgba(16, 185, 129, 0.25)';
+              e.currentTarget.style.boxShadow = '0 0 24px rgba(112, 170, 162, 0.24)';
             }}
           >
             See my work
@@ -177,7 +175,7 @@ export const Banner = () => {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              fontFamily: "'Inter', sans-serif",
+              fontFamily: "'Manrope', sans-serif",
               fontSize: '14px',
               fontWeight: '500',
               padding: '13px 24px',
@@ -209,7 +207,7 @@ export const Banner = () => {
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" />
             </svg>
           </a>
-        </div>
+        </motion.div>
 
       </motion.div>
 
@@ -264,7 +262,7 @@ export const Banner = () => {
           .scroll-indicator { display: none !important; }
         }
       `}</style>
-    </section>
+    </motion.section>
   );
 };
 

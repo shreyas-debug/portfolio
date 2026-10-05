@@ -160,7 +160,7 @@ export const NavBar = () => {
                 width: '7px',
                 height: '7px',
                 borderRadius: '50%',
-                backgroundColor: '#22c55e'
+                backgroundColor: 'var(--accent)'
               }}
             />
             <span>Open to work</span>

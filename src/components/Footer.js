@@ -1,5 +1,3 @@
-import { Oneko } from './Oneko';
-
 export const Footer = () => {
   const socialLinks = [
     {
@@ -14,11 +12,12 @@ export const Footer = () => {
 
   return (
     <footer 
+      id="footer"
       className="footer"
       style={{
         padding: '80px 0 60px',
         backgroundColor: 'transparent',
-        borderTop: '1px solid var(--border-color)'
+        borderTop: 'none'
       }}
     >
       <div className="container" style={{ 
@@ -26,7 +25,7 @@ export const Footer = () => {
         margin: '0 auto', 
         padding: '0 24px' 
       }}>
-        <div style={{
+        <div className="footer-content" style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -36,7 +35,7 @@ export const Footer = () => {
           {/* Main CTA */}
           <h2 style={{
             fontSize: 'clamp(24px, 4vw, 32px)',
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'Instrument Serif', Georgia, serif",
             fontWeight: '700',
             color: 'var(--text-primary)',
             marginBottom: '8px'
@@ -44,7 +43,7 @@ export const Footer = () => {
             Looking for a developer?
           </h2>
           
-          <p style={{
+          <p className="footer-copyright" style={{
             fontSize: '18px',
             color: 'var(--text-secondary)',
             maxWidth: '440px',
@@ -169,7 +168,6 @@ export const Footer = () => {
           </p>
         </div>
       </div>
-      <Oneko />
     </footer>
   );
 };

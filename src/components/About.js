@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import profileImg from '../assets/me.jpg';
+import { Skills } from './Skills';
 
 // Dynamically import all images from the pictures folder
 function importAll(r) {
@@ -42,6 +43,7 @@ export const About = () => {
   return (
     <motion.section
       id="about"
+      className="story-panel"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
@@ -67,20 +69,10 @@ export const About = () => {
           }}
         >
           <div>
-            <p style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: '14px',
-              color: 'var(--accent)',
-              marginBottom: '12px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px'
-            }}>
-              <span style={{ opacity: 0.5 }}>#</span> about-me
-            </p>
-            <h1 style={{
+            <p className="eyebrow">#about</p>
+            <h1 className="about-heading" style={{
               fontSize: 'clamp(40px, 6vw, 56px)',
-              fontFamily: "'Space Grotesk', sans-serif",
+              fontFamily: "'Instrument Serif', Georgia, serif",
               fontWeight: '700',
               color: 'var(--text-primary)',
               marginBottom: '0',
@@ -152,7 +144,7 @@ export const About = () => {
         >
           <h2 style={{
             fontSize: '24px',
-            fontFamily: "'Space Grotesk', sans-serif",
+            fontFamily: "'Instrument Serif', Georgia, serif",
             fontWeight: '600',
             color: 'var(--text-primary)',
             marginBottom: '16px'
@@ -263,10 +255,14 @@ export const About = () => {
 
       <div className="container">
 
+        <Skills embedded />
+
+        {false && <>
+
         {/* Quick Facts */}
         <h2 style={{
           fontSize: '24px',
-          fontFamily: "'Space Grotesk', sans-serif",
+          fontFamily: "'Instrument Serif', Georgia, serif",
           fontWeight: '600',
           color: 'var(--text-primary)',
           marginBottom: '24px',
@@ -334,7 +330,7 @@ export const About = () => {
         {/* Interests */}
         <h2 style={{
           fontSize: '24px',
-          fontFamily: "'Space Grotesk', sans-serif",
+          fontFamily: "'Instrument Serif', Georgia, serif",
           fontWeight: '600',
           color: 'var(--text-primary)',
           marginBottom: '24px',
@@ -363,7 +359,7 @@ export const About = () => {
                 key={index}
                 {...linkProps}
                 style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
+                  fontFamily: "'Manrope', sans-serif",
                   fontSize: '14px',
                   color: 'var(--text-secondary)',
                   backgroundColor: 'var(--bg-secondary)',
@@ -388,6 +384,8 @@ export const About = () => {
             );
           })}
         </div>
+
+        </>}
 
       </div>
 

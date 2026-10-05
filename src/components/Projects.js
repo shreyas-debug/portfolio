@@ -2,17 +2,18 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
 /* ─── Terminal card component ─── */
-const TerminalCard = ({ project }) => {
+const TerminalCard = ({ project, index }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
     <div
+      className="portfolio-surface project-panel"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
-        backgroundColor: '#0d0d0d',
+        backgroundColor: 'var(--card-bg)',
         border: '1px solid var(--border-color)',
-        borderLeft: `2px solid ${hovered ? 'var(--accent)' : 'rgba(14, 106, 77, 0.4)'}`,
+        borderLeft: `2px solid ${hovered ? 'var(--accent)' : 'var(--border-hover)'}`,
         borderRadius: '12px',
         overflow: 'hidden',
         display: 'flex',
@@ -20,44 +21,46 @@ const TerminalCard = ({ project }) => {
         transition: 'all 0.25s ease',
         transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
         boxShadow: hovered
-          ? '0 8px 30px rgba(0, 255, 153, 0.3)'
-          : '0 4px 16px rgba(0, 0, 0, 0.25)',
+          ? '0 14px 36px -20px rgba(83, 142, 134, 0.46)'
+          : 'var(--shadow-elevated)',
         cursor: 'default',
         height: '100%',
       }}
     >
       {/* ── Plain English Body ── */}
-      <div style={{
+      <div className="project-panel-content" style={{
         padding: '20px',
         flexGrow: 1,
         display: 'flex',
         flexDirection: 'column',
       }}>
         {/* Title */}
-        <h3 style={{
-          fontFamily: "'JetBrains Mono', monospace",
+        <h3 className="project-panel-title" style={{
+          fontFamily: "'Instrument Serif', Georgia, serif",
           fontSize: '18px',
           fontWeight: '700',
           color: 'var(--text-primary)',
           margin: '0 0 12px 0',
           paddingBottom: '12px',
-          borderBottom: '1px solid #222'
+          borderBottom: '1px solid var(--border-color)'
         }}>
           {project.title}
         </h3>
 
         {/* Descriptions */}
-        <div style={{ flexGrow: 1, marginTop: '2px' }}>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.6', margin: '0 0 10px 0' }}>
-            {project.desc1}
-          </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.6', margin: '0 0 16px 0' }}>
-            {project.desc2}
-          </p>
-          <p style={{ fontFamily: "'Inter', sans-serif", fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: '1.6', margin: '0 0 20px 0', display: 'flex', gap: '8px', alignItems: 'flex-start' }}>
-            <span style={{ color: 'var(--accent)', fontFamily: "'JetBrains Mono', monospace", flexShrink: 0 }}>&gt;</span>
-            <span style={{ color: 'var(--text-primary)' }}>{project.desc3}</span>
-          </p>
+        <div className="project-narrative" style={{ flexGrow: 1, marginTop: '2px' }}>
+          <div className="project-detail-block">
+            <span className="project-detail-label">System</span>
+            <p>{project.desc1}</p>
+          </div>
+          <div className="project-detail-block">
+            <span className="project-detail-label">Engineering decision</span>
+            <p>{project.desc2}</p>
+          </div>
+          <div className="project-detail-block project-outcome">
+            <span className="project-detail-label">Outcome</span>
+            <p><span>&gt;</span>{project.desc3}</p>
+          </div>
         </div>
 
         {/* Tech chips */}
@@ -67,7 +70,7 @@ const TerminalCard = ({ project }) => {
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: '11px',
               color: 'var(--text-muted)',
-              backgroundColor: 'rgba(1, 76, 37, 0)',
+              backgroundColor: 'var(--surface-subtle)',
               padding: '3px 8px',
               borderRadius: '4px',
               border: '1px solid var(--border-color)',
@@ -84,10 +87,11 @@ const TerminalCard = ({ project }) => {
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             {project.githubUrl && (
               <a
+                className="project-action project-action-code"
                 href={project.githubUrl}
                 target="_blank" rel="noopener noreferrer"
                 style={{
-                  color: 'var(--text-muted)', transition: 'color 0.2s ease', display: 'flex', alignItems: 'center'
+                  color: 'var(--text-primary)', transition: 'all 0.2s ease', display: 'flex', alignItems: 'center', gap: '9px'
                 }}
                 onMouseEnter={e => e.currentTarget.style.color = 'var(--text-primary)'}
                 onMouseLeave={e => e.currentTarget.style.color = 'var(--text-muted)'}
@@ -96,6 +100,7 @@ const TerminalCard = ({ project }) => {
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                 </svg>
+                <span>View Code</span>
               </a>
             )}
 
@@ -104,7 +109,7 @@ const TerminalCard = ({ project }) => {
                 href={project.devpostUrl}
                 target="_blank" rel="noopener noreferrer"
                 style={{
-                  fontFamily: "'Inter', sans-serif", fontSize: '12px',
+                  fontFamily: "'Manrope', sans-serif", fontSize: '12px',
                   color: 'var(--text-muted)', textDecoration: 'none',
                   transition: 'color 0.2s ease',
                 }}
@@ -119,26 +124,27 @@ const TerminalCard = ({ project }) => {
           {/* Right side: Live Demo Button */}
           {project.liveUrl && (
             <a
+              className="project-action project-action-live"
               href={project.liveUrl}
               target="_blank" rel="noopener noreferrer"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: '6px',
-                fontFamily: "'Inter', sans-serif", fontSize: '13.5px', fontWeight: '500',
-                color: 'rgba(255, 255, 255, 0.39)', textDecoration: 'none',
+                fontFamily: "'Manrope', sans-serif", fontSize: '13.5px', fontWeight: '500',
+                color: 'var(--text-secondary)', textDecoration: 'none',
                 padding: '6px 16px', borderRadius: '6px',
-                border: '1px solid rgba(255, 255, 255, 0.66)',
+                border: '1px solid var(--border-color)',
                 backgroundColor: 'transparent',
                 transition: 'all 0.2s ease',
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.04)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
-                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.9)';
+                e.currentTarget.style.backgroundColor = 'var(--accent-muted)';
+                e.currentTarget.style.borderColor = 'var(--accent)';
+                e.currentTarget.style.color = 'var(--accent)';
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.backgroundColor = 'transparent';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
-                e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)';
+                e.currentTarget.style.borderColor = 'var(--border-color)';
+                e.currentTarget.style.color = 'var(--text-secondary)';
               }}
             >
               Live Demo
@@ -248,36 +254,28 @@ export const Projects = () => {
   ];
 
   return (
-    <section className="project" id="projects" style={{ padding: '100px 0', backgroundColor: 'transparent' }}>
+    <section className="project story-panel" id="projects" style={{ padding: '120px 0', backgroundColor: 'transparent' }}>
       <div className="container">
-
-        <div style={{ marginBottom: '48px' }}>
-          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '14px', color: 'var(--accent)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ opacity: 0.5 }}>#</span> projects
-          </p>
-          <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontFamily: "'JetBrains Mono', monospace", fontWeight: '700', color: 'var(--text-primary)', marginBottom: '16px' }}>
-            Things I've Built
-          </h2>
-          <p style={{ fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '600px', lineHeight: '1.7' }}>
+        <header className="editorial-header project-editorial-header">
+          <p className="eyebrow">#projects</p>
+          <h2>Things I've Built</h2>
+          <p>
             A collection of systems I've built, focusing on backend architecture, applied AI, and real-time performance.
           </p>
-        </div>
+        </header>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-          gap: '24px',
-        }}>
+        <div className="projects-stack">
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
+              className="project-stack-item"
+              initial={{ opacity: 0, y: 70 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, delay: index * 0.08, ease: 'easeOut' }}
-              style={{ display: 'flex', flexDirection: 'column' }}
+              viewport={{ once: true, margin: '-10% 0px -10% 0px' }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              style={{ top: '86px', zIndex: index + 1 }}
             >
-              <TerminalCard project={project} />
+              <TerminalCard project={project} index={index} />
             </motion.div>
           ))}
         </div>

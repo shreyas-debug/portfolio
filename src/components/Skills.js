@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export const Skills = () => {
+export const Skills = ({ embedded = false }) => {
 
   const skillCategories = [
     {
@@ -68,37 +68,29 @@ export const Skills = () => {
     },
   ];
 
+  const Wrapper = embedded ? 'div' : 'section';
+
   return (
-    <section
-      className="skill"
-      id="skills"
+    <Wrapper
+      className={embedded ? 'about-skills' : 'skill story-panel'}
+      id={embedded ? undefined : 'skills'}
       style={{
-        padding: '100px 0',
+        padding: embedded ? '40px 0 0' : '120px 0',
         backgroundColor: 'transparent'
       }}
     >
-      <div className="container">
+      <div className={embedded ? '' : 'container'}>
         {/* Section Header */}
-        <div style={{ marginBottom: '48px' }}>
-          <p style={{
-            fontFamily: "'JetBrains Mono', monospace",
-            fontSize: '14px',
-            color: 'var(--accent)',
-            marginBottom: '12px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px'
-          }}>
-            <span style={{ opacity: 0.5 }}>#</span> skills
-          </p>
+        <div className="editorial-header">
+          <p className="eyebrow">#skills</p>
           <h2 style={{
             fontSize: 'clamp(32px, 5vw, 48px)',
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "'Instrument Serif', Georgia, serif",
             fontWeight: '700',
             color: 'var(--text-primary)',
             marginBottom: '16px'
           }}>
-            Tech Stack
+            {embedded ? 'Skills & Tools' : 'Tech Stack'}
           </h2>
           <p style={{
             fontSize: '18px',
@@ -113,11 +105,11 @@ export const Skills = () => {
         {/* Proficiency Legend */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '32px', flexWrap: 'wrap' }}>
           <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>legend:</span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: "'Inter', sans-serif", fontSize: '12px', color: 'var(--text-secondary)' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: "'Manrope', sans-serif", fontSize: '12px', color: 'var(--text-secondary)' }}>
             <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: 'var(--accent)', display: 'inline-block' }} />
             Proficient
           </span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: "'Inter', sans-serif", fontSize: '12px', color: 'var(--text-secondary)' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: "'Manrope', sans-serif", fontSize: '12px', color: 'var(--text-secondary)' }}>
             <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: 'var(--text-muted)', opacity: 0.5, display: 'inline-block' }} />
             Familiar
           </span>
@@ -128,10 +120,11 @@ export const Skills = () => {
           {skillCategories.map((category, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              className="portfolio-surface"
+              initial={{ opacity: 0, y: 28, scale: 0.985 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, delay: index * 0.08, ease: 'easeOut' }}
+              transition={{ duration: 0.5, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 backgroundColor: 'var(--card-bg)',
                 border: '1px solid var(--border-color)',
@@ -157,10 +150,10 @@ export const Skills = () => {
             >
               {/* Category Title - Quiet, sentence case, sans-serif */}
               <h3 style={{
-                fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-                fontSize: '14px',
-                fontWeight: '500',
-                color: 'var(--text-muted)',
+                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontSize: '23px',
+                fontWeight: '400',
+                color: 'var(--text-primary)',
                 marginBottom: '16px',
                 margin: '0 0 16px 0'
               }}>
@@ -181,10 +174,10 @@ export const Skills = () => {
                     <span
                       key={skillIndex}
                       style={{
-                        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                        fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, sans-serif",
                         fontSize: '13px',
                         color: isProficient ? 'var(--text-primary)' : 'var(--text-secondary)',
-                        backgroundColor: 'rgba(255, 255, 255, 0.03)',
+                        backgroundColor: 'var(--surface-subtle)',
                         padding: '6px 12px',
                         borderRadius: '6px',
                         border: 'none',
@@ -197,11 +190,11 @@ export const Skills = () => {
                       }}
                       onMouseEnter={(e) => {
                         e.currentTarget.style.color = 'var(--accent)';
-                        e.currentTarget.style.backgroundColor = 'rgba(16, 185, 129, 0.1)';
+                        e.currentTarget.style.backgroundColor = 'var(--accent-muted)';
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.color = isProficient ? 'var(--text-primary)' : 'var(--text-secondary)';
-                        e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.03)';
+                        e.currentTarget.style.backgroundColor = 'var(--surface-subtle)';
                       }}
                     >
                       <span style={{
@@ -218,6 +211,6 @@ export const Skills = () => {
           ))}
         </div>
       </div>
-    </section>
+    </Wrapper>
   );
 };

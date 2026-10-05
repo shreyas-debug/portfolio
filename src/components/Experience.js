@@ -1,5 +1,6 @@
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const timelineItems = [
   {
@@ -52,152 +53,45 @@ const timelineItems = [
 ];
 
 export const Experience = () => {
+  const [openIndex, setOpenIndex] = useState(0);
+
   return (
-    <section className="experience" id="experience" style={{ backgroundColor: 'transparent', padding: '120px 0', position: 'relative' }}>
-      <div className="container" style={{ position: 'relative' }}>
+    <section className="experience story-panel" id="experience">
+      <div className="container">
+        <header className="editorial-header">
+          <p className="eyebrow">#experience</p>
+          <h2>Journey So Far</h2>
+          <p>My professional experience and educational background.</p>
+        </header>
 
-        {/* Intro Block */}
-        <div style={{ marginBottom: '64px' }}>
-          <p style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '14px', color: 'var(--accent)', marginBottom: '12px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ opacity: 0.5 }}>#</span> experience
-          </p>
-          <h2 style={{ fontSize: 'clamp(32px, 5vw, 48px)', fontFamily: "'JetBrains Mono', monospace", fontWeight: '700', color: 'var(--text-primary)', marginBottom: '16px' }}>
-            Journey So Far
-          </h2>
-          <p style={{ fontSize: '18px', color: 'var(--text-secondary)', maxWidth: '600px', lineHeight: '1.7' }}>
-            My professional experience and educational background.
-          </p>
-        </div>
-
-        {/* Timeline Container */}
-        <div style={{ position: 'relative' }}>
-
-          {/* Vertical Track Line */}
-          <div style={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: '9px', // Centers perfectly under the 20px dot (20/2 - 2/2 = 9)
-            width: '2px',
-            background: 'linear-gradient(to bottom, var(--accent), var(--border-color))',
-            zIndex: 0
-          }} />
-
-          {timelineItems.map((item, index) => (
-            <div key={index} style={{ position: 'relative', paddingLeft: '48px', paddingBottom: index === timelineItems.length - 1 ? '0' : '64px' }}>
-
-              {/* Timeline Dot with Interaction */}
-              <motion.div
-                initial={{ backgroundColor: 'var(--bg-tertiary)', borderColor: 'var(--border-color)', boxShadow: 'none' }}
-                whileInView={{ backgroundColor: 'var(--accent)', borderColor: 'var(--bg-secondary)', boxShadow: '0 0 0 6px var(--accent-muted)' }}
-                viewport={{ margin: "-150px 0px -150px 0px" }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  position: 'absolute',
-                  top: '0',
-                  left: '0',
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '50%',
-                  border: '4px solid',
-                  zIndex: 2,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}
-              >
-                {/* Active Pulse Ring */}
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ margin: "-150px 0px -150px 0px" }}
-                  style={{ position: 'absolute', width: '100%', height: '100%' }}
-                >
-                  <motion.div
-                    animate={{ opacity: [0, 0.8, 0], scale: [1, 2.5, 3] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: 'easeOut' }}
-                    style={{ width: '100%', height: '100%', borderRadius: '50%', backgroundColor: 'var(--accent)' }}
-                  />
-                </motion.div>
-              </motion.div>
-
-              {/* Reveal Wrapper */}
-              <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.4, delay: index * 0.08, ease: 'easeOut' }}
-              >
-                {/* Card with Center Vignette Highlighting */}
-                <motion.div
-                  initial={{ scale: 0.98, opacity: 0.6, borderColor: 'var(--border-color)', boxShadow: 'none' }}
-                  whileInView={{ scale: 1, opacity: 1, borderColor: 'var(--border-color)', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)' }}
-                  viewport={{ margin: "-150px 0px -150px 0px" }}
-                  transition={{ duration: 0.4 }}
-                  whileHover={{ borderColor: 'var(--accent)', boxShadow: '0 10px 40px rgba(0, 0, 0, 0.4)' }}
-                  style={{
-                    backgroundColor: 'var(--card-bg)',
-                    border: '1px solid rgba(255,255,255,0.08)',
-                    borderRadius: '12px',
-                    padding: '32px',
-                    display: 'flex',
-                    flexDirection: 'column'
-                  }}
-                >
-                  {/* Card Header (Title & Duration) */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', gap: '16px', marginBottom: '16px' }}>
-                    <div>
-                      <h3 style={{ fontSize: '18px', fontWeight: '600', color: 'var(--text-primary)', marginBottom: '4px' }}>{item.title}</h3>
-                      <p style={{ fontSize: '15px', color: item.type === 'experience' ? 'var(--accent)' : 'var(--text-secondary)', margin: 0 }}>{item.organization}</p>
-                    </div>
-                    <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', color: 'var(--accent)', backgroundColor: 'var(--bg-tertiary)', border: '1px solid var(--border-color)', padding: '6px 12px', borderRadius: '4px', whiteSpace: 'nowrap', fontWeight: '500' }}>
-                      {item.duration}
-                    </span>
-                  </div>
-
-                  {/* Location — grey SVG pin instead of red emoji */}
-                  <p style={{ fontSize: '14px', color: 'var(--text-muted)', marginBottom: '24px', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
-                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    {item.location}
-                  </p>
-
-                  {/* Card Body (Bullets/Text) */}
-                  {Array.isArray(item.description) ? (
-                    <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px 0' }}>
-                      {item.description.map((desc, descIndex) => (
-                        <li key={descIndex} style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.6', paddingLeft: '20px', position: 'relative', marginBottom: '12px' }}>
-                          <span style={{ position: 'absolute', left: 0, color: 'var(--accent)' }}>→</span>
-                          <span dangerouslySetInnerHTML={{ __html: desc }} style={{ '--accent-color': 'var(--accent)' }} />
-                        </li>
-                      ))}
-                      {item.activities && (
-                        <li style={{ fontSize: '13px', color: 'var(--text-muted)', lineHeight: '1.5', paddingLeft: '0', listStyle: 'none', marginTop: '4px', fontStyle: 'italic' }}>
-                          Activities &amp; Societies: {item.activities}
-                        </li>
-                      )}
-                    </ul>
-                  ) : (
-                    <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: item.technologies.length > 0 ? '24px' : '0' }}>{item.description}</p>
+        <div className="experience-accordion">
+          {timelineItems.map((item, index) => {
+            const isOpen = openIndex === index;
+            return (
+              <article className={`experience-row ${isOpen ? 'open' : ''}`} key={item.title}>
+                <button className="experience-trigger" onClick={() => setOpenIndex(isOpen ? -1 : index)} aria-expanded={isOpen}>
+                  <span className="experience-number">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="experience-name">{item.organization}</span>
+                  <span className="experience-role">{item.title}</span>
+                  <span className="experience-date">{item.duration}</span>
+                  <span className="experience-plus">{isOpen ? '−' : '+'}</span>
+                </button>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div className="experience-details" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}>
+                      <div className="experience-details-inner">
+                        <p className="experience-location">{item.location}</p>
+                        <ul>
+                          {item.description.map((desc, descIndex) => <li key={descIndex} dangerouslySetInnerHTML={{ __html: desc }} />)}
+                        </ul>
+                        <div className="experience-tech">{item.technologies.map((tech) => <span key={tech}>{tech}</span>)}</div>
+                      </div>
+                    </motion.div>
                   )}
-
-                  {/* Card Footer (Tags) */}
-                  {item.technologies.length > 0 && (
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: 'auto' }}>
-                      {item.technologies.map((tech, techIndex) => (
-                        <span key={techIndex} style={{ fontFamily: "'Inter', sans-serif", fontSize: '11px', color: 'var(--text-secondary)', backgroundColor: 'rgba(255, 255, 255, 0.03)', padding: '4px 10px', borderRadius: '4px', border: '1px solid var(--border-color)' }}>
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </motion.div>
-              </motion.div>
-            </div>
-          ))}
-
+                </AnimatePresence>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
