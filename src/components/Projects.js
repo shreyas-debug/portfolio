@@ -81,7 +81,7 @@ const TerminalCard = ({ project, index }) => {
         </div>
 
         {/* Links row */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>
+        <div className="project-links-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '4px' }}>
 
           {/* Left side: GitHub Icon + Devpost or View Code */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
