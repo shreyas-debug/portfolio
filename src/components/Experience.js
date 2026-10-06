@@ -53,7 +53,7 @@ const timelineItems = [
 ];
 
 export const Experience = () => {
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(null);
 
   return (
     <section className="experience story-panel" id="experience">
@@ -69,7 +69,7 @@ export const Experience = () => {
             const isOpen = openIndex === index;
             return (
               <article className={`experience-row ${isOpen ? 'open' : ''}`} key={item.title}>
-                <button className="experience-trigger" onClick={() => setOpenIndex(isOpen ? -1 : index)} aria-expanded={isOpen}>
+                <button className="experience-trigger" onClick={() => setOpenIndex(isOpen ? null : index)} aria-expanded={isOpen}>
                   <span className="experience-number">{String(index + 1).padStart(2, '0')}</span>
                   <span className="experience-name">{item.organization}</span>
                   <span className="experience-role">{item.title}</span>

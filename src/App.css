@@ -901,7 +901,7 @@ nav.navbar .navbar-text {
   margin-inline: 0;
   transform: translateX(-50%);
   filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.42));
-  transition: left 0.62s cubic-bezier(0.22, 1, 0.36, 1), bottom 0.62s cubic-bezier(0.22, 1, 0.36, 1), transform 0.62s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: left 0.62s cubic-bezier(0.22, 1, 0.36, 1), bottom 0.62s cubic-bezier(0.22, 1, 0.36, 1), transform 0.62s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.24s ease;
   will-change: transform, width, bottom;
 }
 
@@ -1384,12 +1384,21 @@ nav.navbar .navbar-text {
     margin-right: 3px;
     font-size: 21px;
   }
-  .dock-links { max-width: calc(100vw - 61px); }
+  .dock-links {
+    max-width: calc(100vw - 61px);
+    opacity: 1;
+    transition: max-width 0.34s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.18s ease;
+  }
   .dock-links button, .dock-links a { min-width: auto; padding: 0 10px; font-size: 9px; }
   .dock-expander { width: 68px; height: 42px; }
   .dock-expander.open { width: min(228px, calc(100vw - 126px)); }
   .dock-menu { width: 68px; }
   .dock-submenu button { flex: 1 1 0; min-width: 0; }
+  .floating-dock.project-actions-visible:not(.dock-open) .dock-links {
+    max-width: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
   .experience-trigger { grid-template-columns: 32px minmax(0, 1fr) 28px; gap: 8px 12px; }
   .experience-number { grid-column: 1; grid-row: 1; }
   .experience-name { grid-column: 2; grid-row: 1; }
@@ -1399,9 +1408,15 @@ nav.navbar .navbar-text {
   .experience-details-inner { padding-left: 48px; }
   .project-stack-item { margin-bottom: 14vh; }
   .projects-stack { padding-bottom: 5vh; }
-  .project-panel { min-height: auto; }
-  .project-panel { border-radius: 20px 5px 20px 5px !important; }
-  .project-panel-content { padding-bottom: 88px !important; }
+  .project-panel {
+    min-height: 820px !important;
+    height: 820px !important;
+    border-radius: 20px 5px 20px 5px !important;
+  }
+  .project-panel-content {
+    height: 100%;
+    padding-bottom: 88px !important;
+  }
   .project-links-row {
     align-items: stretch !important;
     gap: 10px;
@@ -1416,6 +1431,13 @@ nav.navbar .navbar-text {
   .project-narrative { grid-template-columns: 1fr; }
   .project-outcome { grid-column: auto; }
   .about-skills .skills-container { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 380px) {
+  .project-panel {
+    min-height: 860px !important;
+    height: 860px !important;
+  }
 }
 
 .projects-grid {
@@ -1545,6 +1567,10 @@ nav.navbar .navbar-text {
 
   .App:has(> .floating-dock.at-page-end) .back-to-top {
     bottom: 116px;
+  }
+
+  .App:has(> .floating-dock.project-actions-visible) .back-to-top {
+    bottom: 84px;
   }
 }
 

@@ -10,6 +10,7 @@ const links = [
 export const FloatingNav = () => {
   const [open, setOpen] = useState(false);
   const [atPageEnd, setAtPageEnd] = useState(false);
+  const [projectActionsVisible, setProjectActionsVisible] = useState(false);
 
   useEffect(() => {
     const hero = document.getElementById('home');
@@ -46,6 +47,21 @@ export const FloatingNav = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const actionRows = Array.from(document.querySelectorAll('.project-links-row'));
+    const visibleRows = new Set();
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visibleRows.add(entry.target);
+        else visibleRows.delete(entry.target);
+      });
+      setProjectActionsVisible(visibleRows.size > 0);
+    }, { threshold: 0.15 });
+
+    actionRows.forEach((row) => observer.observe(row));
+    return () => observer.disconnect();
+  }, []);
+
   const goTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setOpen(false);
@@ -53,7 +69,7 @@ export const FloatingNav = () => {
 
   return (
     <motion.nav
-      className={`floating-dock${atPageEnd ? ' at-page-end' : ''}`}
+      className={`floating-dock${open ? ' dock-open' : ''}${atPageEnd ? ' at-page-end' : ''}${projectActionsVisible ? ' project-actions-visible' : ''}`}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ opacity: { delay: 0.6, duration: 0.35 } }}
