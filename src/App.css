@@ -1373,6 +1373,14 @@ nav.navbar .navbar-text {
 }
 
 @media (max-width: 768px) {
+  html,
+  body,
+  #root,
+  .App {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
   .floating-dock { --dock-edge-gap: 8px; bottom: 12px; max-width: calc(100vw - 16px); }
   .floating-dock.at-page-end { bottom: 62px; }
   .dock-toggle,
@@ -1406,17 +1414,33 @@ nav.navbar .navbar-text {
   .experience-date { grid-column: 2; grid-row: 3; }
   .experience-plus { grid-column: 3; grid-row: 1 / 4; align-self: center; }
   .experience-details-inner { padding-left: 48px; }
+  .experience-name { font-size: 25px; }
+  .experience-role,
+  .experience-date,
+  .experience-details li { font-size: 12.5px; }
   .project-stack-item { margin-bottom: 14vh; }
   .projects-stack { padding-bottom: 5vh; }
   .project-panel {
-    min-height: 820px !important;
-    height: 820px !important;
+    width: 100%;
+    min-width: 0;
+    min-height: var(--mobile-project-height, auto) !important;
+    height: var(--mobile-project-height, auto) !important;
     border-radius: 20px 5px 20px 5px !important;
   }
   .project-panel-content {
     height: 100%;
-    padding-bottom: 88px !important;
+    padding: 24px 20px 76px !important;
   }
+  .project-panel-title {
+    margin-bottom: 22px !important;
+    padding-bottom: 16px !important;
+    font-size: 34px !important;
+  }
+  .project-narrative { grid-template-columns: 1fr; gap: 18px; }
+  .project-detail-block { padding-top: 10px; }
+  .project-detail-label { margin-bottom: 8px; font-size: 8px; letter-spacing: 0.1em; }
+  .project-detail-block p { font-size: 14px !important; line-height: 1.55 !important; }
+  .project-outcome p { font-size: 15.5px !important; }
   .project-links-row {
     align-items: stretch !important;
     gap: 10px;
@@ -1427,17 +1451,19 @@ nav.navbar .navbar-text {
   }
   .project-links-row .project-action {
     min-height: 40px;
+    padding: 8px 11px !important;
+    font-size: 10px !important;
   }
-  .project-narrative { grid-template-columns: 1fr; }
   .project-outcome { grid-column: auto; }
   .about-skills .skills-container { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 380px) {
-  .project-panel {
-    min-height: 860px !important;
-    height: 860px !important;
-  }
+  .editorial-header { margin-bottom: 48px; }
+  .editorial-header h2,
+  #about h1 { font-size: clamp(46px, 15vw, 64px) !important; line-height: 0.95 !important; }
+  .hero-title { font-size: clamp(48px, 15vw, 62px) !important; }
+  .hero-role { font-size: clamp(22px, 7vw, 30px) !important; }
+  .hero-description,
+  .editorial-header > p:last-child,
+  #about p:not(.eyebrow) { font-size: 15px !important; line-height: 1.7 !important; }
 }
 
 .projects-grid {

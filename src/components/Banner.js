@@ -109,7 +109,7 @@ export const Banner = () => {
         </motion.h2>
 
         {/* Hero description — specific, with impact */}
-        <motion.p variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: 'easeOut' }} style={{
+        <motion.p className="hero-description" variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.5, ease: 'easeOut' }} style={{
           fontSize: '16px',
           color: 'var(--text-secondary)',
           maxWidth: '560px',

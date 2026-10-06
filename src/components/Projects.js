@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 
 /* ─── Terminal card component ─── */
-const TerminalCard = ({ project, index }) => {
+const TerminalCard = ({ project }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -157,6 +157,37 @@ const TerminalCard = ({ project, index }) => {
 };
 
 export const Projects = () => {
+  const stackRef = useRef(null);
+
+  useEffect(() => {
+    let frame;
+
+    const equalizeMobileCards = () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const stack = stackRef.current;
+        if (!stack) return;
+
+        stack.style.removeProperty('--mobile-project-height');
+        if (window.innerWidth > 768) return;
+
+        const cards = Array.from(stack.querySelectorAll('.project-panel'));
+        const tallestCard = Math.max(...cards.map((card) => card.scrollHeight), 0);
+        if (tallestCard) stack.style.setProperty('--mobile-project-height', `${Math.ceil(tallestCard) + 2}px`);
+      });
+    };
+
+    equalizeMobileCards();
+    document.fonts?.ready.then(equalizeMobileCards);
+    window.addEventListener('resize', equalizeMobileCards);
+    window.addEventListener('orientationchange', equalizeMobileCards);
+
+    return () => {
+      if (frame) window.cancelAnimationFrame(frame);
+      window.removeEventListener('resize', equalizeMobileCards);
+      window.removeEventListener('orientationchange', equalizeMobileCards);
+    };
+  }, []);
 
   const projects = [
     {
@@ -264,10 +295,10 @@ export const Projects = () => {
           </p>
         </header>
 
-        <div className="projects-stack">
+        <div className="projects-stack" ref={stackRef}>
           {projects.map((project, index) => (
             <motion.div
-              key={index}
+              key={project.title}
               className="project-stack-item"
               initial={{ opacity: 0, y: 70 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -275,7 +306,7 @@ export const Projects = () => {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               style={{ top: '86px', zIndex: index + 1 }}
             >
-              <TerminalCard project={project} index={index} />
+              <TerminalCard project={project} />
             </motion.div>
           ))}
         </div>
