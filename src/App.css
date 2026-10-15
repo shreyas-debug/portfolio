@@ -1460,10 +1460,6 @@ nav.navbar .navbar-text {
     min-width: 0;
     min-height: 0;
     height: auto;
-    max-height: calc(100svh - 96px);
-    overflow-y: auto !important;
-    scrollbar-width: thin;
-    scroll-padding-block: 20px;
     border-radius: 20px 5px 20px 5px !important;
   }
   .project-panel-content {
@@ -1848,3 +1844,11 @@ span strong {
   .project-panel { transform: none; }
   .project-panel::after { opacity: 0; }
 }
+
+/* Tall phone cards stay in normal page flow so all text and actions are reachable. */
+.projects-stack.is-flowing .project-stack-item {
+  position: relative;
+  top: auto;
+  margin-bottom: 24px;
+}
+.projects-stack.is-flowing .project-stack-end { height: 0; }

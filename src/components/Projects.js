@@ -155,6 +155,7 @@ export const Projects = () => {
     let disposed = false;
     let motionFrame;
     let stickyTop = 24;
+    let stacking = true;
     const items = Array.from(stack.querySelectorAll('.project-stack-item'));
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const updateStackMotion = () => {
@@ -164,7 +165,7 @@ export const Projects = () => {
       items.forEach((item, index) => {
         const next = rects[index + 1];
         const distance = Math.max(1, rects[index].height * 0.8);
-        const progress = !motionPreference.matches && next
+        const progress = stacking && !motionPreference.matches && next
           ? Math.max(0, Math.min(1, (stickyTop + distance - next.top) / distance))
           : 0;
         const panel = item.querySelector('.project-panel');
@@ -183,7 +184,9 @@ export const Projects = () => {
         const cards = Array.from(stack.querySelectorAll('.project-panel'));
         const tallest = Math.max(...cards.map((card) => card.offsetHeight));
         // Every card shares one sticky line, preserving their stacking order.
-        // Mobile cards fit the visible viewport and always keep their titles below the top edge.
+        // Use one layout for the whole stack; tall phone cards scroll with the page.
+        stacking = window.innerWidth > 768 || tallest <= window.innerHeight - 96;
+        stack.classList.toggle('is-flowing', !stacking);
         const top = window.innerWidth <= 768 ? 12 : Math.min(24, window.innerHeight - tallest - 96);
         stickyTop = top;
         stack.style.setProperty('--project-sticky-top', top + 'px');
