@@ -183,8 +183,8 @@ export const Projects = () => {
         const cards = Array.from(stack.querySelectorAll('.project-panel'));
         const tallest = Math.max(...cards.map((card) => card.offsetHeight));
         // Every card shares one sticky line, preserving their stacking order.
-        // On short screens, reveal the entire card before it sticks above the dock.
-        const top = Math.min(24, window.innerHeight - tallest - 96);
+        // Mobile cards fit the visible viewport and always keep their titles below the top edge.
+        const top = window.innerWidth <= 768 ? 12 : Math.min(24, window.innerHeight - tallest - 96);
         stickyTop = top;
         stack.style.setProperty('--project-sticky-top', top + 'px');
         // Leave room for the final card to reach the sticky line and remain there

@@ -1460,17 +1460,22 @@ nav.navbar .navbar-text {
     min-width: 0;
     min-height: 0;
     height: auto;
+    max-height: calc(100svh - 96px);
+    overflow-y: auto !important;
+    scrollbar-width: thin;
+    scroll-padding-block: 20px;
     border-radius: 20px 5px 20px 5px !important;
   }
   .project-panel-content {
-    padding: 24px 20px !important;
+    flex-shrink: 0;
+    padding: 20px 18px !important;
   }
   .project-panel-title {
-    margin-bottom: 22px !important;
-    padding-bottom: 16px !important;
+    margin-bottom: 16px !important;
+    padding-bottom: 14px !important;
     font-size: 28px !important;
   }
-  .project-narrative { grid-template-columns: 1fr; gap: 18px; }
+  .project-narrative { grid-template-columns: 1fr; gap: 16px; margin-bottom: 20px; }
   .project-detail-block { padding-top: 10px; }
   .project-detail-label { margin-bottom: 8px; font-size: 10px; letter-spacing: 0.1em; }
   .project-detail-block p { font-size: 16px !important; line-height: 1.55 !important; }
