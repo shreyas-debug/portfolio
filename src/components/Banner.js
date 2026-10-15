@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform, useReducedMotion } from "framer-motion";
 
 const ROLES = [
   "Backend Engineer",
@@ -13,15 +13,22 @@ const PAUSE_TIME = 1800;
 
 
 export const Banner = () => {
+  const reducedMotion = useReducedMotion();
+  const heroRef = useRef(null);
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const loopNumRef = useRef(0);
-  const { scrollYProgress } = useScroll();
-  const heroScale = useTransform(scrollYProgress, [0, 0.22], [1, 0.965]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.18]);
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] });
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 160, damping: 30, mass: 0.5 });
+  const heroScale = useTransform(smoothProgress, [0, 1], [1, 0.97]);
+  const heroOpacity = useTransform(smoothProgress, [0, 1], [1, 0.18]);
 
   useEffect(() => {
     const currentRole = ROLES[loopNumRef.current % ROLES.length];
+    if (!isDeleting && text === currentRole) {
+      const pause = setTimeout(() => setIsDeleting(true), PAUSE_TIME);
+      return () => clearTimeout(pause);
+    }
     const timeout = setTimeout(() => {
       if (isDeleting) {
         setText(currentRole.substring(0, text.length - 1));
@@ -38,10 +45,11 @@ export const Banner = () => {
       }
     }, isDeleting ? DELETING_SPEED : TYPING_SPEED);
     return () => clearTimeout(timeout);
-  }, [text, isDeleting]);
+  }, [text, isDeleting, reducedMotion]);
 
   return (
     <motion.section
+      ref={heroRef}
       className="banner"
       id="home"
       style={{
@@ -52,8 +60,8 @@ export const Banner = () => {
         backgroundColor: 'transparent',
         position: 'relative',
         overflow: 'hidden',
-        scale: heroScale,
-        opacity: heroOpacity,
+        scale: reducedMotion ? 1 : heroScale,
+        opacity: reducedMotion ? 1 : heroOpacity,
       }}
     >
 
@@ -70,7 +78,7 @@ export const Banner = () => {
 
         {/* Greeting label */}
         <motion.p variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: 'easeOut' }} style={{
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "var(--font-reading)",
           fontSize: '15px',
           color: 'var(--accent)',
           marginBottom: '14px',
@@ -84,7 +92,7 @@ export const Banner = () => {
         {/* Name */}
         <motion.h1 className="hero-title" variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }} style={{
           fontSize: 'clamp(36px, 6vw, 68px)',
-          fontFamily: "'Instrument Serif', Georgia, serif",
+          fontFamily: "var(--font-display)",
           fontWeight: '700',
           color: 'var(--text-primary)',
           marginBottom: '6px',
@@ -97,7 +105,7 @@ export const Banner = () => {
         {/* Typewriter role */}
         <motion.h2 className="hero-role" variants={{ hidden: { opacity: 0, y: 14 }, visible: { opacity: 1, y: 0 } }} transition={{ duration: 0.45, ease: 'easeOut' }} style={{
           fontSize: 'clamp(16px, 2.4vw, 26px)',
-          fontFamily: "'Instrument Serif', Georgia, serif",
+          fontFamily: "var(--font-display)",
           fontWeight: '400',
           color: 'var(--accent)',
           marginBottom: '28px',
@@ -133,7 +141,7 @@ export const Banner = () => {
               if (el) el.scrollIntoView({ behavior: 'smooth' });
             }}
             style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "var(--font-reading)",
               fontSize: '15px',
               fontWeight: '600',
               padding: '13px 28px',
@@ -175,7 +183,7 @@ export const Banner = () => {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              fontFamily: "'Manrope', sans-serif",
+              fontFamily: "var(--font-reading)",
               fontSize: '14px',
               fontWeight: '500',
               padding: '13px 24px',
@@ -225,7 +233,7 @@ export const Banner = () => {
           gap: '8px',
           color: 'var(--text-muted)',
           fontSize: '12px',
-          fontFamily: "'JetBrains Mono', monospace",
+          fontFamily: "var(--font-reading)",
           zIndex: 2
         }}
       >

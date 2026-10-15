@@ -44,7 +44,7 @@ export const NavBar = () => {
     const isActive = activeLink === link.id;
 
     const style = {
-      fontFamily: "'JetBrains Mono', monospace",
+      fontFamily: "var(--font-reading)",
       fontSize: '14px',
       fontWeight: '500',
       color: isActive ? 'var(--accent)' : 'var(--text-secondary)',
@@ -102,7 +102,7 @@ export const NavBar = () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
           style={{
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "var(--font-reading)",
             fontSize: '18px',
             fontWeight: '700',
             color: 'var(--text-primary)',
@@ -149,7 +149,7 @@ export const NavBar = () => {
               padding: '4px 10px',
               borderRadius: '999px',
               backgroundColor: 'var(--accent-muted)',
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "var(--font-reading)",
               fontSize: '11px',
               color: 'var(--accent)',
               whiteSpace: 'nowrap'

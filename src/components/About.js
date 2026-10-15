@@ -14,24 +14,22 @@ function importAll(r) {
 const photos = importAll(require.context('../assets/pictures', false, /\.(jpg|jpeg|png|JPG|JPEG|PNG)$/));
 
 const sectionVariants = {
-  hidden: { opacity: 0, y: 35 },
+  hidden: {},
   visible: { 
-    opacity: 1, 
-    y: 0,
     transition: { 
       duration: 0.6, 
-      ease: [0.25, 0.1, 0.25, 1],
+      ease: [0.22, 1, 0.36, 1],
       staggerChildren: 0.12
     }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 14 },
   visible: { 
     opacity: 1, 
     y: 0,
-    transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] }
   }
 };
 
@@ -72,7 +70,7 @@ export const About = () => {
             <p className="eyebrow">#about</p>
             <h1 className="about-heading" style={{
               fontSize: 'clamp(40px, 6vw, 56px)',
-              fontFamily: "'Instrument Serif', Georgia, serif",
+              fontFamily: "var(--font-display)",
               fontWeight: '700',
               color: 'var(--text-primary)',
               marginBottom: '0',
@@ -144,7 +142,7 @@ export const About = () => {
         >
           <h2 style={{
             fontSize: '24px',
-            fontFamily: "'Instrument Serif', Georgia, serif",
+            fontFamily: "var(--font-display)",
             fontWeight: '600',
             color: 'var(--text-primary)',
             marginBottom: '16px'
@@ -262,7 +260,7 @@ export const About = () => {
         {/* Quick Facts */}
         <h2 style={{
           fontSize: '24px',
-          fontFamily: "'Instrument Serif', Georgia, serif",
+          fontFamily: "var(--font-display)",
           fontWeight: '600',
           color: 'var(--text-primary)',
           marginBottom: '24px',
@@ -306,7 +304,7 @@ export const About = () => {
               }}
             >
               <p style={{
-                fontFamily: "'JetBrains Mono', monospace",
+                fontFamily: "var(--font-reading)",
                 fontSize: '12px',
                 color: 'var(--accent)',
                 marginBottom: '8px',
@@ -330,7 +328,7 @@ export const About = () => {
         {/* Interests */}
         <h2 style={{
           fontSize: '24px',
-          fontFamily: "'Instrument Serif', Georgia, serif",
+          fontFamily: "var(--font-display)",
           fontWeight: '600',
           color: 'var(--text-primary)',
           marginBottom: '24px',
@@ -359,7 +357,7 @@ export const About = () => {
                 key={index}
                 {...linkProps}
                 style={{
-                  fontFamily: "'Manrope', sans-serif",
+                  fontFamily: "var(--font-reading)",
                   fontSize: '14px',
                   color: 'var(--text-secondary)',
                   backgroundColor: 'var(--bg-secondary)',

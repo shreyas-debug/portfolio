@@ -1,3 +1,4 @@
+import { MotionConfig } from 'framer-motion';
 import './App.css';
 import { ThemeProvider }   from './contexts/ThemeContext';
 import { Footer }          from './components/Footer';
@@ -11,6 +12,7 @@ import { FloatingNav }     from './components/FloatingNav';
 
 function App() {
   return (
+    <MotionConfig reducedMotion="user">
     <ThemeProvider>
       <div className="App">
         <DotGrid />
@@ -25,6 +27,7 @@ function App() {
         <FloatingNav />
       </div>
     </ThemeProvider>
+    </MotionConfig>
   );
 }
 

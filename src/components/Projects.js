@@ -1,30 +1,20 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
 
 /* ─── Terminal card component ─── */
 const TerminalCard = ({ project }) => {
-  const [hovered, setHovered] = useState(false);
 
   return (
     <div
       className="portfolio-surface project-panel"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
       style={{
         backgroundColor: 'var(--card-bg)',
         border: '1px solid var(--border-color)',
-        borderLeft: `2px solid ${hovered ? 'var(--accent)' : 'var(--border-hover)'}`,
+        borderLeft: '1px solid var(--border-color)',
         borderRadius: '12px',
         overflow: 'hidden',
         display: 'flex',
         flexDirection: 'column',
-        transition: 'all 0.25s ease',
-        transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
-        boxShadow: hovered
-          ? '0 14px 36px -20px rgba(83, 142, 134, 0.46)'
-          : 'var(--shadow-elevated)',
         cursor: 'default',
-        height: '100%',
       }}
     >
       {/* ── Plain English Body ── */}
@@ -36,7 +26,7 @@ const TerminalCard = ({ project }) => {
       }}>
         {/* Title */}
         <h3 className="project-panel-title" style={{
-          fontFamily: "'Instrument Serif', Georgia, serif",
+          fontFamily: "var(--font-display)",
           fontSize: '18px',
           fontWeight: '700',
           color: 'var(--text-primary)',
@@ -67,8 +57,8 @@ const TerminalCard = ({ project }) => {
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
           {project.technologies.map((tech, ti) => (
             <span key={ti} style={{
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: '11px',
+              fontFamily: "var(--font-reading)",
+              fontSize: '13px',
               color: 'var(--text-muted)',
               backgroundColor: 'var(--surface-subtle)',
               padding: '3px 8px',
@@ -109,7 +99,7 @@ const TerminalCard = ({ project }) => {
                 href={project.devpostUrl}
                 target="_blank" rel="noopener noreferrer"
                 style={{
-                  fontFamily: "'Manrope', sans-serif", fontSize: '12px',
+                  fontFamily: "var(--font-reading)", fontSize: '12px',
                   color: 'var(--text-muted)', textDecoration: 'none',
                   transition: 'color 0.2s ease',
                 }}
@@ -129,7 +119,7 @@ const TerminalCard = ({ project }) => {
               target="_blank" rel="noopener noreferrer"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: '6px',
-                fontFamily: "'Manrope', sans-serif", fontSize: '13.5px', fontWeight: '500',
+                fontFamily: "var(--font-reading)", fontSize: '13.5px', fontWeight: '500',
                 color: 'var(--text-secondary)', textDecoration: 'none',
                 padding: '6px 16px', borderRadius: '6px',
                 border: '1px solid var(--border-color)',
@@ -160,32 +150,66 @@ export const Projects = () => {
   const stackRef = useRef(null);
 
   useEffect(() => {
+    const stack = stackRef.current;
     let frame;
-
-    const equalizeMobileCards = () => {
-      if (frame) window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(() => {
-        const stack = stackRef.current;
-        if (!stack) return;
-
-        stack.style.removeProperty('--mobile-project-height');
-        if (window.innerWidth > 768) return;
-
-        const cards = Array.from(stack.querySelectorAll('.project-panel'));
-        const tallestCard = Math.max(...cards.map((card) => card.scrollHeight), 0);
-        if (tallestCard) stack.style.setProperty('--mobile-project-height', `${Math.ceil(tallestCard) + 2}px`);
+    let disposed = false;
+    let motionFrame;
+    let stickyTop = 24;
+    const items = Array.from(stack.querySelectorAll('.project-stack-item'));
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateStackMotion = () => {
+      motionFrame = undefined;
+      // Read geometry together, then update only composited visual properties.
+      const rects = items.map((item) => item.getBoundingClientRect());
+      items.forEach((item, index) => {
+        const next = rects[index + 1];
+        const distance = Math.max(1, rects[index].height * 0.8);
+        const progress = !motionPreference.matches && next
+          ? Math.max(0, Math.min(1, (stickyTop + distance - next.top) / distance))
+          : 0;
+        const panel = item.querySelector('.project-panel');
+        panel.style.setProperty('--stack-scale', String(1 - progress * 0.025));
+        panel.style.setProperty('--stack-shade', String(progress * 0.08));
+        panel.style.willChange = progress > 0 && progress < 1 ? 'transform' : 'auto';
       });
     };
-
-    equalizeMobileCards();
-    document.fonts?.ready.then(equalizeMobileCards);
-    window.addEventListener('resize', equalizeMobileCards);
-    window.addEventListener('orientationchange', equalizeMobileCards);
-
+    const scheduleStackMotion = () => {
+      if (!motionFrame) motionFrame = window.requestAnimationFrame(updateStackMotion);
+    };
+    const measureStack = () => {
+      if (disposed) return;
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(() => {
+        const cards = Array.from(stack.querySelectorAll('.project-panel'));
+        const tallest = Math.max(...cards.map((card) => card.offsetHeight));
+        // Every card shares one sticky line, preserving their stacking order.
+        // On short screens, reveal the entire card before it sticks above the dock.
+        const top = Math.min(24, window.innerHeight - tallest - 96);
+        stickyTop = top;
+        stack.style.setProperty('--project-sticky-top', top + 'px');
+        // Leave room for the final card to reach the sticky line and remain there
+        // before the stack's bottom boundary releases the earlier cards.
+        const lastHeight = cards[cards.length - 1].offsetHeight;
+        const holdDistance = Math.max(180, window.innerHeight * 0.5);
+        stack.style.setProperty('--project-stack-tail', (tallest - lastHeight + holdDistance) + 'px');
+        scheduleStackMotion();
+      });
+    };
+    const observer = new ResizeObserver(measureStack);
+    stack.querySelectorAll('.project-panel').forEach((card) => observer.observe(card));
+    document.fonts?.ready.then(measureStack);
+    window.addEventListener('resize', measureStack);
+    window.addEventListener('scroll', scheduleStackMotion, { passive: true });
+    motionPreference.addEventListener('change', scheduleStackMotion);
+    measureStack();
     return () => {
-      if (frame) window.cancelAnimationFrame(frame);
-      window.removeEventListener('resize', equalizeMobileCards);
-      window.removeEventListener('orientationchange', equalizeMobileCards);
+      disposed = true;
+      observer.disconnect();
+      window.removeEventListener('resize', measureStack);
+      window.removeEventListener('scroll', scheduleStackMotion);
+      motionPreference.removeEventListener('change', scheduleStackMotion);
+      window.cancelAnimationFrame(motionFrame);
+      window.cancelAnimationFrame(frame);
     };
   }, []);
 
@@ -297,18 +321,11 @@ export const Projects = () => {
 
         <div className="projects-stack" ref={stackRef}>
           {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              className="project-stack-item"
-              initial={{ opacity: 0, y: 70 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-10% 0px -10% 0px' }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              style={{ top: '86px', zIndex: index + 1 }}
-            >
+            <article key={project.title} className="project-stack-item" style={{ zIndex: index + 1 }}>
               <TerminalCard project={project} />
-            </motion.div>
+            </article>
           ))}
+          <div className="project-stack-end" aria-hidden="true" />
         </div>
 
         <div style={{ textAlign: 'center', marginTop: '48px' }}>
@@ -316,7 +333,7 @@ export const Projects = () => {
             href="https://github.com/shreyas-debug"
             target="_blank" rel="noopener noreferrer"
             style={{
-              fontFamily: "'JetBrains Mono', monospace", fontSize: '14px', fontWeight: '500',
+              fontFamily: "var(--font-reading)", fontSize: '14px', fontWeight: '500',
               color: 'var(--accent)', textDecoration: 'none', display: 'inline-flex',
               alignItems: 'center', gap: '8px', padding: '12px 24px',
               border: '1px solid var(--accent)', borderRadius: '8px', transition: 'all 0.2s ease'

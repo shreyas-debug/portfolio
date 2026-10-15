@@ -35,7 +35,7 @@ export const Footer = () => {
           {/* Main CTA */}
           <h2 style={{
             fontSize: 'clamp(24px, 4vw, 32px)',
-            fontFamily: "'Instrument Serif', Georgia, serif",
+            fontFamily: "var(--font-display)",
             fontWeight: '700',
             color: 'var(--text-primary)',
             marginBottom: '8px'
@@ -69,7 +69,7 @@ export const Footer = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  fontFamily: "'JetBrains Mono', monospace",
+                  fontFamily: "var(--font-reading)",
                   fontSize: '14px',
                   color: 'var(--text-secondary)',
                   textDecoration: 'none',
@@ -117,7 +117,7 @@ export const Footer = () => {
           <a 
             href="mailto:satputeshreyas07@gmail.com"
             style={{
-              fontFamily: "'JetBrains Mono', monospace",
+              fontFamily: "var(--font-reading)",
               fontSize: '14px',
               fontWeight: '500',
               padding: '12px 24px',
@@ -160,7 +160,7 @@ export const Footer = () => {
             fontSize: '13px',
             color: 'var(--text-muted)',
             margin: 0,
-            fontFamily: "'JetBrains Mono', monospace",
+            fontFamily: "var(--font-reading)",
             textTransform: 'uppercase',
             letterSpacing: '0.1em'
           }}>

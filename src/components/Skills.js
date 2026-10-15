@@ -85,7 +85,7 @@ export const Skills = ({ embedded = false }) => {
           <p className="eyebrow">#skills</p>
           <h2 style={{
             fontSize: 'clamp(32px, 5vw, 48px)',
-            fontFamily: "'Instrument Serif', Georgia, serif",
+            fontFamily: "var(--font-display)",
             fontWeight: '700',
             color: 'var(--text-primary)',
             marginBottom: '16px'
@@ -104,12 +104,12 @@ export const Skills = ({ embedded = false }) => {
 
         {/* Proficiency Legend */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '32px', flexWrap: 'wrap' }}>
-          <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '12px', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>legend:</span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: "'Manrope', sans-serif", fontSize: '12px', color: 'var(--text-secondary)' }}>
+          <span style={{ fontFamily: "var(--font-reading)", fontSize: '12px', color: 'var(--text-muted)', letterSpacing: '0.05em' }}>legend:</span>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: "var(--font-reading)", fontSize: '12px', color: 'var(--text-secondary)' }}>
             <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: 'var(--accent)', display: 'inline-block' }} />
             Proficient
           </span>
-          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: "'Manrope', sans-serif", fontSize: '12px', color: 'var(--text-secondary)' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', fontFamily: "var(--font-reading)", fontSize: '12px', color: 'var(--text-secondary)' }}>
             <span style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: 'var(--text-muted)', opacity: 0.5, display: 'inline-block' }} />
             Familiar
           </span>
@@ -150,7 +150,7 @@ export const Skills = ({ embedded = false }) => {
             >
               {/* Category Title - Quiet, sentence case, sans-serif */}
               <h3 style={{
-                fontFamily: "'Instrument Serif', Georgia, serif",
+                fontFamily: "var(--font-display)",
                 fontSize: '23px',
                 fontWeight: '400',
                 color: 'var(--text-primary)',
@@ -174,7 +174,7 @@ export const Skills = ({ embedded = false }) => {
                     <span
                       key={skillIndex}
                       style={{
-                        fontFamily: "'Manrope', -apple-system, BlinkMacSystemFont, sans-serif",
+                        fontFamily: "var(--font-reading)",
                         fontSize: '13px',
                         color: isProficient ? 'var(--text-primary)' : 'var(--text-secondary)',
                         backgroundColor: 'var(--surface-subtle)',
