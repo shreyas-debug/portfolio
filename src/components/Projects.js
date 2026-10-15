@@ -41,11 +41,11 @@ const TerminalCard = ({ project }) => {
         <div className="project-narrative" style={{ flexGrow: 1, marginTop: '2px' }}>
           <div className="project-detail-block">
             <span className="project-detail-label">System</span>
-            <p>{project.desc1}</p>
+            <p><span className="project-copy-desktop">{project.desc1}</span><span className="project-copy-mobile">{project.mobileSystem}</span></p>
           </div>
           <div className="project-detail-block">
             <span className="project-detail-label">Engineering decision</span>
-            <p>{project.desc2}</p>
+            <p><span className="project-copy-desktop">{project.desc2}</span><span className="project-copy-mobile">{project.mobileDecision}</span></p>
           </div>
           <div className="project-detail-block project-outcome">
             <span className="project-detail-label">Outcome</span>
@@ -54,7 +54,7 @@ const TerminalCard = ({ project }) => {
         </div>
 
         {/* Tech chips */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
+        <div className="project-tech-chips" style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
           {project.technologies.map((tech, ti) => (
             <span key={ti} style={{
               fontFamily: "var(--font-reading)",
@@ -155,24 +155,56 @@ export const Projects = () => {
     let disposed = false;
     let motionFrame;
     let stickyTop = 24;
-    let stacking = true;
     const items = Array.from(stack.querySelectorAll('.project-stack-item'));
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const updateStackMotion = () => {
+    const panels = items.map((item) => item.querySelector('.project-panel'));
+    const visuals = items.map(() => ({ scale: 1, shade: 0, y: 0 }));
+    let lastMotionTime = 0;
+    const clamp = (value) => Math.max(0, Math.min(1, value));
+    const ease = (value) => value * value * (3 - 2 * value);
+    const updateStackMotion = (time = performance.now()) => {
       motionFrame = undefined;
-      // Read geometry together, then update only composited visual properties.
+      if (disposed) return;
+      const mobile = window.innerWidth <= 768;
+      const reduced = motionPreference.matches;
+      const blend = mobile && !reduced
+        ? 1 - Math.exp(-18 * Math.min(0.05, lastMotionTime ? (time - lastMotionTime) / 1000 : 1 / 60))
+        : 1;
+      lastMotionTime = time;
+      // Read the untransformed sticky wrappers before updating composited card layers.
       const rects = items.map((item) => item.getBoundingClientRect());
+      let settling = false;
       items.forEach((item, index) => {
+        const rect = rects[index];
         const next = rects[index + 1];
-        const distance = Math.max(1, rects[index].height * 0.8);
-        const progress = stacking && !motionPreference.matches && next
-          ? Math.max(0, Math.min(1, (stickyTop + distance - next.top) / distance))
+        const distance = Math.max(1, rect.height * 0.8);
+        const covered = !reduced && next
+          ? clamp((stickyTop + distance - next.top) / distance)
           : 0;
-        const panel = item.querySelector('.project-panel');
-        panel.style.setProperty('--stack-scale', String(1 - progress * 0.025));
-        panel.style.setProperty('--stack-shade', String(progress * 0.08));
-        panel.style.willChange = progress > 0 && progress < 1 ? 'transform' : 'auto';
+        const progress = mobile ? ease(covered) : covered;
+        const entering = ease(clamp((window.innerHeight - rect.top) / Math.max(1, window.innerHeight - stickyTop)));
+        const target = {
+          scale: 1 - progress * (mobile ? 0.035 : 0.025),
+          shade: progress * (mobile ? 0.09 : 0.08),
+          y: mobile && !reduced ? (1 - entering) * 14 - progress * 6 : 0,
+        };
+        const visible = rect.top < window.innerHeight && rect.bottom > 0;
+        const current = visuals[index];
+        const amount = visible ? blend : 1;
+        current.scale += (target.scale - current.scale) * amount;
+        current.shade += (target.shade - current.shade) * amount;
+        current.y += (target.y - current.y) * amount;
+        const moving = Math.abs(target.scale - current.scale) > 0.0001
+          || Math.abs(target.shade - current.shade) > 0.0001
+          || Math.abs(target.y - current.y) > 0.05;
+        settling ||= visible && moving;
+        panels[index].style.setProperty('--stack-scale', current.scale.toFixed(5));
+        panels[index].style.setProperty('--stack-shade', current.shade.toFixed(5));
+        panels[index].style.setProperty('--stack-y', current.y.toFixed(2) + 'px');
+        panels[index].style.willChange = visible && moving ? 'transform' : 'auto';
       });
+      if (settling) motionFrame = window.requestAnimationFrame(updateStackMotion);
+      else lastMotionTime = 0;
     };
     const scheduleStackMotion = () => {
       if (!motionFrame) motionFrame = window.requestAnimationFrame(updateStackMotion);
@@ -184,12 +216,12 @@ export const Projects = () => {
         const cards = Array.from(stack.querySelectorAll('.project-panel'));
         const tallest = Math.max(...cards.map((card) => card.offsetHeight));
         // Every card shares one sticky line, preserving their stacking order.
-        // Use one layout for the whole stack; tall phone cards scroll with the page.
-        stacking = window.innerWidth > 768 || tallest <= window.innerHeight - 96;
-        stack.classList.toggle('is-flowing', !stacking);
-        const top = window.innerWidth <= 768 ? 12 : Math.min(24, window.innerHeight - tallest - 96);
-        stickyTop = top;
-        stack.style.setProperty('--project-sticky-top', top + 'px');
+        // Center the mobile stack using its tallest card so every project shares one anchor.
+        const top = window.innerWidth <= 768
+          ? 'max(12px, calc((100svh - ' + tallest + 'px) / 2))'
+          : Math.min(24, window.innerHeight - tallest - 96) + 'px';
+        stack.style.setProperty('--project-sticky-top', top);
+        stickyTop = parseFloat(window.getComputedStyle(items[0]).top);
         // Leave room for the final card to reach the sticky line and remain there
         // before the stack's bottom boundary releases the earlier cards.
         const lastHeight = cards[cards.length - 1].offsetHeight;
@@ -219,6 +251,8 @@ export const Projects = () => {
   const projects = [
     {
       title: 'PromptGuide',
+      mobileSystem: 'Prompt evaluation across VS Code and Chrome, backed by Flask.',
+      mobileDecision: 'NLP scoring filters prompts before LLM calls to keep costs predictable.',
       terminalFile: 'promptguide.py',
       desc1: 'Multi-surface prompt evaluation system - VS Code + Chrome extension backed by a Flask API.',
       desc2: 'Uses deterministic NLP scoring to filter prompts before LLM invocation, keeping costs predictable.',
@@ -229,6 +263,8 @@ export const Projects = () => {
     },
     {
       title: 'Fraud Detection System',
+      mobileSystem: 'Kafka streams payment events to a Python fraud-scoring engine.',
+      mobileDecision: 'Atomic PostgreSQL upserts prevent double-spend races without app-level locks.',
       terminalFile: 'fraud_detector.py',
       desc1: 'Distributed transaction monitoring system ingesting payment events via Kafka, scoring fraud risk in real-time via a Python ML engine.',
       desc2: 'Solved a double-spend race condition using atomic PostgreSQL upsert - no application-level locking needed.',
@@ -239,6 +275,8 @@ export const Projects = () => {
     },
     {
       title: 'Sentinel-G3',
+      mobileSystem: 'AI agents audit GitHub repos and open PRs with verified security fixes.',
+      mobileDecision: 'Pydantic contracts validate agent outputs before fixes move downstream.',
       terminalFile: 'sentinel.py',
       desc1: 'Autonomous security auditor that decomposes a GitHub repo into parallel specialist agents and opens a PR with verified patches.',
       desc2: 'Enforced Pydantic output contracts at every agent node to prevent plausible-but-incorrect fixes from propagating.',
@@ -250,6 +288,8 @@ export const Projects = () => {
     },
     {
       title: 'IssueTracker',
+      mobileSystem: 'Multi-tenant issue tracking with isolation enforced in PostgreSQL.',
+      mobileDecision: 'Prisma extensions scope every query to the authenticated workspace.',
       terminalFile: 'issue_tracker.ts',
       desc1: 'Multi-tenant issue management SaaS with tenant isolation enforced at the database layer - not the application layer.',
       desc2: 'Prisma client extensions auto-scope every query to the authenticated workspace, eliminating the bypass class that app-level filtering leaves open.',
@@ -260,6 +300,8 @@ export const Projects = () => {
     },
     {
       title: 'JobScore',
+      mobileSystem: 'FastAPI job matching with transparent, explainable match scores.',
+      mobileDecision: 'Local pgvector embeddings and skill overlap make rankings explainable.',
       terminalFile: 'jobscore.py',
       desc1: 'Swipe-based job matching platform built with FastAPI and Next.js, featuring transparent, explainable match scores.',
       desc2: 'Replaced opaque algorithms using local pgvector embeddings and deterministic skill overlap math to ensure fair ranking.',
@@ -270,6 +312,8 @@ export const Projects = () => {
     },
     {
       title: 'RepoReel',
+      mobileSystem: 'Visual changelogs with concise, AI-generated release narratives.',
+      mobileDecision: 'Local commit parsing cuts token use; Vercel KV stores shareable releases.',
       terminalFile: 'reporeel.ts',
       desc1: 'Structured, visual changelog generator leveraging Gemini for concise AI release narratives.',
       desc2: 'Drastically reduced API token usage by parsing commits locally before generating permanent shareable release URLs via Vercel KV.',
@@ -280,6 +324,8 @@ export const Projects = () => {
     },
     {
       title: 'Web Monitor',
+      mobileSystem: 'Webpage change tracking with hashes and Gemini diff summaries.',
+      mobileDecision: 'ETag caching and local hash checks reduce polling and LLM calls.',
       terminalFile: 'webmonitor.ts',
       desc1: 'Lightweight webpage change monitor using hashing and Gemini 2.5 Flash for precise diff summaries.',
       desc2: 'Optimized polling with ETag caching and localized hash comparisons before invoking the LLM for summary generation.',
@@ -290,6 +336,8 @@ export const Projects = () => {
     },
     {
       title: 'LiveBid',
+      mobileSystem: 'Real-time auctions with automatic management and instant bidding.',
+      mobileDecision: 'SignalR WebSockets and .NET 8 synchronize bids across connected clients.',
       terminalFile: 'livebid.cs',
       desc1: 'Full-stack real-time auction platform featuring automatic auction management and instant bidding.',
       desc2: 'Synchronized live bids across all active clients using SignalR WebSockets and .NET 8, handling high-frequency updates safely.',
@@ -300,6 +348,8 @@ export const Projects = () => {
     },
     {
       title: 'StudySync',
+      mobileSystem: 'Study-partner matching using cosine similarity recommendations.',
+      mobileDecision: 'Precomputed TF-IDF vectors reduce pairwise matching from O(n²) to O(1).',
       terminalFile: 'studysync.py',
       desc1: 'Web app matching students with compatible study partners using a cosine-similarity recommendation engine.',
       desc2: 'Optimized matching by pre-computing TF-IDF vectors for profiles, reducing the pair-wise similarity search from O(n^2) to O(1) per user.',
